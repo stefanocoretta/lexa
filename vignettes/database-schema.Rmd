@@ -1,0 +1,57 @@
+---
+title: "Lexa Database Schema"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lexa Database Schema}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(lexa)
+```
+
+## General structure
+
+A Lexa database (`lexadb`) is a directory containing the following files:
+
+- `config.yaml`: the database configuration file.
+- `lexicon.yaml`: the lexicon file.
+- `grammar.yaml`: the grammar specification file.
+- `texts.yaml`: the texts collection file.
+
+## Lexicon file
+
+```yaml
+lx_00000n:
+  id: lx_00000n
+  lexeme: <string>
+  phon: <string>
+  morph_category: <lexical, grammatical>
+  morph_type: <root, stem, affix, clitic, particle, compound, phrase>
+  allomorphs:
+    al_0n:
+      id: al_0n
+      morph: <string>
+      phon: <string>
+      conditioning:
+        type: <phonological, morphosyntactic, free>
+        context: <string>
+  senses:
+    se_0n:
+      id: se_0n
+      gloss: <string>
+      definition: <string>
+      part_of_speech: <string>
+      inflectional_features:
+        <feature_n>: <string>
+      examples: ["tx_00000n"]
+      etymology: <string>
+```

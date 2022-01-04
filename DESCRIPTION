@@ -1,0 +1,22 @@
+Package: lexa
+Type: Package
+Title: Lexicon and texts database management
+Version: 0.0.0.9000
+Date: 2022-01-04
+Authors@R: person("Stefano", "Coretta", email = "stefano.coretta@gmail.com",
+                  role = c("aut", "cre"),
+                  comment = c(ORCID = "0000-0001-9627-5532", github = "stefanocoretta"))
+Description: It provides a database schema and functions to manage a language
+    database made of a lexicon and a collection of texts.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+Imports:
+    cli,
+    stringr,
+    yaml
+VignetteBuilder: knitr
+RoxygenNote: 7.1.2
