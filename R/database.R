@@ -1,7 +1,8 @@
 #' Create a new Lexa database
 #'
 #' @param parent Parent directory (default is current working directory).
-#' @param name Name of the Lexa database (`_lexadb` will be appended to the name).
+#' @param name Name of the Lexa database (`_lexadb` will be appended to the
+#'   name).
 #'
 #' @return Nothing. Used for its side effects.
 #' @export
@@ -55,7 +56,10 @@ create_texts <- function(path) {
 #' @export
 #'
 load_lexadb <- function(path) {
-  if (!stringr::str_ends(path, "_lexadb/?") | !file.exists(file.path(path, "config.yaml"))) {
+  if (
+    !stringr::str_ends(path, "_lexadb/?") |
+    !file.exists(file.path(path, "config.yaml"))
+  ) {
     cli::cli_abort("The provided path is not a Lexa database.")
   }
 
@@ -92,30 +96,4 @@ read_grammar <- function(path) {
 
 read_texts <- function(path) {
   yaml::read_yaml(file.path(path, "texts.yaml"))
-}
-
-
-
-
-# Print methods ----
-
-#' Print method for Lexa databases
-#'
-#' Print method for objects of class `lexadb`, which prints database info and
-#' statistics.
-#'
-#' @param x An object of class `lexadb`.
-#' @param ... Arguments passed to print.
-#'
-#' @return Nothing. Used for its side effects.
-#' @export
-#'
-print.lexadb <- function(x, ...) {
-  cli::cli_rule("Database info")
-  cli::cli_text(
-    "{crayon::green(cli::symbol$circle_filled)} {crayon::blue('Name:')} {lexadb$config$name}"
-  )
-  cli::cli_text(
-    "{crayon::silver(cli::symbol$info)} {crayon::blue('Entries:')} {length(lexadb$lexicon)} {crayon::silver(cli::symbol$em_dash)} {crayon::blue('Texts:')} {length(lexadb$texts)}"
-  )
 }
