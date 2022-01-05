@@ -1,0 +1,10 @@
+tx_000001:
+  id: tx_000001
+  title: "Example sentences"
+  text:
+    st_000001:
+      st: "Ës ëtsu urürtō enēim kẽsyoh βül enēim āireᵃɸ lixpyūaʔ."
+      tr: "And then I sat on a rock, while it was raining over me."
+    st_000002:
+      st: "Xöntesiŋ gartosesī ōroi Vāisi su Meuxa su vēsyēl selo ellāimōma enēim āireᵃɸ."
+      tr: "With pleasure I tell you about the Sun, the Moon and the stars that are above us."
