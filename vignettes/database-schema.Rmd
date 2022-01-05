@@ -20,12 +20,12 @@ library(lexa)
 
 ## General structure
 
-A Lexa database (`lexadb`) is a directory containing the following files:
+A Lexa database (`lexadb`) is a directory containing the following files/dirs:
 
 - `config.yaml`: the database configuration file.
 - `lexicon.yaml`: the lexicon file.
 - `grammar.yaml`: the grammar specification file.
-- `texts.yaml`: the texts collection file.
+- `texts/`: directory containing Lexa text collections (`lexatxt`).
 
 ## Lexicon file
 
@@ -54,4 +54,24 @@ lx_00000n:
         <feature_n>: <string>
       examples: ["tx_00000n"]
       etymology: <string>
+  date_created: <date>
+  date_modified: <date>
 ```
+
+## Text collection
+
+Texts are located in the `texts/` folder.
+Each text is saved in a separate `.yaml` file, with no restrictions on naming (except you must avoid spaces and fancy characters.)
+
+Each `.yaml` file must have (at a minimum) the following structure:
+
+```yaml
+tx_00000n:
+  id: tx_00000n
+  title: <string>
+  text:
+    st_00000n:
+      st: <string>
+      tr: <string>
+```
+
