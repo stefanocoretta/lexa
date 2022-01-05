@@ -36,8 +36,9 @@ create_grammar <- function(path) {
 }
 
 create_texts <- function(path) {
-  texts <- list()
-  yaml::write_yaml(texts, file.path(path, "texts.yaml"))
+  dir.create(file.path(path, "texts"), FALSE, TRUE)
+  text_example <- list()
+  yaml::write_yaml(text_example, file.path(path, "texts", "text_example.yaml"))
 }
 
 
@@ -95,5 +96,7 @@ read_grammar <- function(path) {
 }
 
 read_texts <- function(path) {
-  yaml::read_yaml(file.path(path, "texts.yaml"))
+  texts_path <- file.path(path, "texts")
+  texts_files <- list.files(texts_path, full.names = TRUE)
+  lapply(texts_files, function(file) yaml::read_yaml(file))
 }

@@ -15,11 +15,11 @@ print.lexadb <- function(x, ...) {
   cli::cli_rule("Database info")
   cli::cli_text(
     "{crayon::green(cli::symbol$circle_filled)} {crayon::blue('Name:')}
-    {lexadb$config$name}"
+    {x$config$name}"
   )
   cli::cli_text(
-    "{crayon::silver(cli::symbol$info)} {crayon::blue('Entries:')}
-    {length(lexadb$lexicon)} {crayon::silver(cli::symbol$em_dash)}
-    {crayon::blue('Texts:')} {length(lexadb$texts)}"
+    "{crayon::green(cli::symbol$info)} {crayon::blue('Entries:')}
+    {length(x$lexicon)} {crayon::green('|')}
+    {crayon::blue('Texts:')} {length(x$texts)}"
   )
 }
