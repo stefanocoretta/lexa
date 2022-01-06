@@ -27,10 +27,11 @@ lx_000002:
       id: al_01
       morph: nul
       phon: nul
-  sense:
+  senses:
     se_01:
       id: se_01
       gloss: love
+      definition: "to love"
       part_of_speech: verb
       inflectional_features:
         class: IV
