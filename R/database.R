@@ -88,7 +88,11 @@ read_config <- function(path) {
 }
 
 read_lexicon <- function(path) {
-  yaml::read_yaml(file.path(path, "lexicon.yaml"))
+  lexicon <- yaml::read_yaml(file.path(path, "lexicon.yaml"))
+  lapply(lexicon, function(lexeme) {
+      structure(lexeme, class = c("lexalx", "list"))
+    }
+  )
 }
 
 read_grammar <- function(path) {
