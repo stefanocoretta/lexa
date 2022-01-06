@@ -23,3 +23,28 @@ print.lexadb <- function(x, ...) {
     {crayon::blue('Texts:')} {length(x$texts)}"
   )
 }
+
+#' Print method for lexemes
+#'
+#' Print method for objects of class `lexalx`, which prints lexeme info.
+#'
+#' @param x An object of class `lexalx`.
+#' @param ... Arguments passed to print.
+#'
+#' @return Nothing. Used for its side effects.
+#' @export
+print.lexalx <- function(x, ...) {
+  cli::cli_rule("Lemma")
+  cli::cli_text(
+    "{crayon::blue(x$lexeme)} [{x$phon}]"
+  )
+  n_senses <- length(x$senses)
+  for (sense in 1:n_senses) {
+    se_i <- x$senses[[sense]]
+    cli::cli_h2("Sense {sense}")
+    cli::cli_text(
+      "{.emph {crayon::green(se_i$part_of_speech)}} {se_i$definition}"
+    )
+  }
+
+}
