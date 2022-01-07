@@ -36,17 +36,17 @@ print.lexadb <- function(x, ...) {
 print.lexalx <- function(x, ...) {
   lemma <- ifelse(is.null(x$lemma), x$lexeme, x$lemma)
   n_senses <- length(x$senses)
+  if (!is.null(x$phon)) {
+    lemma_line <- "{crayon::blue(lemma)} [{x$phon}] {.emph {crayon::green(x$part_of_speech)}}"
+  } else {
+    lemma_line <- "{crayon::blue(lemma)} {.emph {crayon::green(x$part_of_speech)}}"
+  }
 
-  cli::cli_rule("Lemma")
-  cli::cli_text(
-    "{crayon::blue(lemma)} [{x$phon}] {.emph {crayon::green(x$part_of_speech)}}"
-  )
-  for (sense in 1:n_senses) {
-    se_i <- x$senses[[sense]]
-    cli::cli_rule("Sense {sense}")
-    cli::cli_text(
-      "{se_i$definition}"
-    )
+  cli::cli_rule("Lemma", right = "{.emph {x$id}}")
+  cli::cli_text(lemma_line)
+  cli::cli_h3("Senses")
+  for (sense in x$senses) {
+    cli::cli_text("{cli::symbol$bullet} {sense$definition}")
   }
 
 }

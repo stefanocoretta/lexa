@@ -1,12 +1,20 @@
-add_lexeme <- function(lexadb, lexeme, lemma = lexeme, phon = NULL, morph_category = NULL, morph_type = NULL, part_of_speech = NULL) {
-  list(
-    id = create_lx_id(lexadb$lexicon),
+add_lexeme <- function(lexadb, lexeme, lemma = lexeme, phon = NULL,
+  morph_category = NULL, morph_type = NULL, part_of_speech = NULL) {
+  new_id <- create_lx_id(lexadb$lexicon)
+
+  new_lx <- list(
+    id = new_id,
     lexeme = lexeme,
     lemma = lemma,
     phon = phon,
     morph_category = morph_category,
     morph_type = morph_type
   )
+
+  class(new_lx) <- c("lexalx", "list")
+
+  lexadb$lexicon[[new_id]] <- new_lx
+  return(lexadb)
 }
 
 write_lexicon <- function(lexicon, path) {
