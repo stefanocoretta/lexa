@@ -34,16 +34,18 @@ print.lexadb <- function(x, ...) {
 #' @return Nothing. Used for its side effects.
 #' @export
 print.lexalx <- function(x, ...) {
+  lemma <- ifelse(is.null(x$lemma), x$lexeme, x$lemma)
+  n_senses <- length(x$senses)
+
   cli::cli_rule("Lemma")
   cli::cli_text(
-    "{crayon::blue(x$lexeme)} [{x$phon}]"
+    "{crayon::blue(lemma)} [{x$phon}] {.emph {crayon::green(x$part_of_speech)}}"
   )
-  n_senses <- length(x$senses)
   for (sense in 1:n_senses) {
     se_i <- x$senses[[sense]]
-    cli::cli_h2("Sense {sense}")
+    cli::cli_rule("Sense {sense}")
     cli::cli_text(
-      "{.emph {crayon::green(se_i$part_of_speech)}} {se_i$definition}"
+      "{se_i$definition}"
     )
   }
 
