@@ -79,6 +79,7 @@ load_lexadb <- function(path) {
   )
 
   class(lexadb) <- c("lexadb", "list")
+  attr(lexadb, "meta") <- list(path = file.path(path))
 
   return(lexadb)
 }
