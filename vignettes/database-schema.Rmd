@@ -36,6 +36,8 @@ lx_00000n:
   phon: <string>
   morph_category: <lexical, grammatical>
   morph_type: <root, stem, affix, clitic, particle, compound, phrase>
+  part_of_speech: <string>
+  etymology: <string>
   allomorphs:
     al_0n:
       id: al_0n
@@ -49,7 +51,6 @@ lx_00000n:
       id: se_0n
       gloss: <string>
       definition: <string>
-      part_of_speech: <string>
       inflectional_features:
         <feature_n>: <string>
       examples: ["tx_00000n"]
