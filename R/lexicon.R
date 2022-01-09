@@ -1,5 +1,6 @@
-add_lexeme <- function(lexadb, lexeme, lemma = lexeme, phon = NULL,
-  morph_category = NULL, morph_type = NULL, part_of_speech = NULL) {
+add_entry <- function(lexadb, lexeme, lemma = lexeme, phon = NULL,
+  morph_category = NULL, morph_type = NULL, part_of_speech = NULL,
+  etymology = NULL, allomorphs = NULL, senses = NULL) {
   new_id <- create_lx_id(lexadb$lexicon)
 
   new_lx <- list(
@@ -8,7 +9,11 @@ add_lexeme <- function(lexadb, lexeme, lemma = lexeme, phon = NULL,
     lemma = lemma,
     phon = phon,
     morph_category = morph_category,
-    morph_type = morph_type
+    morph_type = morph_type,
+    part_of_speech = part_of_speech,
+    etymology = etymology,
+    allomorphs = allomorphs,
+    senses = senses
   )
 
   class(new_lx) <- c("lexalx", "list")
