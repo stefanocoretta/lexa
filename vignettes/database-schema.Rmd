@@ -23,40 +23,39 @@ library(lexa)
 A Lexa database (`lexadb`) is a directory containing the following files/dirs:
 
 - `config.yaml`: the database configuration file.
-- `lexicon.yaml`: the lexicon file.
 - `grammar.yaml`: the grammar specification file.
+- `lexicon/`: directory containing Lexa lexicon files.
 - `texts/`: directory containing Lexa text collections (`lexatxt`).
 
 ## Lexicon file
 
 ```yaml
-lx_00000n:
-  id: lx_00000n
-  lexeme: <string>
-  phon: <string>
-  morph_category: <lexical, grammatical>
-  morph_type: <root, stem, affix, clitic, particle, compound, phrase>
-  part_of_speech: <string>
-  etymology: <string>
-  allomorphs:
-    al_0n:
-      id: al_0n
-      morph: <string>
-      phon: <string>
-      conditioning:
-        type: <phonological, morphosyntactic, free>
-        context: <string>
-  senses:
-    se_0n:
-      id: se_0n
-      gloss: <string>
-      definition: <string>
-      inflectional_features:
-        <feature_n>: <string>
-      examples: ["tx_00000n"]
-      etymology: <string>
-  date_created: <date>
-  date_modified: <date>
+id: lx_00000n
+lexeme: <string>
+phon: <string>
+morph_category: <lexical, grammatical>
+morph_type: <root, stem, affix, clitic, particle, compound, phrase>
+part_of_speech: <string>
+etymology: <string>
+allomorphs:
+  al_0n:
+    id: al_0n
+    morph: <string>
+    phon: <string>
+    conditioning:
+      type: <phonological, morphosyntactic, free>
+      context: <string>
+senses:
+  se_0n:
+    id: se_0n
+    gloss: <string>
+    definition: <string>
+    inflectional_features:
+      <feature_n>: <string>
+    examples: ["tx_00000n"]
+    etymology: <string>
+date_created: <date>
+date_modified: <date>
 ```
 
 ## Text collection

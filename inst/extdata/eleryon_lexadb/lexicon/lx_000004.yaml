@@ -1,0 +1,19 @@
+id: lx_000004
+lexeme: vēsel-
+lemma: evēsellose
+phon: eveɪsellose
+morph_category: lexical
+morph_type: root
+part_of_speech: verb
+allomorphs:
+  al_01:
+    id: al_01
+    morph: vēsel
+    phon: veɪsel
+senses:
+  se_01:
+    id: se_01
+    gloss: teach
+    definition: "to teach"
+    inflectional_features:
+      class: IV
