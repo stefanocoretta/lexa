@@ -26,8 +26,38 @@ create_config <- function(path, name) {
 }
 
 create_lexicon <- function(path) {
-  lexicon <- list()
-  yaml::write_yaml(lexicon, file.path(path, "lexicon.yaml"))
+  dir.create(file.path(path, "lexicon"), FALSE, TRUE)
+
+  lexicon <- list(
+    id = "lx_000001",
+    lexeme = "",
+    lemma = "",
+    phon = "",
+    morph_category = "",
+    morph_type = "",
+    part_of_speech = "",
+    etymology = "",
+    allomorphs = list(
+      al_01 = list(
+        id = "al_01",
+        morph = "",
+        phon = ""
+      )
+    ),
+    senses = list(
+      se_01 = list(
+        id = "se_01",
+        gloss = "",
+        definition = "",
+        inflectional_features = list(
+          class = ""
+        )
+      )
+    ),
+    date_created = as.character(Sys.time()),
+    date_modified = as.character(Sys.time())
+  )
+  yaml::write_yaml(lexicon, file.path(path, "lexicon/lx_000001.yaml"))
 }
 
 create_grammar <- function(path) {
@@ -89,11 +119,16 @@ read_config <- function(path) {
 }
 
 read_lexicon <- function(path) {
-  lexicon <- yaml::read_yaml(file.path(path, "lexicon.yaml"))
-  lapply(lexicon, function(lexeme) {
-      structure(lexeme, class = c("lexalx", "list"))
+  lexicon_path <- file.path(path, "lexicon")
+  lexicon_files <- list.files(lexicon_path, full.names = TRUE)
+  lexicon <- lapply(lexicon_files, function(lexeme) {
+      lx <- yaml::read_yaml(lexeme)
+      structure(lx, class = c("lexalx", "list"))
     }
   )
+  lx_ids <- lapply(lexicon, function(x) x[["id"]])
+  names(lexicon) <- lx_ids
+  lexicon
 }
 
 read_grammar <- function(path) {
