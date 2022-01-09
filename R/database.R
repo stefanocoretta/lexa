@@ -28,36 +28,8 @@ create_config <- function(path, name) {
 create_lexicon <- function(path) {
   dir.create(file.path(path, "lexicon"), FALSE, TRUE)
 
-  lexicon <- list(
-    id = "lx_000001",
-    lexeme = "",
-    lemma = "",
-    phon = "",
-    morph_category = "",
-    morph_type = "",
-    part_of_speech = "",
-    etymology = "",
-    allomorphs = list(
-      al_01 = list(
-        id = "al_01",
-        morph = "",
-        phon = ""
-      )
-    ),
-    senses = list(
-      se_01 = list(
-        id = "se_01",
-        gloss = "",
-        definition = "",
-        inflectional_features = list(
-          class = ""
-        )
-      )
-    ),
-    date_created = as.character(Sys.time()),
-    date_modified = as.character(Sys.time())
-  )
-  yaml::write_yaml(lexicon, file.path(path, "lexicon/lx_000001.yaml"))
+  lx_entry <- create_entry(NULL)
+  yaml::write_yaml(lx_entry, file.path(path, "lexicon/lx_000001.yaml"))
 }
 
 create_grammar <- function(path) {
