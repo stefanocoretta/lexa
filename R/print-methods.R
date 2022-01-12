@@ -17,10 +17,13 @@ print.lexadb <- function(x, ...) {
     "{crayon::green(cli::symbol$circle_filled)} {crayon::blue('Name:')}
     {x$config$name}"
   )
+  db_path <- attr(x, "meta")$path
   cli::cli_text(
     "{crayon::green(cli::symbol$info)} {crayon::blue('Entries:')}
-    {length(x$lexicon)} {crayon::green('|')}
-    {crayon::blue('Texts:')} {length(x$texts)}"
+    {length(list.files(file.path(db_path, 'lexicon'), '*.yaml'))}
+    {crayon::green('|')}
+    {crayon::blue('Texts:')}
+    {length(list.files(file.path(db_path, 'texts'), '*.yaml'))}"
   )
 }
 

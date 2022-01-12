@@ -69,15 +69,9 @@ load_lexadb <- function(path) {
   cli::cli_alert_info("Loading lexa database...")
 
   config <- read_config(path)
-  lexicon <- read_lexicon(path)
-  grammar <- read_grammar(path)
-  texts <- read_texts(path)
 
   lexadb <- list(
-    config = config,
-    lexicon = lexicon,
-    grammar = grammar,
-    texts = texts
+    config = config
   )
 
   class(lexadb) <- c("lexadb", "list")
