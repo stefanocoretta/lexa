@@ -81,8 +81,10 @@ search_lexicon <- function(lexadb, pattern) {
   db_path <- attr(lexadb, "meta")$path
   lexicon <- read_lexicon(db_path)
 
-  lapply(lexicon, function(x) {
+  hits <- lapply(lexicon, function(x) {
       stringr::str_detect(x$lexeme, pattern)
     }
   )
+
+  lexicon[unlist(hits)]
 }
