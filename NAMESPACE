@@ -2,5 +2,7 @@
 
 S3method(print,lexadb)
 S3method(print,lexalx)
+export(add_entry)
 export(create_lexadb)
 export(load_lexadb)
+export(search_lexicon)
