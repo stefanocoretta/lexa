@@ -76,14 +76,40 @@ write_entry <- function(lexadb, lx_entry) {
 
 # Search entries ----
 
-search_lexicon <- function(lexadb, pattern) {
+#' Search lexicon entries
+#'
+#' Search entries in the lexicon, by entry form or sense definitions.
+#'
+#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
+#' @param entry A regular expression to search across entries.
+#' @param definition A regular expression to search across sense definitions.
+#'
+#' @return A list of `lexalx` objects.
+#' @export
+search_lexicon <- function(lexadb, entry = NULL, definition = NULL) {
   db_path <- attr(lexadb, "meta")$path
   lexicon <- read_lexicon(db_path)
 
-  hits <- lapply(lexicon, function(x) {
-      stringr::str_detect(x$entry, pattern)
-    }
-  )
+  if (!is.null(entry)) {
+    hits <- lapply(lexicon, function(x) {
+      stringr::str_detect(x$entry, entry)
+    })
+  } else if (!is.null(definition)) {
+    hits <- lapply(lexicon, function(x) {
+      check_definitions(x, definition)
+    })
+  }
 
   lexicon[unlist(hits)]
+}
+
+# Helper function to search through definitions
+check_definitions <- function(entry, pattern) {
+  defs <- lapply(entry$senses, function(y) y$definition)
+  sums <- sum(stringr::str_detect(defs, pattern))
+  if (sums != 0) {
+    TRUE
+  } else {
+    FALSE
+  }
 }
