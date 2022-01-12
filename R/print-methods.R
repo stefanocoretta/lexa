@@ -40,16 +40,24 @@ print.lexalx <- function(x, ...) {
   lemma <- ifelse(is.null(x$lemma), x$lexeme, x$lemma)
   n_senses <- length(x$senses)
   if (!is.null(x$phon)) {
-    lemma_line <- "{crayon::blue(lemma)} [{x$phon}] {.emph {crayon::green(x$part_of_speech)}}"
+    lemma_line <- "{crayon::blue(lemma)}
+    [{x$phon}] {.emph {crayon::green(x$part_of_speech)}}"
   } else {
-    lemma_line <- "{crayon::blue(lemma)} {.emph {crayon::green(x$part_of_speech)}}"
+    lemma_line <- "{crayon::blue(lemma)}
+    {.emph {crayon::green(x$part_of_speech)}}"
   }
 
   cli::cli_rule("Lemma", right = "{.emph {x$id}}")
   cli::cli_text(lemma_line)
   cli::cli_h3("Senses")
   for (sense in x$senses) {
-    cli::cli_text("{cli::symbol$bullet} {sense$definition}")
+    if (!is.null(sense$inflectional_features)) {
+      cli::cli_text("{cli::symbol$bullet}
+        {crayon::blue('[', sense$inflectional_features, ']', sep = '')}
+        {sense$definition}")
+    } else {
+      cli::cli_text("{cli::symbol$bullet} {sense$definition}")
+    }
   }
 
 }
