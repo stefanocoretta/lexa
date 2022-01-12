@@ -37,18 +37,18 @@ print.lexadb <- function(x, ...) {
 #' @return Nothing. Used for its side effects.
 #' @export
 print.lexalx <- function(x, ...) {
-  lemma <- ifelse(is.null(x$lemma), x$lexeme, x$lemma)
   n_senses <- length(x$senses)
+  entry <- x$entry
   if (!is.null(x$phon)) {
-    lemma_line <- "{crayon::blue(lemma)}
+    entry_line <- "{crayon::blue(entry)}
     [{x$phon}] {.emph {crayon::green(x$part_of_speech)}}"
   } else {
-    lemma_line <- "{crayon::blue(lemma)}
+    entry_line <- "{crayon::blue(entry)}
     {.emph {crayon::green(x$part_of_speech)}}"
   }
 
-  cli::cli_rule("Lemma", right = "{.emph {x$id}}")
-  cli::cli_text(lemma_line)
+  cli::cli_rule("Entry", right = "{.emph {x$id}}")
+  cli::cli_text(entry_line)
   cli::cli_h3("Senses")
   for (sense in x$senses) {
     if (!is.null(sense$inflectional_features)) {

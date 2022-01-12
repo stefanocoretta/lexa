@@ -36,8 +36,7 @@ create_lx_id <- function(lexadb) {
 create_entry <- function(lexadb = NULL) {
   list(
     id = ifelse(is.null(lexadb), "lx_000001", create_lx_id(lexadb)),
-    lexeme = "",
-    lemma = "",
+    entry = "",
     phon = "",
     morph_category = "",
     morph_type = "",
@@ -82,7 +81,7 @@ search_lexicon <- function(lexadb, pattern) {
   lexicon <- read_lexicon(db_path)
 
   hits <- lapply(lexicon, function(x) {
-      stringr::str_detect(x$lexeme, pattern)
+      stringr::str_detect(x$entry, pattern)
     }
   )
 
