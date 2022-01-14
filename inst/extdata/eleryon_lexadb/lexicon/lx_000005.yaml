@@ -1,0 +1,18 @@
+id: lx_000005
+entry: 'chǭs'
+phon: 'tʃɵːs'
+morph_category: 'lexical'
+morph_type: 'root'
+part_of_speech: 'adverb'
+allomorphs:
+  al_01:
+    id: al_01
+    morph: 'chǭs'
+    phon: 'tʃɵːs'
+senses:
+  se_01:
+    id: se_01
+    gloss: 'tomorrow'
+    definition: 'tomorrow'
+date_created: 2022-01-14 21:13:41
+date_modified: 2022-01-14 21:13:41

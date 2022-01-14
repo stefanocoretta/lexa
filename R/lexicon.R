@@ -41,6 +41,7 @@ create_entry <- function(lexadb = NULL) {
     morph_category = "",
     morph_type = "",
     part_of_speech = "",
+    inflectional_features = list(class = ""),
     etymology = "",
     allomorphs = list(
       al_01 = list(
@@ -54,9 +55,7 @@ create_entry <- function(lexadb = NULL) {
         id = "se_01",
         gloss = "",
         definition = "",
-        inflectional_features = list(
-          class = ""
-        )
+        inflectional_features = list(class = "")
       )
     ),
     date_created = as.character(Sys.time()),

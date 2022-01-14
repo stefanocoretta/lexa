@@ -36,6 +36,8 @@ phon: <string>
 morph_category: <lexical, grammatical>
 morph_type: <root, stem, affix, clitic, particle, compound, phrase>
 part_of_speech: <string>
+inflectional_features:
+  <feature_n>: <string>
 etymology: <string>
 allomorphs:
   al_0n:

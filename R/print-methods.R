@@ -47,17 +47,24 @@ print.lexalx <- function(x, ...) {
     {.emph {crayon::green(x$part_of_speech)}}"
   }
 
+  if (!is.null(x$inflectional_features)) {
+    entry_line <- paste(entry_line, "({x$inflectional_features})")
+  }
+
   cli::cli_rule("Entry", right = "{.emph {x$id}}")
   cli::cli_text(entry_line)
   cli::cli_h3("Senses")
   for (sense in x$senses) {
     if (!is.null(sense$inflectional_features)) {
       cli::cli_text("{cli::symbol$bullet}
-        {crayon::blue('[', sense$inflectional_features, ']', sep = '')}
+        {crayon::blue('(', sense$inflectional_features, ')', sep = '')}
         {sense$definition}")
     } else {
       cli::cli_text("{cli::symbol$bullet} {sense$definition}")
     }
   }
+  cli::cli_h3("Grammatical info")
+  cli::cli_text("{crayon::red('Category:')} {x$morph_category}")
+  cli::cli_text("{crayon::red('Type:')} {x$morph_type}")
 
 }
