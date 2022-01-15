@@ -1,53 +1,83 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# lexa
+# lexa: Manage documentary and descriptive linguistic data
 
 <!-- badges: start -->
+
+[![](https://img.shields.io/badge/devel%20version-0.0.0.9000-orange.svg)](https://github.com/stefanocoretta/lexa)
 <!-- badges: end -->
 
-The goal of lexa is to …
+The goal of lexa is to provide a framework and tools to manage
+linguistic fieldwork data.
+
+The package is still in its infancy and only a very limited set of
+features are being developed for the time being. The package contains
+highly unstable code, so expect breaking changes at any point (although
+I will try to keep these at a minimum).
+
+The current available features are:
+
+-   Create a Lexa database.
+-   Add lexical entries to the database.
+-   Search lexical entries by word or definition.
+-   Import lexical entries from a `.csv` file.
 
 ## Installation
 
 You can install the development version of lexa like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+remotes::install_github(
+  "stefanocoretta/lexa@devel",
+  build_vignettes = TRUE
+)
 ```
 
-## Example
+## Quick start
 
-This is a basic example which shows you how to solve a common problem:
+To create a new database:
 
 ``` r
 library(lexa)
-## basic example code
+
+create_lexadb(
+  parent = "./",
+  name = "new-db"
+)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+This will create a directory `new-db_lexadb/` in the parent directory
+(`./`). See `vignette("database-schema", package = "lexa")` for details.
+
+The `lexicon/` folder is populated with a file with an entry scheleton
+you can manually edit.
+
+To create new entries you first need to load the database:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+new_db <- load_lexadb("./new-db_lexadb")
+
+new_db
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+Now you can add a new entry with:
 
-You can also embed plots, for example:
+``` r
+add_entry(new_db)
+```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+This will create a new file with the entry scheleton which you can edit.
+The new `id` is automatically created for you based on the existing
+files.
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+To search your lexicon:
+
+``` r
+db_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
+eleryon <- load_lexadb(db_path)
+eleryon
+
+search_lexicon(eleryon, entry = "unullose")
+search_lexicon(eleryon, definition = "tomorrow")
+```

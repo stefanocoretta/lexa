@@ -1,14 +1,16 @@
 Package: lexa
 Type: Package
 Title: Lexicon and texts database management
-Version: 0.0.0.9000
-Date: 2022-01-04
+Version: 0.0.0.9001
+Date: 2022-01-15
 Authors@R: person("Stefano", "Coretta", email = "stefano.coretta@gmail.com",
                   role = c("aut", "cre"),
                   comment = c(ORCID = "0000-0001-9627-5532", github = "stefanocoretta"))
 Description: It provides a database schema and functions to manage a language
     database made of a lexicon and a collection of texts.
 License: MIT + file LICENSE
+URL: https://github.com/stefanocoretta/lexa
+BugReports: https://github.com/stefanocoretta/lexa/issues
 Encoding: UTF-8
 LazyData: true
 Suggests: 
