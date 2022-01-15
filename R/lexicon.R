@@ -23,12 +23,16 @@ add_entry <- function(lexadb) {
 create_lx_id <- function(lexadb) {
   db_path <- attr(lexadb, "meta")$path
   lx_files <- list.files(file.path(db_path, "lexicon"), pattern = "*.yaml")
-  last_id <- as.integer(
-    as.hexmode(stringr::str_sub(lx_files[[length(lx_files)]], 4, 9))
-  )
-  new_id_n <- last_id + 1
-  new_id_hex <- format(as.hexmode(new_id_n), width = 6)
-  new_id <- paste0("lx_", new_id_hex)
+  if (length(lx_files) > 0) {
+    last_id <- as.integer(
+      as.hexmode(stringr::str_sub(lx_files[[length(lx_files)]], 4, 9))
+    )
+    new_id_n <- last_id + 1
+    new_id_hex <- format(as.hexmode(new_id_n), width = 6)
+    new_id <- paste0("lx_", new_id_hex)
+  } else {
+    new_id <- "lx_000001"
+  }
   return(new_id)
 }
 
