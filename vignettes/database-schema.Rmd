@@ -39,6 +39,7 @@ part_of_speech: <string>
 inflectional_features:
   <feature_n>: <string>
 etymology: <string>
+notes: <string>
 allomorphs:
   al_0n:
     id: al_0n
