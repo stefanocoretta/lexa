@@ -7,7 +7,7 @@
 \method{print}{lexalx}(x, ...)
 }
 \arguments{
-\item{x}{An object of class `lexalx`.}
+\item{x}{An object of class \code{lexalx}.}
 
 \item{...}{Arguments passed to print.}
 }
@@ -15,5 +15,5 @@
 Nothing. Used for its side effects.
 }
 \description{
-Print method for objects of class `lexalx`, which prints lexeme info.
+Print method for objects of class \code{lexalx}, which prints lexeme info.
 }

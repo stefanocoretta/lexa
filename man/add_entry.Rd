@@ -7,13 +7,13 @@
 add_entry(lexadb)
 }
 \arguments{
-\item{lexadb}{A `lexadb` object (created with \code{\link{load_lexadb}})}
+\item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}})}
 }
 \value{
 Nothing. Used for its side effects
 }
 \description{
 This function creates a new entry in the lexicon, i.e. a new empty entry
-skeleton is written to disk, in the `lexicon/` directory, for the user
+skeleton is written to disk, in the \verb{lexicon/} directory, for the user
 to edit at will.
 }

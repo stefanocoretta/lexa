@@ -7,14 +7,14 @@
 search_lexicon(lexadb, entry = NULL, definition = NULL)
 }
 \arguments{
-\item{lexadb}{A `lexadb` object (created with \code{\link{load_lexadb}}).}
+\item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
 \item{entry}{A regular expression to search across entries.}
 
 \item{definition}{A regular expression to search across sense definitions.}
 }
 \value{
-A list of `lexalx` objects.
+A list of \code{lexalx} objects.
 }
 \description{
 Search entries in the lexicon, by entry form or sense definitions.

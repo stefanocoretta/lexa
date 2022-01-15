@@ -10,7 +10,7 @@ load_lexadb(path)
 \item{path}{The path to the database as a string.}
 }
 \value{
-A `lexadb` object.
+A \code{lexadb} object.
 }
 \description{
 It loadds a Lexa database from the specified path. The path is the directory

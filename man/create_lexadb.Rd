@@ -9,7 +9,7 @@ create_lexadb(parent = ".", name)
 \arguments{
 \item{parent}{Parent directory (default is current working directory).}
 
-\item{name}{Name of the Lexa database (`_lexadb` will be appended to the
+\item{name}{Name of the Lexa database (\verb{_lexadb} will be appended to the
 name).}
 }
 \value{

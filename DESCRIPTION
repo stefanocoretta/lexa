@@ -16,7 +16,10 @@ Suggests:
     rmarkdown
 Imports:
     cli,
+    purrr,
+    readr,
     stringr,
     yaml
 VignetteBuilder: knitr
 RoxygenNote: 7.1.2
+Roxygen: list(markdown = TRUE)

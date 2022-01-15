@@ -7,7 +7,7 @@
 \method{print}{lexadb}(x, ...)
 }
 \arguments{
-\item{x}{An object of class `lexadb`.}
+\item{x}{An object of class \code{lexadb}.}
 
 \item{...}{Arguments passed to print.}
 }
@@ -15,6 +15,6 @@
 Nothing. Used for its side effects.
 }
 \description{
-Print method for objects of class `lexadb`, which prints database info and
+Print method for objects of class \code{lexadb}, which prints database info and
 statistics.
 }
