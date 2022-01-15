@@ -43,6 +43,7 @@ create_entry <- function(lexadb = NULL) {
     part_of_speech = "",
     inflectional_features = list(class = ""),
     etymology = "",
+    notes = "",
     allomorphs = list(
       al_01 = list(
         id = "al_01",
