@@ -6,12 +6,13 @@
 #' skeleton is written to disk, in the `lexicon/` directory, for the user
 #' to edit at will.
 #'
-#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}})
+#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
+#' @param ... Arguments passed to `create_entry()`.
 #'
 #' @return Nothing. Used for its side effects
 #' @export
-add_entry <- function(lexadb) {
-  lx_entry <- create_entry(lexadb)
+add_entry <- function(lexadb, ...) {
+  lx_entry <- create_entry(lexadb, ...)
   write_entry(lexadb, lx_entry)
 }
 
@@ -37,35 +38,63 @@ create_lx_id <- function(lexadb) {
 }
 
 # Prepare empty entry skeleton.
-create_entry <- function(lexadb = NULL) {
-  list(
-    id = ifelse(is.null(lexadb), "lx_000001", create_lx_id(lexadb)),
-    entry = "",
-    phon = "",
-    morph_category = "",
-    morph_type = "",
-    part_of_speech = "",
-    inflectional_features = list(class = ""),
-    etymology = "",
-    notes = "",
-    allomorphs = list(
-      al_01 = list(
-        id = "al_01",
-        morph = "",
-        phon = ""
-      )
-    ),
-    senses = list(
-      se_01 = list(
-        id = "se_01",
-        gloss = "",
-        definition = "",
-        inflectional_features = list(class = "")
-      )
-    ),
-    date_created = as.character(Sys.time()),
-    date_modified = as.character(Sys.time())
-  )
+
+#' Title
+#'
+#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
+#' @param entry The entry as a string.
+#' @param gloss The gloss as a string.
+#' @param part_of_speech The part of speech as a string.
+#' @param phon The phonetic transcription as a string.
+#' @param morph_category The morphosyntactic category as a string (`"lexical"` or `"grammatical"`).
+#' @param morph_type The type of morpheme as a string.
+#' @param definition The definition of the entry as a string.
+#' @param etymology The etymology of the entry as a string.
+#' @param notes Further notes as a string.
+#'
+#' @return A list with entry id (`id`) and output string (`out`).
+#' @export
+#'
+create_entry <- function(lexadb = NULL,
+                          entry = NULL,
+                          gloss = NULL,
+                          part_of_speech = NULL,
+                          phon = NULL,
+                          morph_category = NULL,
+                          morph_type = NULL,
+                          definition = gloss,
+                          etymology = NULL,
+                          notes = NULL) {
+  lx_id <- ifelse(is.null(lexadb), "lx_000001", create_lx_id(lexadb))
+  today <- as.character(Sys.time())
+
+  out <- glue::glue('id: {lx_id}
+entry: {entry}
+phon: {phon}
+morph_category: {morph_category}
+morph_type: {morph_type}
+part_of_speech: {part_of_speech}
+inflectional_features:
+  class:
+etymology: {etymology}
+notes: {notes}
+allomorphs:
+  al_01:
+    id: al_01
+    morph: {entry}
+    phon: {phon}
+senses:
+  se_01:
+    id: se_01
+    gloss: {gloss}
+    definition: "{definition}"
+date_created: {today}
+date_modified: {today}
+', .null = "")
+
+  entry <- list(id = lx_id, out = out)
+  return(entry)
+
 }
 
 # Actually writes entry on disk in lexicon/.
@@ -73,7 +102,7 @@ write_entry <- function(lexadb, lx_entry) {
   db_path <- attr(lexadb, "meta")$path
   lx_path <- file.path("lexicon", paste0(lx_entry$id, ".yaml"))
   lx_full_path <- file.path(db_path, lx_path)
-  yaml::write_yaml(lx_entry, lx_full_path)
+  readr::write_file(lx_entry$out, lx_full_path)
 }
 
 

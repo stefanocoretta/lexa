@@ -4,10 +4,12 @@
 \alias{add_entry}
 \title{Add entry to lexicon}
 \usage{
-add_entry(lexadb)
+add_entry(lexadb, ...)
 }
 \arguments{
-\item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}})}
+\item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
+
+\item{...}{Arguments passed to \code{create_entry()}.}
 }
 \value{
 Nothing. Used for its side effects
