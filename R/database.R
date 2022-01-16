@@ -182,3 +182,44 @@ import_lexicon <- function(lexadb, path) {
     }
   )
 }
+
+
+
+
+# Import lexicon from MDF ----
+
+#' Import lexicon to existing database
+#'
+#' It imports entries from a lexicon in the MDF format.
+#'
+#' @param lexadb A `lexadb` object as returned by `load_lexadb()`.
+#' @param path The path to the lexicon MDF file as a string.
+#' @param skip Lines in the file to skip.
+#'
+#' @return A `lexadb` object.
+#' @importFrom magrittr "%>%"
+#' @export
+import_lexicon_mdf <- function(lexadb, path, skip = 0) {
+  mdf <- readr::read_fwf(path, readr::fwf_widths(c(4, 200), c("marker", "value")), skip = skip) %>%
+    tidyr::drop_na() %>%
+    dplyr::mutate(
+      marker = stringr::str_remove(marker, "\\\\"),
+      is_lx = marker == "lx"
+    )
+
+  count <- 0
+  idx <- numeric()
+  is_lx <- mdf$is_lx
+  for (i in 1:length(is_lx)) {
+    if (is_lx[i]) {
+      count <- count + 1
+      idx <- c(idx, count)
+    } else {
+      idx <- c(idx, count)
+    }
+  }
+  mdf$idx <- idx
+
+  mdf <- nest(select(mdf, -is_lx), data = c(marker, value))
+  return(mdf)
+}
