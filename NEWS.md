@@ -4,6 +4,8 @@
 
 * `search_lexicon()` adds `pos` argument to filter by part of speech.
 
+* The print method for `lexalx` also prints etymology and notes if present.
+
 ## Changed
 
 * `create_entry()` is now exported and outputs a list with the entry id and a string containing the entry skeleton.

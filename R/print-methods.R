@@ -96,6 +96,7 @@ print.lexalx <- function(x, ...) {
 
   cli::cli_rule("Entry", right = "{.emph {x$id}}")
   cli::cli_text(entry_line)
+
   cli::cli_h3("Senses")
   for (sense in x$senses) {
     if (!is.null(sense$inflectional_features)) {
@@ -106,8 +107,24 @@ print.lexalx <- function(x, ...) {
       cli::cli_text("{cli::symbol$bullet} {sense$definition}")
     }
   }
+
+  if (!is.null(x$etymology)) {
+    cli::cli_h3("Etymology")
+    cli::cli_div(theme = list(span.etym = list(
+      `font-style` = "italic",
+      color = "blue"
+    )))
+    cli::cli_text(x$etymology)
+    cli::cli_end()
+  }
+
   cli::cli_h3("Grammatical info")
   cli::cli_text("{crayon::red('Category:')} {x$morph_category}")
   cli::cli_text("{crayon::red('Type:')} {x$morph_type}")
+
+  if (!is.null(x$notes)) {
+    cli::cli_h3("Notes")
+    cli::cli_ul(x$notes)
+  }
 
 }

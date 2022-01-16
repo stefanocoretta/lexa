@@ -6,6 +6,7 @@ morph_type: root
 part_of_speech: verb
 inflectional_features:
   class: IV
+etymology: "From {.etym vēselse} 'to learn'."
 allomorphs:
   al_01:
     id: al_01
