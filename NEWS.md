@@ -8,6 +8,7 @@
 
 * `add_entry()` now passes arguments to `create_entry()` so that the user can specify fields.
 
+* `print.lexadb()` now includes a lexicon breakdown with numerical summaries.
 
 
 

@@ -18,6 +18,7 @@ Suggests:
     rmarkdown
 Imports:
     cli,
+    crayon,
     glue,
     purrr,
     readr,
