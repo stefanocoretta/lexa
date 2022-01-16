@@ -120,7 +120,15 @@ write_entry <- function(lexadb, lx_entry) {
 #'
 #' @return A list of `lexalx` objects.
 #' @export
-search_lexicon <- function(lexadb, entry = NULL, definition = NULL, pos = NULL) {
+search_lexicon <- function(lexadb,
+                            entry = NULL,
+                            definition = NULL,
+                            pos = NULL) {
+  if (is.null(entry) & is.null(definition)) {
+    cli::cli_abort("Please, provide either an entry or a definition to search
+      in the lexicon.")
+  }
+
   db_path <- attr(lexadb, "meta")$path
   lexicon <- read_lexicon(db_path)
 
