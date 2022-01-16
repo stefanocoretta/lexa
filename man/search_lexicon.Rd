@@ -4,7 +4,7 @@
 \alias{search_lexicon}
 \title{Search lexicon entries}
 \usage{
-search_lexicon(lexadb, entry = NULL, definition = NULL)
+search_lexicon(lexadb, entry = NULL, definition = NULL, pos = NULL)
 }
 \arguments{
 \item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
@@ -12,6 +12,8 @@ search_lexicon(lexadb, entry = NULL, definition = NULL)
 \item{entry}{A regular expression to search across entries.}
 
 \item{definition}{A regular expression to search across sense definitions.}
+
+\item{pos}{A regular expression to match the part of speech.}
 }
 \value{
 A list of \code{lexalx} objects.

@@ -116,10 +116,11 @@ write_entry <- function(lexadb, lx_entry) {
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
 #' @param entry A regular expression to search across entries.
 #' @param definition A regular expression to search across sense definitions.
+#' @param pos A regular expression to match the part of speech.
 #'
 #' @return A list of `lexalx` objects.
 #' @export
-search_lexicon <- function(lexadb, entry = NULL, definition = NULL) {
+search_lexicon <- function(lexadb, entry = NULL, definition = NULL, pos = NULL) {
   db_path <- attr(lexadb, "meta")$path
   lexicon <- read_lexicon(db_path)
 
@@ -133,7 +134,16 @@ search_lexicon <- function(lexadb, entry = NULL, definition = NULL) {
     })
   }
 
-  lexicon[unlist(hits)]
+  searched <- lexicon[unlist(hits)]
+
+  if (!is.null(pos)) {
+    hits <- lapply(searched, function(x) {
+      stringr::str_detect(x$part_of_speech, pos)
+    })
+    searched <- searched[unlist(hits)]
+  }
+
+  return(searched)
 }
 
 # Helper function to search through definitions
