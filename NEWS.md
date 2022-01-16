@@ -4,7 +4,7 @@
 
 * `search_lexicon()` adds `pos` argument to filter by part of speech.
 
-* The print method for `lexalx` also prints etymology and notes if present.
+* The print method for `lexalx` also prints a lexicon breakdown with numerical summaries, and etymology and notes if present.
 
 ## Changed
 
@@ -14,7 +14,7 @@
 
 * `add_entry()` now passes arguments to `create_entry()` so that the user can specify fields.
 
-* `print.lexadb()` now includes a lexicon breakdown with numerical summaries.
+* The entry senses are now numbered when printed.
 
 
 

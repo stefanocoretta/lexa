@@ -98,13 +98,13 @@ print.lexalx <- function(x, ...) {
   cli::cli_text(entry_line)
 
   cli::cli_h3("Senses")
-  for (sense in x$senses) {
-    if (!is.null(sense$inflectional_features)) {
-      cli::cli_text("{cli::symbol$bullet}
-        {crayon::blue('(', sense$inflectional_features, ')', sep = '')}
-        {sense$definition}")
+  for (sense in 1:length(x$senses)) {
+    if (!is.null(x$senses[[sense]]$inflectional_features)) {
+      cli::cli_text("{cli::col_red(sense, '.')}
+        {crayon::blue('(', x$senses[[sense]]$inflectional_features, ')', sep = '')}
+        {x$senses[[sense]]$definition}")
     } else {
-      cli::cli_text("{cli::symbol$bullet} {sense$definition}")
+      cli::cli_text("{cli::col_red(sense, '.')} {x$senses[[sense]]$definition}")
     }
   }
 
