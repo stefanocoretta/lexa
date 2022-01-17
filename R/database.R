@@ -200,12 +200,17 @@ import_lexicon <- function(lexadb, path) {
 #' @importFrom magrittr "%>%"
 #' @export
 import_lexicon_mdf <- function(lexadb, path, skip = 0) {
-  mdf <- readr::read_fwf(path, readr::fwf_widths(c(4, 200), c("marker", "value")), skip = skip) %>%
-    tidyr::drop_na() %>%
-    dplyr::mutate(
-      marker = stringr::str_remove(marker, "\\\\"),
-      is_lx = marker == "lx"
-    )
+  mdf <- readr::read_fwf(
+    path,
+    readr::fwf_widths(c(4, 200), c("marker", "value")),
+    skip = skip,
+    show_col_types = FALSE
+  ) %>%
+  tidyr::drop_na() %>%
+  dplyr::mutate(
+    marker = stringr::str_remove(marker, "\\\\"),
+    is_lx = marker == "lx"
+  )
 
   count <- 0
   idx <- numeric()
@@ -220,6 +225,6 @@ import_lexicon_mdf <- function(lexadb, path, skip = 0) {
   }
   mdf$idx <- idx
 
-  mdf <- nest(select(mdf, -is_lx), data = c(marker, value))
+  mdf <- tidyr::nest(dplyr::select(mdf, -is_lx), data = c(marker, value))
   return(mdf)
 }
