@@ -39,7 +39,8 @@ part_of_speech: <string>
 inflectional_features:
   <feature_n>: <string>
 etymology: <string>
-notes: <string>
+loan_word: <string>
+notes: [<string>]
 allomorphs:
   al_0n:
     id: al_0n
@@ -53,10 +54,19 @@ senses:
     id: se_0n
     gloss: <string>
     definition: <string>
+    literal: <string>
+    scientific: <string>
+    usage: <string>
     inflectional_features:
       <feature_n>: <string>
     examples: ["tx_00000n"]
     etymology: <string>
+crossref: ["lx_00000n"]
+variants: [<string>]
+semantics:
+  semantic_domain: ["sd_00000n"]
+  synonyms: ["lx_00000n"]
+  antonyms: ["lx_00000n"]
 date_created: <date>
 date_modified: <date>
 ```

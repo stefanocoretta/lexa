@@ -10,6 +10,8 @@
 
 * The print method for `lexalx` also prints a lexicon breakdown with numerical summaries, and etymology and notes if present.
 
+* The lexicon entry schema now has the following fields: `loan_word`, `crossref`, `variants`, `semantics` (`semantic_domain`, `synonyms`, `antonyms`), and (added to `senses`) `literal`, `scientific` and `usage`.
+
 ## Changed
 
 * `create_entry()` is now exported and outputs a list with the entry id and a string containing the entry skeleton.
