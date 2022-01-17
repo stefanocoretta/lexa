@@ -1,5 +1,9 @@
 # lexa 0.0.0.9002
 
+## Breaking changes
+
+* Renamed `import_lexicon()` to `import_lexicon_csv()`.
+
 ## Added
 
 * `search_lexicon()` adds `pos` argument to filter by part of speech.
@@ -15,7 +19,6 @@
 * `add_entry()` now passes arguments to `create_entry()` so that the user can specify fields.
 
 * The entry senses are now numbered when printed.
-
 
 
 # lexa 0.0.0.9001

@@ -1,9 +1,10 @@
 # Import lexicon from csv ----
 
-#' Import lexicon to existing database
+#' Import lexicon from a csv file
 #'
-#' It imports entries from a lexicon .csv file with specific column names.
-#' See Details for file specifics.
+#' It imports entries from a `.csv` file with lexical data. The file must have
+#' specific columns, see Details for file specifics. The lexicon is imported
+#' into an existing Lexa database.
 #'
 #' The file should have the following columns (they can be omitted, but
 #' if present they must be so named):
@@ -18,16 +19,15 @@
 #' * `etymology`:
 #' * `notes`:
 #'
-#' Note that this list is temporary and it will change in the future.
-#'
+#' Note that this list is temporary and *it will change* in the future.
 #'
 #' @param lexadb A `lexadb` object as returned by `load_lexadb()`.
 #' @param path The path to the lexicon .csv file as a string.
 #'
-#' @return A `lexadb` object.
+#' @return Nothing. Used for its side effects.
 #' @export
 #'
-import_lexicon <- function(lexadb, path) {
+import_lexicon_csv <- function(lexadb, path) {
   lexicon_tab <- readr::read_csv(path, show_col_types = FALSE, progress = FALSE)
 
   lexicon_list <- purrr::transpose(lexicon_tab)
