@@ -1,10 +1,9 @@
-tx_000001:
-  id: tx_000001
-  title: "Example sentences"
-  text:
-    st_000001:
-      snt: "Ęs ętsu urųrtō enēim kę̄syoh bhųl enēim āireᵃph lichpyūaq."
-      tr: "And then I sat on a rock, while it was raining over me."
-    st_000002:
-      snt: "Xǫntesiṇ gartosesī ōroi Vāisi su Meucha su vēsyēl selo ellāimōma enēim āireᵃph."
-      tr: "With pleasure I tell you about the Sun, the Moon and the stars that are above us."
+id: tx_000001
+title: "Example sentences"
+text:
+  st_000001:
+    sentence: "Ęs ętsu urųrtō enēim kę̄syoh bhųl enēim āireᵃph lichpyūaq."
+    translation: "And then I sat on a rock, while it was raining over me."
+  st_000002:
+    sentence: "Xǫntesiṇ gartosesī ōroi Vāisi su Meucha su vēsyēl selo ellāimōma enēim āireᵃph."
+    translation: "With pleasure I tell you about the Sun, the Moon and the stars that are above us."

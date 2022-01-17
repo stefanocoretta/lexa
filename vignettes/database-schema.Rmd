@@ -76,15 +76,24 @@ date_modified: <date>
 Texts are located in the `texts/` folder.
 Each text is saved in a separate `.yaml` file, with no restrictions on naming (except you must avoid spaces and fancy characters.)
 
-Each `.yaml` file must have (at a minimum) the following structure:
-
 ```yaml
-tx_00000n:
-  id: tx_00000n
-  title: <string>
-  text:
-    st_00000n:
-      st: <string>
-      tr: <string>
+id: tx_00000n
+title: <string>
+topic: <string>
+genre: <string>
+participants: [<string>]
+translators: [<string>]
+source: <string>
+text:
+  st_00000n:
+    sentence: <string>
+    phon: <string>
+    morpho_phon: <string>
+    morpho: <string>
+    gloss: <string>
+    translation: <string>
+    literal: <string>
+    notes: [<string>]
+notes: [<string>]
 ```
 

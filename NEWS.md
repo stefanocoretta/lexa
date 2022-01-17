@@ -22,6 +22,8 @@
 
 * The entry senses are now numbered when printed.
 
+* Changed texts schema.
+
 
 # lexa 0.0.0.9001
 
