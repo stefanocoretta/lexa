@@ -128,3 +128,24 @@ print.lexalx <- function(x, ...) {
   }
 
 }
+
+
+print.lexastn <- function(x, ...) {
+  morph_split <- unlist(stringr::str_split(x$morph, " "))
+  gloss_split <- unlist(stringr::str_split(x$gloss, " "))
+  morph_n <- cli::utf8_nchar(morph_split)
+  gloss_n <- cli::utf8_nchar(gloss_split)
+  max_n <- pmax(morph_n, gloss_n) + 2
+  morph_pad <- stringr::str_pad(morph_split, max_n, "right")
+  gloss_pad <- stringr::str_pad(gloss_split, max_n, "right")
+  # morph <- stringr::str_flatten(morph_pad)
+  # gloss <- stringr::str_flatten(gloss_pad)
+
+  cli::cli_h1(cli::col_blue(x$sentence))
+  cli::cli_text("[", x$phon, "]")
+  cli::cli_text("")
+  cat(cli::col_green(morph_pad), "\n")
+  cat(gloss_pad, "\n")
+  cli::cli_text("")
+  cli::cli_text("‘", x$translation, "’")
+}

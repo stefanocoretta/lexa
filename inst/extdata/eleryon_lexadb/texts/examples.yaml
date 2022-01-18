@@ -3,7 +3,13 @@ title: "Example sentences"
 text:
   st_000001:
     sentence: "Ęs ętsu urųrtō enēim kę̄syoh bhųl enēim āireᵃph lichpyūaq."
+    phon: "œs œtsu uryrtoː eneːim kœːsjoh βyl eneːim aːireɐɸ lixpjuːaʔ"
+    morpho: "ęs ętsu ur-ųrt-ō enēim kę̄sy-oh bhųl enēim āir-eᵃph lichp-y-ūaq"
+    gloss: "and then RED-sit-PFCT:IND:1sg on rock-ACC while on 1sg-ACC rain-CL5-IMPF:IND:IMPR"
     translation: "And then I sat on a rock, while it was raining over me."
   st_000002:
-    sentence: "Xǫntesiṇ gartosesī ōroi Vāisi su Meucha su vēsyēl selo ellāimōma enēim āireᵃph."
+    sentence: "Ksǫntesiṇ gartosesī ōroi Vāisi su Meucha su vēsyēl selo ellāimōma enēim āireᵃph."
+    phon: "ksɵntesiŋ gartosesiː oːroi vaːisi su meuxa su veːsjeːl selo ellaːimoːma eneːim aːreɐɸ"
+    morpho: ""
+    gloss: "pleasure tell about sun and moon and star which are above us"
     translation: "With pleasure I tell you about the Sun, the Moon and the stars that are above us."
