@@ -14,6 +14,8 @@
 
 * Print methods for `lexatx` and `lexast`.
 
+* Added `albanian` database.
+
 ## Changed
 
 * `create_entry()` is now exported and outputs a list with the entry id and a string containing the entry skeleton.

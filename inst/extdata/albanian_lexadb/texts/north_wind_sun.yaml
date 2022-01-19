@@ -1,0 +1,60 @@
+id: tx_000001
+title: "The North Wind and the Sun"
+text:
+  st_000001:
+    id: st_000001
+    sentence: Era e Veriut dhe Dielli po ziheshin se kush ishte më i fortë.
+    morpho: er-a e ver-iut  dhe diell-i  po zihe-shin se kush ishte më i fort-ë
+    gloss: wind-F.SG.NOM.DEF F.SG.GEN.DEF north-M.SG.GEN.DEF  and sun-M.SG.NOM.DEF  PROG fight-IMPF.IND.3PL that who be.IMPF.IND.3SG more M.SG.ACC.DEF strong-M.SG.ACC.DEF
+    phon: eɽa e veɽiut | ðe dielˠi | pɔ ziheʃin se kuʃ iʃte mɜ i fɔɽtɜ ‖
+    translation: The North Wind and the Sun were disputing which was the stronger,
+  st_000002:
+    id: st_000002
+    sentence: Kur aty kaloi një udhëtar që kishte veshur një pallto të ngrohtë.
+    morpho: kur aty kalo-i një udhëtar që kishte vesh-ur një pallt-o të ngroht-ë
+    gloss: when there pass-AOR.IND.3SG INDF traveller.M.SG.NOM.INDF RPRN have.PST.Pfct.IND wear-PST.PTCP INDF coat-F.SG.ACC.INDF F.SG.ACC.INDF warm-F.SG.ACC.INDF
+    phon: kuɽ aty kalɔi ɲɜ uðɜtaɽ t̻ʃ̻ɜ kiʃte veʃuɽ ɲɜ palˠtɔ tɜ ngipaɽɔhte ‖
+    translation: when a traveller came along wrapped in a warm cloak.
+  st_000003:
+    id: st_000003
+    sentence: Ata ranë dakord që kush do ta bënte udhëtarin të hiqte pallton më përpara do të quhej më i forti.
+    morpho: ata ra-në dakord  që kush do t=a bën-te udhëtar-in të hiq-te pallt-on më përpara do të quh-ej më i fort-i
+    gloss: 3PL.M.NOM AOR\fall-AOR.IND.3PL agreement  that who Fut Fut=3SG.ACC make-IND.IMPF.3SG traveller-M.SG.ACC.DEF SBJV SBJV\take_off-PST.SBJV.3SG coat-F.SG.ACC.DEF more soon Fut Fut PASS\call-IMPF.IND.3SG more M.SG.NOM.DEF strong-M.SG.NOM.DEF
+    phon: ata ɽanɜ dakɔɽd | t̻ʃ̻ɜ kuʃ dɔ ta bɜnte uðɜtaɽin tɜ hit̻ʃ̻te palˠtɔn mɜ pɜɽpaɽa dɔ tɜ t̻ʃ̻uhej mɜ i fɔɽti ‖
+    translation: They agreed that the one who first succeeded in making the traveller take his cloak off first should be considered the stronger one.
+  st_000004:
+    id: st_000004
+    sentence: Fill pas kësaj, Era e Veriut filloi të frynte me gjithë fuqinë e saj,
+    morpho: fill pas kësaj  er-a e ver-iut fillo-i të fry-nte me gjithë fuqi-në e saj
+    gloss: immediately after DEM.F.SG.ABL.DEF  wind-NOM.F.SG.DEF M.SG.GEN.DEF north-M.SG.GEN.DEF begin-AOR.IND.3SG SBJV blow-IMPF.SBJV.3SG with all power-F.SG.ACC.DEF 3SG.F.GEN 3SG.F.POSS
+    phon: filˠ pas kɜsaj ǀ eɽa e veɽiut filˠɔi tɜ fɽynte me d̻ʒ̻iθɜ fut̻ʃ̻inɜ e saj ‖
+    translation: Then the North Wind blew as hard as he could,
+  st_000005:
+    id: st_000005
+    sentence: por sa më shumë që frynte aq më shumë kapej udhëtari pas palltos së tij,
+    morpho: por sa më shumë që fry-nte  aq më shumë kap-ej udhëtar-i pas pallt-os së tij
+    gloss: but how_much more much that blow-IMPF.IND.3SG  so_much more much hold_on.IMPF.IND.3SG traveller-M.SG.NOM.DEF after coat-F.SG.ABL.DEF F.SG.ABL.DEF 3SG.F.ABL.POSS
+    phon: pɔɽ sa mɜ ʃumɜ t̻ʃ̻ɜ fɽynte | at̻ʃ̻ mɜ ʃumɜ kapej uðɜtaɽi pas palˠtɔs sɜ tij |
+    translation: but the more he blew the more closely did the traveller fold his cloak around him,
+  st_000006:
+    id: st_000006
+    sentence: derisa më në fund Era e Veriut u dorëzua.
+    morpho: derisa më në fund  er-a  e ver-iut  u dorëz-ua
+    gloss: until by in end  wind-F.SG.NOM.DEF  M.SG.GEN.DEF north-M.SG.GEN.DEF  AOR give_up.AOR.IND.3SG
+    phon: deɽisa mɜ nɜ fund | eɽa | e veɽiut | u dɔɽɜzua ǁ
+    translation: and at last the North Wind gave up the attempt.
+  st_000007:
+    id: st_000007
+    sentence: Pastaj Dielli lëshoi rrezet e tij të ngrohta dhe menjëherë udhëtari e hoqi pallton.
+    morpho: pastaj diell-i lësho-i rrez-et e tij të ngroht-a  dhe menjëherë udhëtar-i e= hoq-i pallt-on
+    gloss: then sun-M.SG.NOM.DEF release-AOR.IND.3SG ray-F.PL.ACC.DEF M.SG.ACC M.SG.ACC.PRN F.PL.ACC warm-F.PL.ACC.DEF  and immediately traveller-M.SG.NOM.DEF 3SG.ACC= IND\take_off-AOR.IND.3SG coat-F.SG.ACC.DEF
+    phon: pastaj dielˠi lɜʃɔi rezet e tij tɜ ngipaɽɔhta ǀ ðe meɲɜheɽɜ uðɜtaɽi e hɔt̻ʃ̻i palˠtɔn ǁ
+    translation: Then the Sun released his warm rays and immediately the traveller took off his cloak.
+  st_000008:
+    id: st_000008
+    sentence: E kështu Era e Veriut u detyrua të pranonte që Dielli ishte më i fortë se ajo.
+    morpho: e kështu  er-a e ver-iut  u detyr-ua të prano-nte që diell-i  ishte më i fort-ë se ajo
+    gloss: and so  wind-F.SG.NOM.DEF M.SG.GEN.DEF north-M.SG.GEN.DEF  AOR force-AOR.IND.3SG SBJV accept-IMPF.SBJV.3SG that sun-M.SG.NOM.DEF  be.IMPF.IND.3SG more M.SG.NOM.DEF strong-M.SG.NOM.DEF than 3SG.F.NOM
+    phon: e kɜʃtu | eɽa e veɽiut | u detyɽua tɜ pɽanɔnte t̻ʃ̻ɜ dielˠi | iʃte mɜ i fɔɽtɜ se ajɔ ǁ
+    translation: And so the North Wind was forced to accept that the Sun was the stronger than itself.
+
