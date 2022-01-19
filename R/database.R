@@ -104,5 +104,20 @@ read_grammar <- function(path) {
 read_texts <- function(path) {
   texts_path <- file.path(path, "texts")
   texts_files <- list.files(texts_path, full.names = TRUE)
-  lapply(texts_files, function(file) yaml::read_yaml(file))
+  texts <- lapply(texts_files, function(text) {
+      tx <- yaml::read_yaml(text)
+      tx <- structure(tx, class = c("lexatx", "list"))
+      return(tx)
+    }
+  )
+  texts <- lapply(texts, function(text) {
+    text_i <- lapply(text$text, function(st) {
+      structure(st, class = c("lexast", "list"))
+    })
+    text$text <- text_i
+    return(text)
+  })
+  texts_ids <- lapply(texts, function(x) x[["id"]])
+  names(texts) <- texts_ids
+  return(texts)
 }

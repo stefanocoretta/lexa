@@ -129,8 +129,34 @@ print.lexalx <- function(x, ...) {
 
 }
 
+#' Print method for texts
+#'
+#' Print method for objects of class `lexatx`, which prints text info.
+#'
+#' @param x An object of class `lexatx`.
+#' @param ... Arguments passed to print.
+#'
+#' @return Nothing. Used for its side effects.
+#' @export
+print.lexatx <- function(x, ...) {
+  cli::cli_h1(cli::col_blue(x$title))
+  for (sentence in seq_len(length(x$text))) {
+    cli::cli_h2(x$text[[sentence]]$id)
+    cli::cli_text(cli::col_green(x$text[[sentence]]$sentence))
+    cli::cli_text(x$text[[sentence]]$translation)
+  }
+}
 
-print.lexastn <- function(x, ...) {
+#' Print method for sentences
+#'
+#' Print method for objects of class `lexast`, which prints text sentences.
+#'
+#' @param x An object of class `lexast`.
+#' @param ... Arguments passed to print.
+#'
+#' @return Nothing. Used for its side effects.
+#' @export
+print.lexast <- function(x, ...) {
   morph_split <- unlist(stringr::str_split(x$morph, " "))
   gloss_split <- unlist(stringr::str_split(x$gloss, " "))
   morph_n <- cli::utf8_nchar(morph_split)
@@ -138,8 +164,6 @@ print.lexastn <- function(x, ...) {
   max_n <- pmax(morph_n, gloss_n) + 2
   morph_pad <- stringr::str_pad(morph_split, max_n, "right")
   gloss_pad <- stringr::str_pad(gloss_split, max_n, "right")
-  # morph <- stringr::str_flatten(morph_pad)
-  # gloss <- stringr::str_flatten(gloss_pad)
 
   cli::cli_h1(cli::col_blue(x$sentence))
   cli::cli_text("[", x$phon, "]")
@@ -147,5 +171,5 @@ print.lexastn <- function(x, ...) {
   cat(cli::col_green(morph_pad), "\n")
   cat(gloss_pad, "\n")
   cli::cli_text("")
-  cli::cli_text("‘", x$translation, "’")
+  cli::cli_text("\u2018", x$translation, "\u2019")
 }
