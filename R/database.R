@@ -29,7 +29,7 @@ create_lexicon <- function(path) {
   dir.create(file.path(path, "lexicon"), FALSE, TRUE)
 
   lx_entry <- create_entry(NULL)
-  yaml::write_yaml(lx_entry, file.path(path, "lexicon/lx_000001.yaml"))
+  readr::write_file(lx_entry$out, file.path(path, "lexicon", "lx_000001.yaml"))
 }
 
 create_grammar <- function(path) {
