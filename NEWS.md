@@ -16,6 +16,8 @@
 
 * Added `albanian` database.
 
+* `search_texts()` to search for words in the texts.
+
 ## Changed
 
 * `create_entry()` is now exported and outputs a list with the entry id and a string containing the entry skeleton.

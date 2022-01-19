@@ -157,6 +157,10 @@ print.lexatx <- function(x, ...) {
 #' @return Nothing. Used for its side effects.
 #' @export
 print.lexast <- function(x, ...) {
+  cli::cli_h1(cli::col_blue(x$sentence))
+  cli::cli_text("[", x$phon, "]")
+  cli::cli_text("")
+
   morph_split <- unlist(stringr::str_split(x$morph, " "))
   gloss_split <- unlist(stringr::str_split(x$gloss, " "))
   morph_n <- cli::utf8_nchar(morph_split)
@@ -165,11 +169,37 @@ print.lexast <- function(x, ...) {
   morph_pad <- stringr::str_pad(morph_split, max_n, "right")
   gloss_pad <- stringr::str_pad(gloss_split, max_n, "right")
 
-  cli::cli_h1(cli::col_blue(x$sentence))
-  cli::cli_text("[", x$phon, "]")
-  cli::cli_text("")
-  cat(cli::col_green(morph_pad), "\n")
-  cat(gloss_pad, "\n")
+  if (sum(max_n) > 80) {
+    n <- 0
+    i <- 1
+    y <- 1
+    morph <- vector()
+    gloss <- vector()
+
+    while (i <= length(max_n)) {
+      if (sum(max_n[y:i]) < 81) {
+        morph <- c(morph, morph_pad[i])
+        gloss <- c(gloss, gloss_pad[i])
+        if (i == length(max_n)) {
+          cat(cli::col_green(morph), "\n")
+          cat(gloss, "\n")
+          cat("\n")
+        }
+        i <- i + 1
+      } else {
+        cat(cli::col_green(morph), "\n")
+        cat(gloss, "\n")
+        cat("\n")
+        morph <- vector()
+        gloss <- vector()
+        y <- i
+      }
+    }
+  } else {
+    cat(cli::col_green(morph_pad), "\n")
+    cat(gloss_pad, "\n")
+  }
+
   cli::cli_text("")
   cli::cli_text("\u2018", x$translation, "\u2019")
 }
