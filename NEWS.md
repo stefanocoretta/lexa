@@ -16,7 +16,7 @@
 
 * Added `albanian` database.
 
-* `search_texts()` to search for words in the texts.
+* `search_texts()` to search for words or glosses in the texts.
 
 ## Changed
 
