@@ -18,7 +18,7 @@ search_texts <- function(lexadb, word = NULL, gloss = NULL) {
   n_matches <- 0
   text_ids <- c()
   for (text in texts) {
-    hits <- lapply(text$text, function(x) {
+    hits <- lapply(text$sentences, function(x) {
       if (!is.null(word)) {
         stringr::str_detect(x$sentence, paste0("\\b", word, "\\b"))
       } else if (!is.null(gloss)) {
@@ -29,8 +29,8 @@ search_texts <- function(lexadb, word = NULL, gloss = NULL) {
           search in the texts.")
       }
     })
-    text$text <- text$text[unlist(hits)]
-    n_matches <- n_matches + length(text$text)
+    text$sentences <- text$sentences[unlist(hits)]
+    n_matches <- n_matches + length(text$sentences)
     text_ids <- c(text_ids, text$id)
 
     matched <- c(matched, list(text))

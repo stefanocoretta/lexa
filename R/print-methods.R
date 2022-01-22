@@ -140,10 +140,10 @@ print.lexalx <- function(x, ...) {
 #' @export
 print.lexatx <- function(x, ...) {
   cli::cli_h1(cli::col_blue(x$title))
-  for (sentence in seq_len(length(x$text))) {
-    cli::cli_h2(x$text[[sentence]]$id)
-    cli::cli_text(cli::col_green(x$text[[sentence]]$sentence))
-    cli::cli_text(x$text[[sentence]]$translation)
+  for (sentence in seq_len(length(x$sentences))) {
+    cli::cli_h2(x$sentences[[sentence]]$id)
+    cli::cli_text(cli::col_green(x$sentences[[sentence]]$sentence))
+    cli::cli_text(x$sentences[[sentence]]$translation)
   }
 }
 

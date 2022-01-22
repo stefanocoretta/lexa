@@ -84,7 +84,7 @@ genre: <string>
 participants: [<string>]
 translators: [<string>]
 source: <string>
-text:
+sentences:
   st_00000n:
     sentence: <string>
     phon: <string>

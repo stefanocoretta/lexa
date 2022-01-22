@@ -111,10 +111,11 @@ read_texts <- function(path) {
     }
   )
   texts <- lapply(texts, function(text) {
-    text_i <- lapply(text$text, function(st) {
-      structure(st, class = c("lexast", "list"))
+    sent_i <- lapply(text$sentences, function(sent) {
+      st <- structure(sent, class = c("lexast", "list"))
+      return(st)
     })
-    text$text <- text_i
+    text$sentences <- sent_i
     return(text)
   })
   texts_ids <- lapply(texts, function(x) x[["id"]])
