@@ -4,8 +4,6 @@
 
 * Renamed `import_lexicon()` to `import_lexicon_csv()`.
 
-* Restructured text files (`text` is now `sentences`).
-
 ## Added
 
 * `search_lexicon()` adds `pos` argument to filter by part of speech.
@@ -31,6 +29,8 @@
 * The entry senses are now numbered when printed.
 
 * Changed texts schema.
+
+* Both `search_lexicon()` and `search_texts()` now search whole words by default. This can be changed by specifying `whole = FALSE`.
 
 
 # lexa 0.0.0.9001

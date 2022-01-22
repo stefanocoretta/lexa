@@ -114,14 +114,17 @@ write_entry <- function(lexadb, lx_entry) {
 #' Search entries in the lexicon, by entry form or sense definitions.
 #'
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
-#' @param entry A regular expression to search across entries.
-#' @param definition A regular expression to search across sense definitions.
+#' @param entry A regular expression to search among entries.
+#' @param whole Whether to search for whole words (only applies to `entry`,
+#'    `TRUE` by default).
+#' @param definition A regular expression to search among sense definitions.
 #' @param pos A regular expression to match the part of speech.
 #'
 #' @return A list of `lexalx` objects.
 #' @export
 search_lexicon <- function(lexadb,
                             entry = NULL,
+                            whole = TRUE,
                             definition = NULL,
                             pos = NULL) {
   if (is.null(entry) & is.null(definition)) {
@@ -134,7 +137,12 @@ search_lexicon <- function(lexadb,
 
   if (!is.null(entry)) {
     hits <- lapply(lexicon, function(x) {
-      stringr::str_detect(x$entry, entry)
+      if (whole) {
+        stringr::str_detect(x$entry, paste0("\\b", entry, "\\b"))
+      } else {
+        stringr::str_detect(x$entry, entry)
+      }
+
     })
   } else if (!is.null(definition)) {
     hits <- lapply(lexicon, function(x) {

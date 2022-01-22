@@ -4,14 +4,23 @@
 \alias{search_lexicon}
 \title{Search lexicon entries}
 \usage{
-search_lexicon(lexadb, entry = NULL, definition = NULL, pos = NULL)
+search_lexicon(
+  lexadb,
+  entry = NULL,
+  whole = TRUE,
+  definition = NULL,
+  pos = NULL
+)
 }
 \arguments{
 \item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
-\item{entry}{A regular expression to search across entries.}
+\item{entry}{A regular expression to search among entries.}
 
-\item{definition}{A regular expression to search across sense definitions.}
+\item{whole}{Whether to search for whole words (only applies to \code{entry},
+\code{TRUE} by default).}
+
+\item{definition}{A regular expression to search among sense definitions.}
 
 \item{pos}{A regular expression to match the part of speech.}
 }

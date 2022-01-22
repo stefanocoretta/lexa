@@ -5,12 +5,13 @@
 #' Search words in the texts collection.
 #'
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
-#' @param word A regular expression to search in sentences (entire words only will be matched).
-#' @param gloss A regular expression to search in glosses.
+#' @param word A regular expression to search among the sentences.
+#' @param whole Whether to search for whole words (`TRUE` by default).
+#' @param gloss A regular expression to search among the glosses.
 #'
 #' @return A list of `lexalx` objects.
 #' @export
-search_texts <- function(lexadb, word = NULL, gloss = NULL) {
+search_texts <- function(lexadb, word = NULL, whole = TRUE, gloss = NULL) {
   db_path <- attr(lexadb, "meta")$path
   texts <- read_texts(db_path)
 
@@ -20,7 +21,12 @@ search_texts <- function(lexadb, word = NULL, gloss = NULL) {
   for (text in texts) {
     hits <- lapply(text$sentences, function(x) {
       if (!is.null(word)) {
-        stringr::str_detect(x$sentence, paste0("\\b", word, "\\b"))
+        if (whole) {
+          stringr::str_detect(x$sentence, paste0("\\b", word, "\\b"))
+        } else {
+          stringr::str_detect(x$sentence, word)
+        }
+
       } else if (!is.null(gloss)) {
         # "\\b" conveniently matches morpheme separators '., -, ='
         stringr::str_detect(x$gloss, paste0("\\b", gloss, "\\b"))
