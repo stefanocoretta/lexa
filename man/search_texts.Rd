@@ -4,12 +4,14 @@
 \alias{search_texts}
 \title{Search words in texts}
 \usage{
-search_texts(lexadb, word)
+search_texts(lexadb, word = NULL, gloss = NULL)
 }
 \arguments{
 \item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
-\item{word}{A regular expression to search (entire words only will be matched).}
+\item{word}{A regular expression to search in sentences (entire words only will be matched).}
+
+\item{gloss}{A regular expression to search in glosses.}
 }
 \value{
 A list of \code{lexalx} objects.
