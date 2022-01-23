@@ -122,7 +122,11 @@ print.lexalx <- function(x, ...) {
             theme = list(.example = list(`margin-left` = 10))
           )
           cli::cli_h3("Examples")
-          cli::cli_text(cli::col_blue(sentence$sentence))
+          cli::cli_text(
+            "{cli::col_blue(sentence$sentence)}
+            [{examples_id}]
+            "
+          )
           cli::cli_text(sentence$translation)
           cli::cli_end(d)
         } else {
@@ -137,7 +141,11 @@ print.lexalx <- function(x, ...) {
               file.path(attr(x, "dbpath"), "texts", paste0(tx_st[[1]][1], ".yaml"))
             )
             sentence <- text$sentences[[tx_st[[1]][2]]]
-            cli::cli_text(cli::col_blue(sentence$sentence))
+            cli::cli_text(
+              "{cli::col_blue(sentence$sentence)}
+              [{examples_id[[ex]]}]
+              "
+            )
             cli::cli_text(sentence$translation)
             cli::cli_text("")
           }
