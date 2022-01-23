@@ -89,6 +89,7 @@ read_lexicon <- function(path) {
   lexicon_files <- list.files(lexicon_path, full.names = TRUE)
   lexicon <- lapply(lexicon_files, function(lexeme) {
       lx <- yaml::read_yaml(lexeme)
+      attr(lx, "dbpath") <- path
       structure(lx, class = c("lexalx", "list"))
     }
   )

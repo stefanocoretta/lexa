@@ -1,0 +1,21 @@
+id: lx_000006
+entry: ųrt
+phon: yrt
+morph_category: lexical
+morph_type: root
+part_of_speech: verb
+inflectional_features:
+  class: I
+allomorphs:
+  al_01:
+    id: al_01
+    morph: ųrt
+    phon: yrt
+senses:
+  se_01:
+    id: se_01
+    gloss: sit
+    definition: "to sit"
+    examples: ["tx_000001:st_000001"]
+date_created: 2022-01-23 09:51:16
+date_modified: 2022-01-23 09:51:16

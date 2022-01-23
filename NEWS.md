@@ -10,7 +10,7 @@
 
 * The print method for `lexadb` also includes a lexicon breakdown with numerical summaries.
 
-* The print method for `lexalx` also prints allomorph information, etymology and notes if present.
+* The print method for `lexalx` also prints allomorph information and, if present, examples, etymology and notes.
 
 * The lexicon entry schema now has the following fields: `loan_word`, `crossref`, `variants`, `semantics` (`semantic_domain`, `synonyms`, `antonyms`), and (added to `senses`) `literal`, `scientific` and `usage`.
 
