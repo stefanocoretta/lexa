@@ -121,6 +121,19 @@ print.lexalx <- function(x, ...) {
   cli::cli_h3("Grammatical info")
   cli::cli_text("{crayon::red('Category:')} {x$morph_category}")
   cli::cli_text("{crayon::red('Type:')} {x$morph_type}")
+  cli::cli_h3("Allomorphs")
+  for (allo in seq_len(length(x$allomorphs))) {
+    conditioning <- x$allomorphs[[allo]]$conditioning
+    cli::cli_text(
+      "{cli::col_red(cli::symbol$bullet)}
+      {cli::col_blue(x$allomorphs[[allo]]$morph)}
+      [{x$allomorphs[[allo]]$phon}]
+      {ifelse(!is.null(conditioning), paste0('(',
+      cli::col_green(conditioning$type), ': ',
+      conditioning$context, ')'), '')}"
+    )
+
+  }
 
   if (!is.null(x$notes)) {
     cli::cli_h3("Notes")
