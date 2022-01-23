@@ -110,20 +110,39 @@ print.lexalx <- function(x, ...) {
       cli::cli_text("{cli::col_red(sense, '.')} {x$senses[[sense]]$definition}")
       examples_id <- x$senses[[sense]]$examples
       if (!is.null(examples_id)) {
-        tx_st <- stringr::str_split(examples_id, ":")
-        text <- yaml::read_yaml(
-          file.path(attr(x, "dbpath"), "texts", paste0(tx_st[[1]][1], ".yaml"))
-        )
-        sentence <- text$sentences[[tx_st[[1]][2]]]
+        if (length(examples_id) == 1) {
+          tx_st <- stringr::str_split(examples_id, ":")
+          text <- yaml::read_yaml(
+            file.path(attr(x, "dbpath"), "texts", paste0(tx_st[[1]][1], ".yaml"))
+          )
+          sentence <- text$sentences[[tx_st[[1]][2]]]
 
-        d <- cli::cli_div(
-          class = "example",
-          theme = list(.example = list(`margin-left` = 10))
-        )
-        cli::cli_h3("Examples")
-        cli::cli_text(cli::col_blue(sentence$sentence))
-        cli::cli_text(sentence$translation)
-        cli::cli_end(d)
+          d <- cli::cli_div(
+            class = "example",
+            theme = list(.example = list(`margin-left` = 10))
+          )
+          cli::cli_h3("Examples")
+          cli::cli_text(cli::col_blue(sentence$sentence))
+          cli::cli_text(sentence$translation)
+          cli::cli_end(d)
+        } else {
+          d <- cli::cli_div(
+            class = "example",
+            theme = list(.example = list(`margin-left` = 10))
+          )
+          cli::cli_h3("Examples")
+          for (ex in seq_len(length(examples_id))) {
+            tx_st <- stringr::str_split(examples_id[[ex]], ":")
+            text <- yaml::read_yaml(
+              file.path(attr(x, "dbpath"), "texts", paste0(tx_st[[1]][1], ".yaml"))
+            )
+            sentence <- text$sentences[[tx_st[[1]][2]]]
+            cli::cli_text(cli::col_blue(sentence$sentence))
+            cli::cli_text(sentence$translation)
+            cli::cli_text("")
+          }
+          cli::cli_end(d)
+        }
       }
     }
   }
