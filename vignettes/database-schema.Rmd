@@ -59,7 +59,7 @@ senses:
     usage: <string>
     inflectional_features:
       <feature_n>: <string>
-    examples: ["tx_00000n"]
+    examples: ["tx_00000n:st_00000n"]
     etymology: <string>
 crossref: ["lx_00000n"]
 variants: [<string>]
