@@ -34,6 +34,10 @@
 
 * Both `search_lexicon()` and `search_texts()` now search whole words by default. This can be changed by specifying `whole = FALSE`.
 
+## Fixed
+
+* Printing interlinear glosses now works even when there are repeated spaces between words.
+
 
 # lexa 0.0.0.9001
 

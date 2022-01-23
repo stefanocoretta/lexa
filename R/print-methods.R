@@ -221,8 +221,8 @@ print.lexast <- function(x, ...) {
   cli::cli_text("[", x$phon, "]")
   cli::cli_text("")
 
-  morph_split <- unlist(stringr::str_split(x$morph, " "))
-  gloss_split <- unlist(stringr::str_split(x$gloss, " "))
+  morph_split <- unlist(stringr::str_split(stringr::str_squish(x$morph), " "))
+  gloss_split <- unlist(stringr::str_split(stringr::str_squish(x$gloss), " "))
   morph_n <- cli::utf8_nchar(morph_split)
   gloss_n <- cli::utf8_nchar(gloss_split)
   max_n <- pmax(morph_n, gloss_n) + 2
