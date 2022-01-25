@@ -18,6 +18,8 @@
 
 * Print methods for `lexatx` and `lexast`.
 
+* Print method for `lexalxs` (returned by `search_lexicon()`).
+
 * Added `albanian` database.
 
 * `search_texts()` to search for words or glosses in the texts.
@@ -37,6 +39,8 @@
 * Changed texts schema.
 
 * Both `search_lexicon()` and `search_texts()` now search whole words by default. This can be changed by specifying `whole = FALSE`.
+
+* `lexalx` printing method improved.
 
 ## Fixed
 

@@ -94,10 +94,10 @@ print.lexalx <- function(x, ...) {
     entry_line <- paste(entry_line, "({x$inflectional_features})")
   }
 
-  cli::cli_rule("Entry", right = "{.emph {x$id}}")
+  cli::cli_h1("Entry {x$id}")
   cli::cli_text(entry_line)
 
-  cli::cli_h3("Senses")
+  cli::cli_h2("Senses")
   for (sense in 1:length(x$senses)) {
     if (!is.null(x$senses[[sense]]$inflectional_features)) {
       cli::cli_text("{cli::col_red(sense, '.')}
@@ -163,10 +163,10 @@ print.lexalx <- function(x, ...) {
     cli::cli_end()
   }
 
-  cli::cli_h3("Grammatical info")
+  cli::cli_h2("Grammatical info")
   cli::cli_text("{crayon::red('Category:')} {x$morph_category}")
   cli::cli_text("{crayon::red('Type:')} {x$morph_type}")
-  cli::cli_h3("Allomorphs")
+  cli::cli_h2("Allomorphs")
   for (allo in seq_len(length(x$allomorphs))) {
     conditioning <- x$allomorphs[[allo]]$conditioning
     cli::cli_text(
@@ -181,10 +181,24 @@ print.lexalx <- function(x, ...) {
   }
 
   if (!is.null(x$notes)) {
-    cli::cli_h3("Notes")
+    cli::cli_h2("Notes")
     cli::cli_ul(x$notes)
   }
 
+}
+
+#' Print method for list of entries
+#'
+#' Print method for the output of `search_lexicon()`, which returns an object
+#'    of class `lexalxs`.
+#'
+#' @param x An object of class `lexalxs`.
+#' @param ... Arguments passed to print.
+#'
+#' @return Nothing. Used for its side effects.
+#' @export
+print.lexalxs <- function(x, ...) {
+  purrr::walk(x, function(i) print.lexalx(i))
 }
 
 #' Print method for texts

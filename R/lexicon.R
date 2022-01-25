@@ -105,6 +105,7 @@ search_lexicon <- function(lexadb,
 
   if (length(searched) > 0) {
     cli::cli_alert_success("Found {length(searched)} entr{?y/ies}.")
+    class(searched) <- c("lexalxs", "list")
     return(searched)
   } else {
     cli::cli_alert_warning("No entry found!")
