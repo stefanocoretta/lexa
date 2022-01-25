@@ -53,7 +53,7 @@ print.lexadb <- function(x, ...) {
     }
   }
 
-  cli::cli_rule("Database info")
+  cli::cli_h1("Database info")
   cli::cli_text(
     "{crayon::green(cli::symbol$circle_filled)} {crayon::blue('Name:')}
     {x$config$name}"
