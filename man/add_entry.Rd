@@ -28,7 +28,8 @@ add_entry(
 
 \item{phon}{The phonetic transcription as a string.}
 
-\item{morph_category}{The morphosyntactic category as a string (\code{"lexical"} or \code{"grammatical"}).}
+\item{morph_category}{The morphosyntactic category as a string
+(\code{"lexical"} or \code{"grammatical"}).}
 
 \item{morph_type}{The type of morpheme as a string.}
 

@@ -11,7 +11,8 @@
 #' @param gloss The gloss as a string.
 #' @param part_of_speech The part of speech as a string.
 #' @param phon The phonetic transcription as a string.
-#' @param morph_category The morphosyntactic category as a string (`"lexical"` or `"grammatical"`).
+#' @param morph_category The morphosyntactic category as a string
+#'    (`"lexical"` or `"grammatical"`).
 #' @param morph_type The type of morpheme as a string.
 #' @param definition The definition of the entry as a string.
 #' @param etymology The etymology of the entry as a string.
@@ -101,7 +102,12 @@ search_lexicon <- function(lexadb,
     searched <- searched[unlist(hits)]
   }
 
-  return(searched)
+  if (length(searched) > 0) {
+    cli::cli_alert_success("Found {length(searched)} entr{?y/ies}.")
+    return(searched)
+  } else {
+    cli::cli_alert_warning("No entry found!")
+  }
 }
 
 # Helper function to search through definitions
@@ -114,4 +120,45 @@ check_definitions <- function(entry, pattern) {
   } else {
     FALSE
   }
+}
+
+
+
+
+# Show entry ----
+
+#' Show lexicon entry with given id
+#'
+#' It shows the entry with the given id.
+#'
+#' @param lexadb   A `lexadb` object (created with \code{\link{load_lexadb}}).
+#' @param entry_id A string with the entry id (the `lx_` prefix and leading
+#'        zeros can be omitted.)
+#'
+#' @return A `lexalx` object.
+#' @export
+show_entry <- function(lexadb, entry_id) {
+  db_path <- attr(lexadb, "meta")$path
+
+  if (!stringr::str_detect(entry_id, "lx")) {
+    entry_id <- stringr::str_pad(entry_id, 6, "left", "0")
+    entry_id <- paste0("lx_", entry_id)
+  }
+
+  lx_path <- file.path(
+    normalizePath(db_path), "lexicon",
+    paste0(entry_id, ".yaml")
+  )
+
+  if (file.exists(lx_path)) {
+    lx <- yaml::read_yaml(lx_path)
+  } else {
+    cli::cli_abort("Sorry, there is no entry with the given id!")
+  }
+
+
+  attr(lx, "dbpath") <- db_path
+  class(lx) <- c("lexalx", "list")
+
+  return(lx)
 }
