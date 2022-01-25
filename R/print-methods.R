@@ -154,7 +154,7 @@ print.lexalx <- function(x, ...) {
   }
 
   if (!is.null(x$etymology)) {
-    cli::cli_h3("Etymology")
+    cli::cli_h2("Etymology")
     cli::cli_div(theme = list(span.etym = list(
       `font-style` = "italic",
       color = "blue"
