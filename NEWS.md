@@ -4,6 +4,8 @@
 
 * Renamed `import_lexicon()` to `import_lexicon_csv()`.
 
+* `create_entry()` is no longer exported.
+
 ## Added
 
 * `search_lexicon()` adds `pos` argument to filter by part of speech.

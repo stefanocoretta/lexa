@@ -4,12 +4,39 @@
 \alias{add_entry}
 \title{Add entry to lexicon}
 \usage{
-add_entry(lexadb, ...)
+add_entry(
+  lexadb,
+  entry = NULL,
+  gloss = NULL,
+  part_of_speech = NULL,
+  phon = NULL,
+  morph_category = NULL,
+  morph_type = NULL,
+  definition = gloss,
+  etymology = NULL,
+  notes = NULL
+)
 }
 \arguments{
 \item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
-\item{...}{Arguments passed to \code{create_entry()}.}
+\item{entry}{The entry as a string.}
+
+\item{gloss}{The gloss as a string.}
+
+\item{part_of_speech}{The part of speech as a string.}
+
+\item{phon}{The phonetic transcription as a string.}
+
+\item{morph_category}{The morphosyntactic category as a string (\code{"lexical"} or \code{"grammatical"}).}
+
+\item{morph_type}{The type of morpheme as a string.}
+
+\item{definition}{The definition of the entry as a string.}
+
+\item{etymology}{The etymology of the entry as a string.}
+
+\item{notes}{Further notes as a string.}
 }
 \value{
 Nothing. Used for its side effects

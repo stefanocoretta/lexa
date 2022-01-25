@@ -17,32 +17,6 @@ create_lexadb <- function(parent = ".", name) {
   create_texts(path)
 }
 
-create_config <- function(path, name) {
-  config <- list(
-    schema = "lexadb",
-    name = name
-  )
-  yaml::write_yaml(config, file.path(path, "config.yaml"))
-}
-
-create_lexicon <- function(path) {
-  dir.create(file.path(path, "lexicon"), FALSE, TRUE)
-
-  lx_entry <- create_entry(NULL)
-  readr::write_file(lx_entry$out, file.path(path, "lexicon", "lx_000001.yaml"))
-}
-
-create_grammar <- function(path) {
-  grammar <- list()
-  yaml::write_yaml(grammar, file.path(path, "grammar.yaml"))
-}
-
-create_texts <- function(path) {
-  dir.create(file.path(path, "texts"), FALSE, TRUE)
-  text_example <- list()
-  yaml::write_yaml(text_example, file.path(path, "texts", "text_example.yaml"))
-}
-
 
 
 
@@ -78,48 +52,4 @@ load_lexadb <- function(path) {
   attr(lexadb, "meta") <- list(path = normalizePath(path))
 
   return(lexadb)
-}
-
-read_config <- function(path) {
-  yaml::read_yaml(file.path(path, "config.yaml"))
-}
-
-read_lexicon <- function(path) {
-  lexicon_path <- file.path(path, "lexicon")
-  lexicon_files <- list.files(lexicon_path, full.names = TRUE)
-  lexicon <- lapply(lexicon_files, function(lexeme) {
-      lx <- yaml::read_yaml(lexeme)
-      attr(lx, "dbpath") <- path
-      structure(lx, class = c("lexalx", "list"))
-    }
-  )
-  lx_ids <- lapply(lexicon, function(x) x[["id"]])
-  names(lexicon) <- lx_ids
-  lexicon
-}
-
-read_grammar <- function(path) {
-  yaml::read_yaml(file.path(path, "grammar.yaml"))
-}
-
-read_texts <- function(path) {
-  texts_path <- file.path(path, "texts")
-  texts_files <- list.files(texts_path, full.names = TRUE)
-  texts <- lapply(texts_files, function(text) {
-      tx <- yaml::read_yaml(text)
-      tx <- structure(tx, class = c("lexatx", "list"))
-      return(tx)
-    }
-  )
-  texts <- lapply(texts, function(text) {
-    sent_i <- lapply(text$sentences, function(sent) {
-      st <- structure(sent, class = c("lexast", "list"))
-      return(st)
-    })
-    text$sentences <- sent_i
-    return(text)
-  })
-  texts_ids <- lapply(texts, function(x) x[["id"]])
-  names(texts) <- texts_ids
-  return(texts)
 }
