@@ -45,6 +45,7 @@ add_entry <- function(lexadb,
   )
 
   write_entry(lexadb, lx_entry)
+  cli::cli_alert_success("Entry {cli::col_blue(lx_entry$id)} added to the lexicon!")
 }
 
 
