@@ -16,11 +16,24 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Overview
+
+Users can output interlinear glosses in Rmarkdown files from the texts in a Lexa database.
+
+Both PDF and HTML output formats are supported.
+The LaTeX package [expex](https://ctan.org/pkg/expex) is used for PDF output, while HTML glosses are rendered with [Leipzig.js](https://bdchauvette.net/leipzig.js/).
+
+At this time, the functionalities implemented within lexa are limited, but they provide sufficient coverage for basic glossing.
+
+# Load a Lexa database
+
+To load a Lexa database, we first attach the lexa package.
+
 ```{r setup}
 library(lexa)
 ```
 
-# Read the data
+And then load the example database `eleryon_lexadb`.
 
 ```{r eleryon}
 eleryon_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
@@ -28,13 +41,27 @@ eleryon_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
 eleryon <- load_lexadb(eleryon_path)
 ```
 
+We can now inspect the content of the `eleryon` database.
+
+```{r eleryon-summary}
+eleryon
+```
+
 # Include interlinear glosses
+
+There are two ways of including an interlinear gloss in an Rmarkdown file.
+
+## Inline R code
+
+One is by using inline R code (see the source of this vignette for the code).
 
 `r include_gloss(eleryon, "tx_000001", "st_000001")`
 
-```{r results='asis'}
+## R code chunk
+
+Alternatively, one can use an R code chunk and set `results='asis'`.
+
+```{r asis, echo=TRUE, results='asis'}
 include_gloss(eleryon, "tx_000001", "st_000002")
 ```
-
-
 
