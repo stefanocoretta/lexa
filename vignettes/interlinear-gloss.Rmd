@@ -1,0 +1,40 @@
+---
+title: "Typesetting interlinear glosses"
+output:
+  lexa::lexa_html:
+    base_format: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Typesetting interlinear glosses}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(lexa)
+```
+
+# Read the data
+
+```{r eleryon}
+eleryon_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
+
+eleryon <- load_lexadb(eleryon_path)
+```
+
+# Include interlinear glosses
+
+`r include_gloss(eleryon, "tx_000001", "st_000001")`
+
+```{r results='asis'}
+include_gloss(eleryon, "tx_000001", "st_000002")
+```
+
+
+

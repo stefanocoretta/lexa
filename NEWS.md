@@ -6,6 +6,8 @@
 
 * `create_entry()` is no longer exported.
 
+* Renamed `print_gloss()` to `typeset_gloss()`.
+
 ## Added
 
 * `search_lexicon()` adds `pos` argument to filter by part of speech.
@@ -25,6 +27,8 @@
 * `search_texts()` to search for words or glosses in the texts.
 
 * `show_entry()` which prints the entry with the given `entry_id`.
+
+* Custom RMarkdown templates `lexa_pdf` and `lexa_html`.
 
 ## Changed
 

@@ -1,4 +1,4 @@
-#' Print gloss
+#' Typeset interlinear gloss
 #'
 #' The function returns the selected sentence as properly formatted html/latex code.
 #'
@@ -8,7 +8,7 @@
 #' @param format Format to print out with (either \code{html} or \code{latex}).
 #'
 #' @export
-print_gloss <- function(lexadb, text, sentence, format = "latex") {
+typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
 
   db_path <- attr(lexadb, "meta")$path
   text <- yaml::read_yaml(file.path(db_path, "texts", paste0(text, ".yaml")))
@@ -31,13 +31,12 @@ print_gloss <- function(lexadb, text, sentence, format = "latex") {
     )
 
   } else if (format == "html") {
-    glue::glue(
-      "<div data-gloss>
-      <p>{sentence_i}</p>
-      <p>{morpho}</p>
-      <p>{gloss}</p>
-      <p>'{translation}'</p>
-      </div>"
+    htmltools::div(
+      "data-gloss" = NA,
+      htmltools::p(glue::glue("{sentence_i}")),
+      htmltools::p(glue::glue("{morpho}")),
+      htmltools::p(glue::glue("{gloss}")),
+      htmltools::p(glue::glue("\u2018{translation}\u2019")),
     )
   }
 
@@ -50,8 +49,8 @@ print_gloss <- function(lexadb, text, sentence, format = "latex") {
 #' @export
 include_gloss <- function(...) {
   if (knitr::is_latex_output()) {
-    print_gloss(..., "latex")
+    typeset_gloss(..., "latex")
   } else if (knitr::is_html_output()) {
-    print_gloss(..., "html")
+    typeset_gloss(..., "html")
   }
 }

@@ -14,14 +14,15 @@ BugReports: https://github.com/stefanocoretta/lexa/issues
 Encoding: UTF-8
 LazyData: true
 Suggests: 
-    knitr,
-    rmarkdown
+    knitr
 Imports:
     cli,
     crayon,
     glue,
+    htmltools,
     purrr,
     readr,
+    rmarkdown,
     stringr,
     yaml
 VignetteBuilder: knitr
