@@ -1,7 +1,7 @@
 Package: lexa
 Type: Package
 Title: Lexicon and texts database management
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Date: 2022-02-05
 Authors@R: person("Stefano", "Coretta", email = "stefano.coretta@gmail.com",
                   role = c("aut", "cre"),

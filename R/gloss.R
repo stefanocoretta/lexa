@@ -20,7 +20,7 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
   translation <- text$sentences[[sentence]]$translation
 
   if (format == "latex") {
-    if (!is.na(phon)) {
+    if (!is.null(phon)) {
       gloss_ex <- glue::glue(
         "```{{=latex}}
         \\ex \\begingl

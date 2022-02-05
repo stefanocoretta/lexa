@@ -1,3 +1,11 @@
+# lexa 0.0.0.9004
+
+## Fixed
+
+- Error in `typeset_gloss()` when phon is not present in latex format.
+
+
+
 # lexa 0.0.0.9003
 
 ## Fixed
