@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![](https://img.shields.io/badge/devel%20version-0.0.0.9000-orange.svg)](https://github.com/stefanocoretta/lexa)
+[![](https://img.shields.io/badge/devel%20version-0.0.0.9002-orange.svg)](https://github.com/stefanocoretta/lexa)
 <!-- badges: end -->
 
 The goal of lexa is to provide a framework and tools to manage
