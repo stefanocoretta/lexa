@@ -25,7 +25,7 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
         "```{{=latex}}
         \\ex \\begingl
         \\glpreamble {sentence_i}//
-        \\glpreamble {phon}//
+        \\glpreamble [{phon}]//
         \\gla {morpho}//
         \\glb {gloss}//
         \\glft {translation}//
@@ -43,10 +43,9 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
         \\endgl \\xe
         ```"
       )
-
-      return(gloss_ex)
     }
 
+    return(gloss_ex)
 
   } else if (format == "html") {
     gloss_div <- htmltools::div(

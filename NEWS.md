@@ -1,3 +1,12 @@
+# lexa 0.0.0.9003
+
+## Fixed
+
+- `typeset_gloss()` was not returning the latex gloss when the phonetic transcription was present.
+
+
+
+
 # lexa 0.0.0.9002
 
 ## Breaking changes
