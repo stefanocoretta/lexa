@@ -1,3 +1,12 @@
+# lexa 0.0.0.9006
+
+## Fixed
+
+- Gloss translation in PDF output includes quotes.
+
+
+
+
 # lexa 0.0.0.9005
 
 ## Fixed

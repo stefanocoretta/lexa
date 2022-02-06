@@ -39,7 +39,7 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
         \\glpreamble [{phon}]//
         \\gla {morpho}//
         \\glb {gloss}//
-        \\glft {translation}//
+        \\glft `{translation}'//
         \\endgl \\xe
         ```"
       )
@@ -50,7 +50,7 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
         \\glpreamble {sentence_i}//
         \\gla {morpho}//
         \\glb {gloss}//
-        \\glft {translation}//
+        \\glft `{translation}'//
         \\endgl \\xe
         ```"
       )
