@@ -1,6 +1,9 @@
 #' Lexa PDF document
 #'
-#' A custom Rmarkdown template to typeset PDF documents with extra support for interlinear glosses.
+#' A custom Rmarkdown template to typeset PDF documents with extra support for
+#' interlinear glosses.
+#' Note that this format uses a custom Pandoc LaTeX template, because of
+#' incompatibilities bewteen expex and unicode-math.
 #'
 #' @param ... Arguments passed to \link[rmarkdown]{pdf_document}.
 #'
@@ -8,8 +11,10 @@
 lexa_pdf <- function(...) {
   rmarkdown::pdf_document(
     ...,
+    template = system.file("rmarkdown/templates/lexa_pdf/resources/template.tex", package = "lexa"),
     includes = rmarkdown::includes(
-      in_header = system.file("rmarkdown/templates/lexa_pdf/resources/preamble.tex", package = "lexa")
+      in_header = system.file("rmarkdown/templates/lexa_pdf/resources/preamble.tex", package = "lexa"),
+      after_body = system.file("rmarkdown/templates/lexa_pdf/resources/after-body.tex", package = "lexa")
     )
   )
 }

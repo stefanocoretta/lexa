@@ -1,18 +1,42 @@
 ---
-title: "Template Title"
-author: "Your Name"
-date: "The Date"
-output: lexa::lexa_pdf
+title: "Lexa PDF document"
+date: "`r Sys.Date()`"
+output:
+  lexa::lexa_pdf:
+    latex_engine: xelatex
+    keep_tex: true
+    number_sections: true
+# Choose a typeface with small caps fonts, like DejaVu, Brill, Noto.
+# Note that Times New Roman does not have small caps.
+mainfont: Times New Roman
+header-includes:
+  # To add or modify gloss abbreviations, edit the abbreviations.tex file.
+  - \input{abbreviations.tex}
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+# If you are not using TinyTex, set latexmk emulation to FALSE
+options(tinytex.latexmk.emulation = TRUE)
+library(lexa)
 ```
 
-## Adding an RMarkdown Template
+# Example
 
-This file is what a user will see when they select your template. Make sure that you update the fields in the yaml header. In particular you will want to update the `output` field to whatever format your template requires.
+First load a Lexa database.
 
-This is a good place to demonstrate special features that your template provides. Ideally it should knit out-of-the-box, or at least contain clear instructions as to what needs changing.
+```{r loaddb, echo=TRUE}
+eleryon <- load_lexadb(system.file("extdata/eleryon_lexadb", package = "lexa"))
+```
 
-Finally, be sure to remove this message!
+Now you can include glosses, either as inline R code or with code chunk setting `results="asis"`.
+
+## Inline code
+
+`r include_gloss(eleryon, "tx_000001", "st_000001")`
+
+## Code chunk
+
+```{r results="asis"}
+include_gloss(eleryon, "tx_000001", "st_000002")
+```

@@ -84,5 +84,6 @@ include_gloss <- function(...) {
 texify_gloss <- function(gloss) {
   gloss <- stringr::str_replace_all(gloss, "([A-Z]+)", "\\\\\\1\\{\\}")
   gloss <- stringr::str_replace_all(gloss, "([A-Z]+)", stringr::str_to_sentence)
+  gloss <- stringr::str_replace_all(gloss, "_", "\\\\textunderscore\\{\\}")
   return(gloss)
 }

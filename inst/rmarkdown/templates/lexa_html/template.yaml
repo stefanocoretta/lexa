@@ -1,4 +1,4 @@
-name: lexa_html
+name: HTML document with Lexa support
 description: >
    An Rmarkdown template for linguistics documents
 create_dir: FALSE

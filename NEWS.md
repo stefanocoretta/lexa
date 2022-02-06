@@ -2,11 +2,20 @@
 
 ## Fixed
 
-- Error with `lexa_pdf` if using bookdown with `base_format`.
+- Fix error with `lexa_pdf` if using bookdown with `base_format`.
+
+- Underscores in glosses are now converted to `\textunderscore` if output is PDF.
 
 ## Changed
 
 - `typeset_gloss()` now outputs gloss abbreviations as leipzig commands if the output format is PDF.
+
+- Improved `lexa_pdf` Rmarkdown template:
+
+  - Using custom LaTeX template to circumvent unicode-math incompatibility with expex and leipzig.
+
+  - Includes list of abbreviations for glosses as leipzig commands (the list is based on Croft *Tyopology and Universals*).
+
 
 
 
