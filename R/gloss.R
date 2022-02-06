@@ -20,6 +20,8 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
   translation <- text$sentences[[sentence]]$translation
 
   if (format == "latex") {
+    gloss <- texify_gloss(gloss)
+
     if (!is.null(phon)) {
       gloss_ex <- glue::glue(
         "```{{=latex}}
@@ -73,4 +75,14 @@ include_gloss <- function(...) {
   } else if (knitr::is_html_output()) {
     typeset_gloss(..., "html")
   }
+}
+
+
+
+# Glossing helper functions ----
+
+texify_gloss <- function(gloss) {
+  gloss <- stringr::str_replace_all(gloss, "([A-Z]+)", "\\\\\\1\\{\\}")
+  gloss <- stringr::str_replace_all(gloss, "([A-Z]+)", stringr::str_to_sentence)
+  return(gloss)
 }

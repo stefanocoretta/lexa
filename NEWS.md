@@ -4,6 +4,10 @@
 
 - Error with `lexa_pdf` if using bookdown with `base_format`.
 
+## Changed
+
+- `typeset_gloss()` now outputs gloss abbreviations as leipzig commands if the output format is PDF.
+
 
 
 
