@@ -1,3 +1,12 @@
+# lexa 0.0.0.9005
+
+## Fixed
+
+- Error with `lexa_pdf` if using bookdown with `base_format`.
+
+
+
+
 # lexa 0.0.0.9004
 
 ## Fixed

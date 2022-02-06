@@ -10,5 +10,5 @@ lexa_html(...)
 \item{...}{Arguments passed to \link[rmarkdown]{html_document}.}
 }
 \description{
-Lexa HTML document
+A custom Rmarkdown template to typeset HTML documents with extra support for interlinear glosses. # nolint
 }

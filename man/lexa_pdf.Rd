@@ -10,5 +10,5 @@ lexa_pdf(...)
 \item{...}{Arguments passed to \link[rmarkdown]{pdf_document}.}
 }
 \description{
-Lexa PDF document
+A custom Rmarkdown template to typeset PDF documents with extra support for interlinear glosses.
 }

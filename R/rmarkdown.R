@@ -1,14 +1,13 @@
 #' Lexa PDF document
 #'
+#' A custom Rmarkdown template to typeset PDF documents with extra support for interlinear glosses.
+#'
 #' @param ... Arguments passed to \link[rmarkdown]{pdf_document}.
 #'
 #' @export
 lexa_pdf <- function(...) {
   rmarkdown::pdf_document(
     ...,
-    latex_engine = "xelatex",
-    keep_tex = TRUE,
-    number_sections = TRUE,
     includes = rmarkdown::includes(
       in_header = system.file("rmarkdown/templates/lexa_pdf/resources/preamble.tex", package = "lexa")
     )
@@ -16,6 +15,8 @@ lexa_pdf <- function(...) {
 }
 
 #' Lexa HTML document
+#'
+#' A custom Rmarkdown template to typeset HTML documents with extra support for interlinear glosses. # nolint
 #'
 #' @param ... Arguments passed to \link[rmarkdown]{html_document}.
 #'
