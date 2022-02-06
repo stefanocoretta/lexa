@@ -9,6 +9,15 @@
 #'
 #' @export
 typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
+  if (!stringr::str_detect(text, "tx")) {
+    text <- stringr::str_pad(text, 6, "left", "0")
+    text <- paste0("tx_", text)
+  }
+
+  if (!stringr::str_detect(sentence, "st")) {
+    sentence <- stringr::str_pad(sentence, 6, "left", "0")
+    sentence <- paste0("st_", sentence)
+  }
 
   db_path <- attr(lexadb, "meta")$path
   text <- yaml::read_yaml(file.path(db_path, "texts", paste0(text, ".yaml")))

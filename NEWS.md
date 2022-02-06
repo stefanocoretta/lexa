@@ -8,6 +8,8 @@
 
 ## Changed
 
+- `typeset_gloss()` supports numeric text and sentence ID.
+
 - `typeset_gloss()` now outputs gloss abbreviations as leipzig commands if the output format is PDF.
 
 - Improved `lexa_pdf` Rmarkdown template:
@@ -15,8 +17,6 @@
   - Using custom LaTeX template to circumvent unicode-math incompatibility with expex and leipzig.
 
   - Includes list of abbreviations for glosses as leipzig commands (the list is based on Croft *Tyopology and Universals*).
-
-
 
 
 
