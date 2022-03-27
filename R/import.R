@@ -32,40 +32,42 @@ import_lexicon_csv <- function(lexadb, path) {
 
   lexicon_list <- purrr::transpose(lexicon_tab)
 
+  lx_entry <- list()
+  today <- as.character(Sys.time())
+
   purrr::walk(
     lexicon_list,
     function(x) {
 
-      lx_id <- create_lx_id(lexadb)
+      lx_entry$id <- create_lx_id(lexadb)
 
-      lx_entry <- list(
-        id = lx_id,
-        entry = x$entry,
-        phon = x$phon,
-        morph_category = x$morph_category,
-        morph_type = x$morph_type,
-        part_of_speech = x$part_of_speech,
-        inflectional_features = list(class = x$class),
-        etymology = x$etymology,
-        notes = x$notes,
-        allomorphs = list(
-          al_01 = list(
-            id = "al_01",
-            morph = x$entry,
-            phon = x$phon
-          )
-        ),
-        senses = list(
-          se_01 = list(
-            id = "se_01",
-            gloss = x$gloss,
-            definition = x$gloss,
-            inflectional_features = list(class = x$class)
-          )
-        ),
-        date_created = as.character(Sys.time()),
-        date_modified = as.character(Sys.time())
+      out <- glue::glue(
+        'id: {lx_entry$id}
+        entry: {x$entry}
+        phon: {x$phon}
+        morph_category: {x$morph_category}
+        morph_type: {x$morph_type}
+        part_of_speech: {x$part_of_speech}
+        inflectional_features:
+          class:
+        etymology: {x$etymology}
+        notes: {x$notes}
+        allomorphs:
+          al_01:
+            id: al_01
+            morph: {x$entry}
+            phon: {x$phon}
+        senses:
+          se_01:
+            id: se_01
+            gloss: {x$gloss}
+            definition: "{x$definition}"
+        date_created: {today}
+        date_modified: {today}',
+        .null = ""
       )
+
+      lx_entry$out <- out
       write_entry(lexadb, lx_entry)
     }
   )

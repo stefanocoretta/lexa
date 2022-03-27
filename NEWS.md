@@ -4,6 +4,8 @@
 
 - Gloss translation in PDF output includes quotes.
 
+- Error when importing lexicon from csv file.
+
 
 
 
