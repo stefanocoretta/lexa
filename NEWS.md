@@ -6,6 +6,8 @@
 
 - Error when importing lexicon from csv file.
 
+- Check for presence of lexical information when printing database, and print nothing if not present.
+
 
 
 
