@@ -22,8 +22,8 @@ create_grammar <- function(path) {
 
 create_texts <- function(path) {
   dir.create(file.path(path, "texts"), FALSE, TRUE)
-  text_example <- list()
-  yaml::write_yaml(text_example, file.path(path, "texts", "text_example.yaml"))
+  text_example <- create_text()
+  readr::write_file(text_example$out, file.path(path, "texts", "tx_000001.yaml"))
 }
 
 # Write entry helpers ----
@@ -98,11 +98,27 @@ create_entry <-  function(lexadb = NULL,
 
 }
 
-# Actually writes entry on disk in lexicon/.
 
-write_entry <- function(lexadb, lx_entry) {
-  db_path <- attr(lexadb, "meta")$path
-  lx_path <- file.path("lexicon", paste0(lx_entry$id, ".yaml"))
-  lx_full_path <- file.path(db_path, lx_path)
-  readr::write_file(lx_entry$out, lx_full_path)
+# Prepare empty text skeleton.
+# Outputs a list with text id (`id`) and output string (`out`).
+
+create_text <- function() {
+  out <- glue::glue(
+    'id: tx_000001
+    title: ""
+    sentences:
+      st_000001:
+        id: st_000001
+        sentence:
+        morpho:
+        gloss:
+        phon:
+        translation:
+
+    ',
+    .null = ""
+  )
+
+  text <- list(id = "tx_000001", out = out)
+  return(text)
 }

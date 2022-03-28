@@ -8,6 +8,7 @@
 
 - Check for presence of lexical information when printing database, and print nothing if not present.
 
+- `create_lexadb()` now creates an empty skeleton for a text.
 
 
 
