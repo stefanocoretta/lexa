@@ -20,18 +20,24 @@ specific columns, see Details for file specifics. The lexicon is imported
 into an existing Lexa database.
 }
 \details{
-The file should have the following columns (they can be omitted, but
-if present they must be so named):
+The file must have at least the following columns:
 \itemize{
 \item \code{entry}: the lexical entry, as it should appear in the head entry.
+\item \code{gloss}: the gloss of the entry.
+}
+
+Optionally, the file can have the following columns:
+\itemize{
+\item \code{definition}: the full definition of the entry. This normally provides
+more details about the meaning than the gloss. If this column is not
+present, the definition field is filled with the gloss.
 \item \code{phon}: phonetic transcription of the entry.
 \item \code{morph_category}: category of entry (e.g. lexical vs grammatical).
 \item \code{morph_type}: type of morpheme (e.g. root vs affix).
 \item \code{part_of_speech}: part of speech of entry.
 \item \code{class}: lexical class of entry (e.g. verbal conjugations, noun classes).
-\item \code{gloss}: .
-\item \code{etymology}:
-\item \code{notes}:
+\item \code{etymology}: the etymology of the entry.
+\item \code{notes}: free text notes.
 }
 
 Note that this list is temporary and \emph{it will change} in the future.

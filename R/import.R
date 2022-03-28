@@ -6,18 +6,23 @@
 #' specific columns, see Details for file specifics. The lexicon is imported
 #' into an existing Lexa database.
 #'
-#' The file should have the following columns (they can be omitted, but
-#' if present they must be so named):
+#' The file must have at least the following columns:
 #'
 #' * `entry`: the lexical entry, as it should appear in the head entry.
+#' * `gloss`: the gloss of the entry.
+#'
+#' Optionally, the file can have the following columns:
+#'
+#' * `definition`: the full definition of the entry. This normally provides
+#'    more details about the meaning than the gloss. If this column is not
+#'    present, the definition field is filled with the gloss.
 #' * `phon`: phonetic transcription of the entry.
 #' * `morph_category`: category of entry (e.g. lexical vs grammatical).
 #' * `morph_type`: type of morpheme (e.g. root vs affix).
 #' * `part_of_speech`: part of speech of entry.
 #' * `class`: lexical class of entry (e.g. verbal conjugations, noun classes).
-#' * `gloss`: .
-#' * `etymology`:
-#' * `notes`:
+#' * `etymology`: the etymology of the entry.
+#' * `notes`: free text notes.
 #'
 #' Note that this list is temporary and *it will change* in the future.
 #'
@@ -32,13 +37,12 @@ import_lexicon_csv <- function(lexadb, path) {
 
   lexicon_list <- purrr::transpose(lexicon_tab)
 
-  lx_entry <- list()
   today <- as.character(Sys.time())
 
   purrr::walk(
     lexicon_list,
     function(x) {
-
+      lx_entry <- list()
       lx_entry$id <- create_lx_id(lexadb)
 
       out <- glue::glue(
@@ -61,7 +65,7 @@ import_lexicon_csv <- function(lexadb, path) {
           se_01:
             id: se_01
             gloss: {x$gloss}
-            definition: "{x$definition}"
+            definition: "{ifelse(!is.null(x$definition), x$definition, x$gloss)}"
         date_created: {today}
         date_modified: {today}
 

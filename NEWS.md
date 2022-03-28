@@ -4,7 +4,7 @@
 
 - Gloss translation in PDF output includes quotes.
 
-- Error when importing lexicon from csv file.
+- Errors when importing lexicon from csv file.
 
 - Check for presence of lexical information when printing database, and print nothing if not present.
 
