@@ -87,7 +87,9 @@ create_entry <-  function(lexadb = NULL,
         gloss: {gloss}
         definition: "{definition}"
     date_created: {today}
-    date_modified: {today}',
+    date_modified: {today}
+
+    ',
     .null = ""
   )
 

@@ -63,7 +63,9 @@ import_lexicon_csv <- function(lexadb, path) {
             gloss: {x$gloss}
             definition: "{x$definition}"
         date_created: {today}
-        date_modified: {today}',
+        date_modified: {today}
+
+        ',
         .null = ""
       )
 
