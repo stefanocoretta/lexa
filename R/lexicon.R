@@ -164,3 +164,15 @@ show_entry <- function(lexadb, entry_id) {
 
   return(lx)
 }
+
+
+
+
+# Actually writes entry on disk in lexicon/.
+
+write_entry <- function(lexadb, lx_entry) {
+  db_path <- attr(lexadb, "meta")$path
+  lx_path <- file.path("lexicon", paste0(lx_entry$id, ".yaml"))
+  lx_full_path <- file.path(db_path, lx_path)
+  readr::write_file(lx_entry$out, lx_full_path)
+}
