@@ -39,7 +39,7 @@ You can install the development version of lexa like so:
 
 ``` r
 remotes::install_github(
-  "stefanocoretta/lexa@v0.0.0.9006",
+  "stefanocoretta/lexa@v0.0.0.9007",
   build_vignettes = TRUE
 )
 ```

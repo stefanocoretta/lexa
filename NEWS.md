@@ -1,14 +1,22 @@
-# lexa 0.0.0.9006
+# lexa 0.0.0.9007
 
 ## Fixed
-
-- Gloss translation in PDF output includes quotes.
 
 - Errors when importing lexicon from csv file.
 
 - Check for presence of lexical information when printing database, and print nothing if not present.
 
 - `create_lexadb()` now creates an empty skeleton for a text.
+
+
+
+
+# lexa 0.0.0.9006
+
+## Fixed
+
+- Gloss translation in PDF output includes quotes.
+
 
 
 
