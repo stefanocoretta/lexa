@@ -1,0 +1,11 @@
+pandoc: 2.7.3
+pkgdown: 2.0.2
+pkgdown_sha: ~
+articles:
+  database-schema: database-schema.html
+  interlinear-gloss: interlinear-gloss.html
+last_built: 2022-04-02T08:08Z
+urls:
+  reference: https://stefanocoretta.github.io/lexa/reference
+  article: https://stefanocoretta.github.io/lexa/articles
+
