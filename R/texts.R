@@ -46,3 +46,58 @@ search_texts <- function(lexadb, word = NULL, whole = TRUE, gloss = NULL) {
   names(matched) <- text_ids
   return(matched)
 }
+
+
+
+# Show text ----
+
+#' Show text or sentence with given id
+#'
+#' It shows the text or sentence with the given id.
+#'
+#' @param lexadb   A `lexadb` object (created with \code{\link{load_lexadb}}).
+#' @param text_id  A string with the text id (the `tx_` prefix and leading
+#'        zeros can be omitted.)
+#' @param sent_id A string with the sentence id (the `st_` prefix and leading
+#'        zeros can be omitted.)
+#'
+#' @return A `lexast` object.
+#' @export
+show_text <- function(lexadb, text_id, sent_id = NULL) {
+  db_path <- attr(lexadb, "meta")$path
+
+  if (!stringr::str_detect(text_id, "tx")) {
+    text_id <- stringr::str_pad(text_id, 6, "left", "0")
+    text_id <- paste0("tx_", text_id)
+  }
+
+  tx_path <- file.path(
+    normalizePath(db_path), "texts",
+    paste0(text_id, ".yaml")
+  )
+
+  if (file.exists(tx_path)) {
+    tx <- yaml::read_yaml(tx_path)
+  } else {
+    cli::cli_abort("Sorry, there is no text with the given id!")
+  }
+
+  if (is.null(sent_id)) {
+    attr(tx, "dbpath") <- db_path
+    class(tx) <- c("lexatx", "list")
+
+    return(tx)
+  } else {
+    if (!stringr::str_detect(sent_id, "st")) {
+      sent_id <- stringr::str_pad(sent_id, 6, "left", "0")
+      sent_id <- paste0("st_", sent_id)
+    }
+
+    st <- tx$sentences[[sent_id]]
+    attr(st, "dbpath") <- db_path
+    class(st) <- c("lexast", "list")
+
+    return(st)
+  }
+
+}

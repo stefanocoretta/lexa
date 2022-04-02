@@ -1,4 +1,8 @@
-# lexa 0.0.0.9007
+# lexa 0.0.1
+
+## Added
+
+- `show_text()` to show text/sentence based on ID.
 
 ## Fixed
 

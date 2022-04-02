@@ -35,11 +35,11 @@ The current available features are:
 
 ## Installation
 
-You can install the development version of lexa like so:
+You can install the latest version of lexa like so:
 
 ``` r
 remotes::install_github(
-  "stefanocoretta/lexa@v0.0.0.9007",
+  "stefanocoretta/lexa@v0.0.1",
   build_vignettes = TRUE
 )
 ```

@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![](https://img.shields.io/badge/devel%20version-0.0.0.9007-orange.svg)](https://github.com/stefanocoretta/lexa)
+[![](https://img.shields.io/badge/devel%20version-0.0.1-orange.svg)](https://github.com/stefanocoretta/lexa)
 <!-- badges: end -->
 
 The goal of lexa is to provide a framework and tools to manage
@@ -25,11 +25,11 @@ The current available features are:
 
 ## Installation
 
-You can install the development version of lexa like so:
+You can install the latest version of lexa like so:
 
 ``` r
 remotes::install_github(
-  "stefanocoretta/lexa@v0.0.0.9007",
+  "stefanocoretta/lexa@v0.0.1",
   build_vignettes = TRUE
 )
 ```
