@@ -9,7 +9,8 @@ Authors@R: person("Stefano", "Coretta", email = "stefano.coretta@gmail.com",
 Description: It provides a database schema and functions to manage a language
     database made of a lexicon and a collection of texts.
 License: MIT + file LICENSE
-URL: https://github.com/stefanocoretta/lexa
+URL: https://github.com/stefanocoretta/lexa,
+    https://stefanocoretta.github.io/lexa/
 BugReports: https://github.com/stefanocoretta/lexa/issues
 Encoding: UTF-8
 LazyData: true
