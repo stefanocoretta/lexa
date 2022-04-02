@@ -1,0 +1,5 @@
+url: https://stefanocoretta.github.io/lexa/
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
