@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# lexa: Manage documentary and descriptive linguistic data
+# lexa: Manage documentary and descriptive linguistic data \# lexa <a href="https://stefanocoretta.github.io/lexa/"><img src="man/figures/logo.png" align="right" height="120" /></a>
 
 <!-- badges: start -->
 
-[![](https://img.shields.io/badge/devel%20version-0.0.1-orange.svg)](https://github.com/stefanocoretta/lexa)
+[![](https://img.shields.io/badge/devel%20version-0.0.1.9000-orange.svg)](https://github.com/stefanocoretta/lexa)
 <!-- badges: end -->
 
 The goal of lexa is to provide a framework and tools to manage

@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# lexa: Manage documentary and descriptive linguistic data
+# lexa: Manage documentary and descriptive linguistic data # lexa <a href="https://stefanocoretta.github.io/lexa/"><img src="man/figures/logo.png" align="right" height="120" /></a>
 
 <!-- badges: start -->
 `r badger::badge_devel(color = "orange")`

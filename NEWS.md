@@ -1,3 +1,12 @@
+# lexa 0.0.1.9000
+
+## Added
+
+- 🎉 New logo!
+
+
+
+
 # lexa 0.0.1
 
 ## Added
