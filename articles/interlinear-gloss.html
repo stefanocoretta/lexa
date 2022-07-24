@@ -7,12 +7,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="lexa">
 <title>Typesetting interlinear glosses • lexa</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Typesetting interlinear glosses">
 <meta property="og:description" content="lexa">
+<meta property="og:image" content="https://stefanocoretta.github.io/lexa/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -26,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">lexa</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,8 +77,8 @@
 
 
 <script src="interlinear-gloss_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <main id="main"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Typesetting interlinear glosses</h1>
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Typesetting interlinear glosses</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/stefanocoretta/lexa/blob/HEAD/vignettes/interlinear-gloss.Rmd" class="external-link"><code>vignettes/interlinear-gloss.Rmd</code></a></small>
@@ -92,26 +99,26 @@
 </h2>
 <p>To load a Lexa database, we first attach the lexa package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stefanocoretta/lexa" class="external-link">lexa</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stefanocoretta/lexa" class="external-link">lexa</a></span><span class="op">)</span></span></code></pre></div>
 <p>And then load the example database <code>eleryon_lexadb</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">eleryon_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/eleryon_lexadb"</span>, package <span class="op">=</span> <span class="st">"lexa"</span><span class="op">)</span>
-
-<span class="va">eleryon</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_lexadb.html">load_lexadb</a></span><span class="op">(</span><span class="va">eleryon_path</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Loading lexa database...</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">eleryon_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/eleryon_lexadb"</span>, package <span class="op">=</span> <span class="st">"lexa"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">eleryon</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_lexadb.html">load_lexadb</a></span><span class="op">(</span><span class="va">eleryon_path</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Loading lexa database...</span></span></code></pre></div>
 <p>We can now inspect the content of the <code>eleryon</code> database.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">eleryon</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Database info</span> <span style="color: #00BBBB;">───────────────────────────────────────────────────────────────</span></span>
-<span class="co">#&gt; <span style="color: #00BB00;">◉</span> <span style="color: #0000BB;">Name:</span> eleryon</span>
-<span class="co">#&gt; <span style="color: #00BB00;">ℹ</span> <span style="color: #0000BB;">Entries:</span> 6 <span style="color: #00BB00;">|</span> <span style="color: #0000BB;">Texts:</span> 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ── <span style="font-weight: bold;">Lexicon breakdown</span> ──</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; <span style="color: #BB0000;">◉</span> Categories <span style="color: #00BB00;">→</span> <span style="color: #BB0000;">Lexical:</span> 6</span>
-<span class="co">#&gt; <span style="color: #BB0000;">◉</span> Morpheme types <span style="color: #00BB00;">→</span> <span style="color: #BB0000;">Roots:</span> 6</span>
-<span class="co">#&gt; <span style="color: #BB0000;">◉</span> POS <span style="color: #00BB00;">→</span> <span style="color: #BB0000;">Adverbs:</span> 1 <span style="color: #00BB00;">|</span> <span style="color: #BB0000;">Nouns:</span> 1 <span style="color: #00BB00;">|</span> <span style="color: #BB0000;">Verbs:</span> 4</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">eleryon</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Database info</span> <span style="color: #00BBBB;">───────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">◉</span> <span style="color: #0000BB;">Name:</span> eleryon</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">ℹ</span> <span style="color: #0000BB;">Entries:</span> 6 <span style="color: #00BB00;">|</span> <span style="color: #0000BB;">Texts:</span> 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── <span style="font-weight: bold;">Lexicon breakdown</span> ──</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">◉</span> Categories <span style="color: #00BB00;">→</span> <span style="color: #BB0000;">Lexical:</span> 6</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">◉</span> Morpheme types <span style="color: #00BB00;">→</span> <span style="color: #BB0000;">Roots:</span> 6</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">◉</span> POS <span style="color: #00BB00;">→</span> <span style="color: #BB0000;">Adverbs:</span> 1 <span style="color: #00BB00;">|</span> <span style="color: #BB0000;">Nouns:</span> 1 <span style="color: #00BB00;">|</span> <span style="color: #BB0000;">Verbs:</span> 4</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="include-interlinear-glosses">Include interlinear glosses<a class="anchor" aria-label="anchor" href="#include-interlinear-glosses"></a>
@@ -121,20 +128,15 @@
 <h3 id="inline-r-code">Inline R code<a class="anchor" aria-label="anchor" href="#inline-r-code"></a>
 </h3>
 <p>One is by using inline R code (see the source of this vignette for the code).</p>
-<div data-gloss>
-<p class="gloss__line--original">Ęs ętsu urųrtō enēim kę̄syoh bhųl enēim āireᵃph lichpyūaq.</p>
-<p class="gloss__line--original" style="font-weight: 400;">[œs œtsu uryrtoː eneːim kœːsjoh βyl eneːim aːireɐɸ lixpjuːaʔ]</p>
-<p>ęs ętsu ur-ųrt-ō enēim kę̄sy-oh bhųl enēim āir-eᵃph lichp-y-ūaq</p>
-<p>and then RDP-sit-PFCT:IND:1sg on rock-ACC while on 1pl-ACC rain-CL5-IMPF:IND:IMPR</p>
-<p>‘And then I sat on a rock, while it was raining over me.’</p>
-</div>
+<p></p>
+<div data-gloss> <p class="gloss__line--original">Ęs ętsu urųrtō enēim kę̄syoh bhųl enēim āireᵃph lichpyūaq.</p> <p class="gloss__line--original" style="font-weight: 400;">[œs œtsu uryrtoː eneːim kœːsjoh βyl eneːim aːireɐɸ lixpjuːaʔ]</p> <p>ęs ętsu ur-ųrt-ō enēim kę̄sy-oh bhųl enēim āir-eᵃph lichp-y-ūaq</p> <p>and then RDP-sit-PFCT:IND:1sg on rock-ACC while on 1pl-ACC rain-CL5-IMPF:IND:IMPR</p> <p>‘And then I sat on a rock, while it was raining over me.’</p> </div>
 </div>
 <div class="section level3">
 <h3 id="r-code-chunk">R code chunk<a class="anchor" aria-label="anchor" href="#r-code-chunk"></a>
 </h3>
 <p>Alternatively, one can use an R code chunk and set <code>results='asis'</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/include_gloss.html">include_gloss</a></span><span class="op">(</span><span class="va">eleryon</span>, <span class="st">"tx_000001"</span>, <span class="st">"st_000002"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/include_gloss.html">include_gloss</a></span><span class="op">(</span><span class="va">eleryon</span>, <span class="st">"tx_000001"</span>, <span class="st">"st_000002"</span><span class="op">)</span></span></code></pre></div>
 <div data-gloss>
 <p class="gloss__line--original">Ksǫnteziṇ gartosesī ōroi Vāisi su Meucha su vēsyēl selo ellāimōma enēim āireᵃph.</p>
 <p class="gloss__line--original" style="font-weight: 400;">[ksɵnteziŋ gartosesiː oːroi vaːisi su meuxa su veːsjeːl selo ellaːimoːma eneːim aːreɐɸ]</p>
@@ -143,6 +145,17 @@
 <p>‘With pleasure I tell you about the Sun, the Moon and the stars that are above us.’</p>
 </div>
 </div>
+</div>
+<div class="section level2">
+<h2 id="original-writing-system-and-transcriptiontransliteration">Original writing system and transcription/transliteration<a class="anchor" aria-label="anchor" href="#original-writing-system-and-transcriptiontransliteration"></a>
+</h2>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bromi_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/bromi_lexadb"</span>, package <span class="op">=</span> <span class="st">"lexa"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bromi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_lexadb.html">load_lexadb</a></span><span class="op">(</span><span class="va">bromi_path</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Loading lexa database...</span></span></code></pre></div>
+<p></p>
+<div data-gloss> <p class="gloss__line--original">ふぁろっしゃ「ぎそんの「うっつろい</p> <p class="gloss__line--original">Farossha gisonno uttroi.</p> <p class="gloss__line--original" style="font-weight: 400;">[faɽɔʃʃa gisɔnno uttɽoi]</p> <p>fa-rossha gi-sonno uttr-oi</p> <p>ACC-lunch NOM-1PL eat-1PL</p> <p>‘We are having lunch.’</p> </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -157,7 +170,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
