@@ -4,6 +4,18 @@
 
 - 🎉 New logo!
 
+- New lexa database `bromi_lexadb`.
+
+- Support for non-Latin based writing systems.
+
+## Changed
+
+- Specification for texts now include `transcription` and `transliteration`.
+
+- Print method for `lexatx` and `lexasc` now include transcription/transliteration.
+
+- Typeset gloss includes transcription/transliteration when `format = "html"`.
+
 
 
 

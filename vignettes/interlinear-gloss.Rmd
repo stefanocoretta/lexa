@@ -65,3 +65,12 @@ Alternatively, one can use an R code chunk and set `results='asis'`.
 include_gloss(eleryon, "tx_000001", "st_000002")
 ```
 
+# Original writing system and transcription/transliteration
+
+```{r}
+bromi_path <- system.file("extdata/bromi_lexadb", package = "lexa")
+
+bromi <- load_lexadb(bromi_path)
+```
+
+`r include_gloss(bromi, "tx_000001", "st_000001")`

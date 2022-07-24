@@ -23,6 +23,8 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
   text <- yaml::read_yaml(file.path(db_path, "texts", paste0(text, ".yaml")))
 
   sentence_i <- text$sentences[[sentence]]$sentence
+  transcr <- text$sentences[[sentence]]$transcription
+  translit <- text$sentences[[sentence]]$transliteration
   phon <- text$sentences[[sentence]]$phon
   morpho <- text$sentences[[sentence]]$morpho
   gloss <- text$sentences[[sentence]]$gloss
@@ -62,7 +64,9 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
     gloss_div <- htmltools::div(
       "data-gloss" = NA,
       htmltools::p(class = "gloss__line--original", glue::glue("{sentence_i}")),
-      htmltools::p(class = "gloss__line--original", style = "font-weight: 400;", glue::glue("[{phon}]")),
+      if (!is.null(transcr)) htmltools::p(class = "gloss__line--original", glue::glue("{transcr}")),
+      if (!is.null(translit)) htmltools::p(class = "gloss__line--original", glue::glue("{translit}")),
+      if (!is.null(phon)) htmltools::p(class = "gloss__line--original", style = "font-weight: 400;", glue::glue("[{phon}]")),
       htmltools::p(glue::glue("{morpho}")),
       htmltools::p(glue::glue("{gloss}")),
       htmltools::p(glue::glue("\u2018{translation}\u2019")),

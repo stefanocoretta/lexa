@@ -110,6 +110,7 @@ create_text <- function() {
       st_000001:
         id: st_000001
         sentence:
+        transcription:
         morpho:
         gloss:
         phon:

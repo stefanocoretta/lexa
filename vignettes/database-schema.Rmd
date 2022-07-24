@@ -87,6 +87,8 @@ source: <string>
 sentences:
   st_00000n:
     sentence: <string>
+    transcription: <string>
+    transliteration: <string>
     phon: <string>
     morpho_phon: <string>
     morpho: <string>

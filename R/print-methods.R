@@ -232,6 +232,12 @@ print.lexatx <- function(x, ...) {
   cli::cli_h1(cli::col_blue(x$title))
   for (sentence in seq_len(length(x$sentences))) {
     cli::cli_h2(x$sentences[[sentence]]$id)
+    if (!is.null(x$sentences[[sentence]]$transcription)) {
+      cli::cli_text(cli::col_green(x$sentences[[sentence]]$transcription))
+    }
+    if (!is.null(x$sentences[[sentence]]$transliteration)) {
+      cli::cli_text(cli::col_green(x$sentences[[sentence]]$transliteration))
+    }
     cli::cli_text(cli::col_green(x$sentences[[sentence]]$sentence))
     cli::cli_text(x$sentences[[sentence]]$translation)
   }
@@ -248,6 +254,12 @@ print.lexatx <- function(x, ...) {
 #' @export
 print.lexast <- function(x, ...) {
   cli::cli_h1(cli::col_blue(x$sentence))
+  if (!is.null(x$transcription)) {
+    cli::cli_text(cli::col_blue(x$transcription))
+  }
+  if (!is.null(x$transliteration)) {
+    cli::cli_text(cli::col_blue(x$transliteration))
+  }
   cli::cli_text("[", x$phon, "]")
   cli::cli_text("")
 
