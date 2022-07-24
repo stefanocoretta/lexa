@@ -33,30 +33,23 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
   if (format == "latex") {
     gloss <- texify_gloss(gloss)
 
-    if (!is.null(phon)) {
-      gloss_ex <- glue::glue(
-        "```{{=latex}}
-        \\ex \\begingl
-        \\glpreamble {sentence_i}//
-        \\glpreamble [{phon}]//
-        \\gla {morpho}//
-        \\glb {gloss}//
-        \\glft `{translation}'//
-        \\endgl \\xe
-        ```"
-      )
-    } else {
-      gloss_ex <- glue::glue(
-        "```{{=latex}}
-        \\ex \\begingl
-        \\glpreamble {sentence_i}//
-        \\gla {morpho}//
-        \\glb {gloss}//
-        \\glft `{translation}'//
-        \\endgl \\xe
-        ```"
-      )
-    }
+    gloss_ex <- glue::glue(
+      "```{{=latex}}
+      \\ex \\begingl
+      \\glpreamble {sentence_i}//
+      ",
+      if (!is.null(transcr)) {"\\glpreamble {transcr}//
+      "} else {""},
+      if (!is.null(translit)) {"\\glpreamble {translit}//
+      "} else {""},
+      if (!is.null(phon)) {"\\glpreamble [{phon}]//
+      "} else {""},
+      "\\gla {morpho}//
+      \\glb {gloss}//
+      \\glft `{translation}'//
+      \\endgl \\xe
+      ```"
+    )
 
     return(gloss_ex)
 

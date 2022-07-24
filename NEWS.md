@@ -14,7 +14,7 @@
 
 - Print method for `lexatx` and `lexasc` now include transcription/transliteration.
 
-- Typeset gloss includes transcription/transliteration when `format = "html"`.
+- Typeset gloss includes transcription/transliteration.
 
 
 
