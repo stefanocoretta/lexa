@@ -1,0 +1,19 @@
+id: tx_000001
+title: "Split ergativity in Bromi"
+sentences:
+  st_000001:
+    id: st_000001
+    sentence: "ふぁろっしゃ「ぎそんの「うっつろい"
+    transcription: "Farossha gisonno uttroi."
+    morpho: "fa-rossha gi-sonno uttr-oi"
+    gloss: "ACC-lunch NOM-1PL eat-1PL"
+    phon: "faɽɔʃʃa gisɔnno uttɽoi"
+    translation: "We are having lunch."
+  st_000002:
+    id: st_000002
+    sentence: "がっと 「しさんの「うっつろい"
+    transcription: "Farossha gisonno uttroi."
+    morpho: "gatto si-sonno uttr-oi"
+    gloss: "dinner ERG-1PL eat-1PL"
+    phon: "gatto sisɔnno uttɽoi"
+    translation: "We are having lunch."
