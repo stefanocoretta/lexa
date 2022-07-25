@@ -27,7 +27,18 @@ A Lexa database (`lexadb`) is a directory containing the following files/dirs:
 - `lexicon/`: directory containing Lexa lexicon files.
 - `texts/`: directory containing Lexa text collections (`lexatxt`).
 
-## Lexicon file
+You can find examples of Lexa databases as part of the lexa package (<https://github.com/stefanocoretta/lexa/tree/main/inst/extdata>).
+
+To quickstart a new database, just run:
+
+``` r
+library(lexa)
+create_lexadb(name = "my_")
+```
+
+A database called `my_lexadb` will be created in your working directory.
+
+## Lexicon file schema
 
 ```yaml
 id: lx_00000n
@@ -71,10 +82,10 @@ date_created: <date>
 date_modified: <date>
 ```
 
-## Text collection
+## Text schema
 
 Texts are located in the `texts/` folder.
-Each text is saved in a separate `.yaml` file, with no restrictions on naming (except you must avoid spaces and fancy characters.)
+Each text is saved in a separate `.yaml` file.
 
 ```yaml
 id: tx_00000n

@@ -29,7 +29,7 @@ You can install the latest version of lexa like so:
 
 ``` r
 remotes::install_github(
-  "stefanocoretta/lexa@v0.0.1",
+  "stefanocoretta/lexa@v0.0.2",
   build_vignettes = TRUE
 )
 ```
@@ -43,20 +43,20 @@ library(lexa)
 
 create_lexadb(
   parent = "./",
-  name = "new-db"
+  name = "new_"
 )
 ```
 
-This will create a directory `new-db_lexadb/` in the parent directory
+This will create a directory `new_lexadb/` in the parent directory
 (`./`). See `vignette("database-schema", package = "lexa")` for details.
 
-The `lexicon/` folder is populated with a file with an entry scheleton
+The `lexicon/` folder is populated with a file with an entry skeleton
 you can manually edit.
 
 To create new entries you first need to load the database:
 
 ``` r
-new_db <- load_lexadb("./new-db_lexadb")
+new_db <- load_lexadb("./new_lexadb")
 
 new_db
 ```
@@ -67,7 +67,7 @@ Now you can add a new entry with:
 add_entry(new_db)
 ```
 
-This will create a new file with the entry scheleton which you can edit.
+This will create a new file with the entry skeleton, which you can edit.
 The new `id` is automatically created for you based on the existing
 files.
 
