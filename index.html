@@ -35,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="index.html">lexa</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
 <p>You can install the latest version of lexa like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span></span>
-<span>  <span class="st">"stefanocoretta/lexa@v0.0.1"</span>,</span>
+<span>  <span class="st">"stefanocoretta/lexa@v0.0.2"</span>,</span>
 <span>  build_vignettes <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -111,19 +111,19 @@
 <span></span>
 <span><span class="fu"><a href="reference/create_lexadb.html">create_lexadb</a></span><span class="op">(</span></span>
 <span>  parent <span class="op">=</span> <span class="st">"./"</span>,</span>
-<span>  name <span class="op">=</span> <span class="st">"new-db"</span></span>
+<span>  name <span class="op">=</span> <span class="st">"new_"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>This will create a directory <code>new-db_lexadb/</code> in the parent directory (<code>./</code>). See <code><a href="articles/database-schema.html">vignette("database-schema", package = "lexa")</a></code> for details.</p>
-<p>The <code>lexicon/</code> folder is populated with a file with an entry scheleton you can manually edit.</p>
+<p>This will create a directory <code>new_lexadb/</code> in the parent directory (<code>./</code>). See <code><a href="articles/database-schema.html">vignette("database-schema", package = "lexa")</a></code> for details.</p>
+<p>The <code>lexicon/</code> folder is populated with a file with an entry skeleton you can manually edit.</p>
 <p>To create new entries you first need to load the database:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">new_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_lexadb.html">load_lexadb</a></span><span class="op">(</span><span class="st">"./new-db_lexadb"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">new_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_lexadb.html">load_lexadb</a></span><span class="op">(</span><span class="st">"./new_lexadb"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">new_db</span></span></code></pre></div>
 <p>Now you can add a new entry with:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/add_entry.html">add_entry</a></span><span class="op">(</span><span class="va">new_db</span><span class="op">)</span></span></code></pre></div>
-<p>This will create a new file with the entry scheleton which you can edit. The new <code>id</code> is automatically created for you based on the existing files.</p>
+<p>This will create a new file with the entry skeleton, which you can edit. The new <code>id</code> is automatically created for you based on the existing files.</p>
 <p>To search your lexicon:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">db_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/eleryon_lexadb"</span>, package <span class="op">=</span> <span class="st">"lexa"</span><span class="op">)</span></span>

@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">lexa</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,74 +103,80 @@
 <li>
 <code>texts/</code>: directory containing Lexa text collections (<code>lexatxt</code>).</li>
 </ul>
+<p>You can find examples of Lexa databases as part of the lexa package (<a href="https://github.com/stefanocoretta/lexa/tree/main/inst/extdata" class="external-link uri">https://github.com/stefanocoretta/lexa/tree/main/inst/extdata</a>).</p>
+<p>To quickstart a new database, just run:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stefanocoretta/lexa" class="external-link">lexa</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/create_lexadb.html">create_lexadb</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"my_"</span><span class="op">)</span></span></code></pre></div>
+<p>A database called <code>my_lexadb</code> will be created in your working directory.</p>
 </div>
 <div class="section level2">
-<h2 id="lexicon-file">Lexicon file<a class="anchor" aria-label="anchor" href="#lexicon-file"></a>
+<h2 id="lexicon-file-schema">Lexicon file schema<a class="anchor" aria-label="anchor" href="#lexicon-file-schema"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">id</span><span class="kw">:</span><span class="at"> lx_00000n</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">lexeme</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">phon</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">morph_category</span><span class="kw">:</span><span class="at"> &lt;lexical, grammatical&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">morph_type</span><span class="kw">:</span><span class="at"> &lt;root, stem, affix, clitic, particle, compound, phrase&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="fu">part_of_speech</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">inflectional_features</span><span class="kw">:</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="at">  </span><span class="fu">&lt;feature_n&gt;</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="fu">etymology</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="fu">loan_word</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="fu">notes</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="fu">allomorphs</span><span class="kw">:</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="at">  </span><span class="fu">al_0n</span><span class="kw">:</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="at">    </span><span class="fu">id</span><span class="kw">:</span><span class="at"> al_0n</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="at">    </span><span class="fu">morph</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="at">    </span><span class="fu">phon</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="at">    </span><span class="fu">conditioning</span><span class="kw">:</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> &lt;phonological, morphosyntactic, free&gt;</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="fu">senses</span><span class="kw">:</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="at">  </span><span class="fu">se_0n</span><span class="kw">:</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="at">    </span><span class="fu">id</span><span class="kw">:</span><span class="at"> se_0n</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="at">    </span><span class="fu">gloss</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="at">    </span><span class="fu">definition</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="at">    </span><span class="fu">literal</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="at">    </span><span class="fu">scientific</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="at">    </span><span class="fu">usage</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="at">    </span><span class="fu">inflectional_features</span><span class="kw">:</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="at">      </span><span class="fu">&lt;feature_n&gt;</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="at">    </span><span class="fu">examples</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"tx_00000n:st_00000n"</span><span class="kw">]</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="at">    </span><span class="fu">etymology</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a><span class="fu">crossref</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"lx_00000n"</span><span class="kw">]</span></span>
-<span id="cb2-33"><a href="#cb2-33"></a><span class="fu">variants</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="fu">semantics</span><span class="kw">:</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a><span class="at">  </span><span class="fu">semantic_domain</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"sd_00000n"</span><span class="kw">]</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a><span class="at">  </span><span class="fu">synonyms</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"lx_00000n"</span><span class="kw">]</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="at">  </span><span class="fu">antonyms</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"lx_00000n"</span><span class="kw">]</span></span>
-<span id="cb2-38"><a href="#cb2-38"></a><span class="fu">date_created</span><span class="kw">:</span><span class="at"> &lt;date&gt;</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a><span class="fu">date_modified</span><span class="kw">:</span><span class="at"> &lt;date&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">id</span><span class="kw">:</span><span class="at"> lx_00000n</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">lexeme</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">phon</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">morph_category</span><span class="kw">:</span><span class="at"> &lt;lexical, grammatical&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">morph_type</span><span class="kw">:</span><span class="at"> &lt;root, stem, affix, clitic, particle, compound, phrase&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">part_of_speech</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">inflectional_features</span><span class="kw">:</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="at">  </span><span class="fu">&lt;feature_n&gt;</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="fu">etymology</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="fu">loan_word</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="fu">notes</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="fu">allomorphs</span><span class="kw">:</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="at">  </span><span class="fu">al_0n</span><span class="kw">:</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="at">    </span><span class="fu">id</span><span class="kw">:</span><span class="at"> al_0n</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="at">    </span><span class="fu">morph</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="at">    </span><span class="fu">phon</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="at">    </span><span class="fu">conditioning</span><span class="kw">:</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> &lt;phonological, morphosyntactic, free&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="fu">senses</span><span class="kw">:</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="at">  </span><span class="fu">se_0n</span><span class="kw">:</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="at">    </span><span class="fu">id</span><span class="kw">:</span><span class="at"> se_0n</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="at">    </span><span class="fu">gloss</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="at">    </span><span class="fu">definition</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="at">    </span><span class="fu">literal</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="at">    </span><span class="fu">scientific</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="at">    </span><span class="fu">usage</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="at">    </span><span class="fu">inflectional_features</span><span class="kw">:</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="at">      </span><span class="fu">&lt;feature_n&gt;</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="at">    </span><span class="fu">examples</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"tx_00000n:st_00000n"</span><span class="kw">]</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="at">    </span><span class="fu">etymology</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="fu">crossref</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"lx_00000n"</span><span class="kw">]</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="fu">variants</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="fu">semantics</span><span class="kw">:</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="at">  </span><span class="fu">semantic_domain</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"sd_00000n"</span><span class="kw">]</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a><span class="at">  </span><span class="fu">synonyms</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"lx_00000n"</span><span class="kw">]</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="at">  </span><span class="fu">antonyms</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"lx_00000n"</span><span class="kw">]</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="fu">date_created</span><span class="kw">:</span><span class="at"> &lt;date&gt;</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="fu">date_modified</span><span class="kw">:</span><span class="at"> &lt;date&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="text-collection">Text collection<a class="anchor" aria-label="anchor" href="#text-collection"></a>
+<h2 id="text-schema">Text schema<a class="anchor" aria-label="anchor" href="#text-schema"></a>
 </h2>
-<p>Texts are located in the <code>texts/</code> folder. Each text is saved in a separate <code>.yaml</code> file, with no restrictions on naming (except you must avoid spaces and fancy characters.)</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">id</span><span class="kw">:</span><span class="at"> tx_00000n</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">topic</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">genre</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">participants</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">translators</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">source</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="fu">sentences</span><span class="kw">:</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="at">  </span><span class="fu">st_00000n</span><span class="kw">:</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="at">    </span><span class="fu">sentence</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="at">    </span><span class="fu">transcription</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="at">    </span><span class="fu">transliteration</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="at">    </span><span class="fu">phon</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="at">    </span><span class="fu">morpho_phon</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="at">    </span><span class="fu">morpho</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="at">    </span><span class="fu">gloss</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="at">    </span><span class="fu">translation</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="at">    </span><span class="fu">literal</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="at">    </span><span class="fu">notes</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="fu">notes</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span></code></pre></div>
+<p>Texts are located in the <code>texts/</code> folder. Each text is saved in a separate <code>.yaml</code> file.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">id</span><span class="kw">:</span><span class="at"> tx_00000n</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">topic</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">genre</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="fu">participants</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="fu">translators</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="fu">source</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">sentences</span><span class="kw">:</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="at">  </span><span class="fu">st_00000n</span><span class="kw">:</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="at">    </span><span class="fu">sentence</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="at">    </span><span class="fu">transcription</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="at">    </span><span class="fu">transliteration</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="at">    </span><span class="fu">phon</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="at">    </span><span class="fu">morpho_phon</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="at">    </span><span class="fu">morpho</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="at">    </span><span class="fu">gloss</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="at">    </span><span class="fu">translation</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="at">    </span><span class="fu">literal</span><span class="kw">:</span><span class="at"> &lt;string&gt;</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="at">    </span><span class="fu">notes</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="fu">notes</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">&lt;string&gt;</span><span class="kw">]</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
