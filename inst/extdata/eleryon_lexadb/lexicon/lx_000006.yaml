@@ -1,6 +1,6 @@
 id: lx_000006
-entry: ųrt
-phon: yrt
+entry: urųrtose
+phon: uryrtose
 morph_category: lexical
 morph_type: root
 part_of_speech: verb
@@ -11,6 +11,10 @@ allomorphs:
     id: al_01
     morph: ųrt
     phon: yrt
+  al_02:
+    id: al_02
+    morph: urųrt
+    phon: uryrt
 senses:
   se_01:
     id: se_01

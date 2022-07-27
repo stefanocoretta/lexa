@@ -12,6 +12,10 @@ allomorphs:
     id: al_01
     morph: vēsel
     phon: veɪsel
+  al_02:
+    id: al_02
+    morph: evēsel
+    phon: eveɪsel
 senses:
   se_01:
     id: se_01
