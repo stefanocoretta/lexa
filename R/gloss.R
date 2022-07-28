@@ -8,6 +8,13 @@
 #' @param format Format to print out with (either \code{html} or \code{latex}).
 #'
 #' @export
+#' @examples
+#' db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
+#' albanian <- load_lexadb(db_path)
+#'
+#' typeset_gloss(albanian, 1, 1)
+#' typeset_gloss(albanian, 1, 1, format = "html")
+#'
 typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
   if (!stringr::str_detect(text, "tx")) {
     text <- stringr::str_pad(text, 6, "left", "0")
@@ -71,6 +78,8 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
 }
 
 #' Include gloss in Rmd
+#'
+#' See `vignette("interlinear-gloss")` for usage.
 #'
 #' @param ... Arguments passed to `print_gloss()`.
 #'

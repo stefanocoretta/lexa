@@ -18,3 +18,7 @@ Nothing. Used for its side effects.
 \description{
 Create a new Lexa database
 }
+\examples{
+create_lexadb(parent = "./", name = "my_new")
+
+}

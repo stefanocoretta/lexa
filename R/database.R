@@ -6,6 +6,10 @@
 #'
 #' @return Nothing. Used for its side effects.
 #' @export
+#'
+#' @examples
+#' create_lexadb(parent = "./", name = "my_new")
+#'
 create_lexadb <- function(parent = ".", name) {
   name_db <- paste0(name, "_lexadb")
   path <- file.path(parent, name_db)
@@ -31,6 +35,11 @@ create_lexadb <- function(parent = ".", name) {
 #'
 #' @return A `lexadb` object.
 #' @export
+#'
+#' @examples
+#' db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
+#' albanian <- load_lexadb(db_path)
+#' albanian
 #'
 load_lexadb <- function(path) {
   if (

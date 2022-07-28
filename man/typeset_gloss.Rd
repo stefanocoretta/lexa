@@ -18,3 +18,11 @@ typeset_gloss(lexadb, text, sentence, format = "latex")
 \description{
 The function returns the selected sentence as properly formatted html/latex code.
 }
+\examples{
+db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
+albanian <- load_lexadb(db_path)
+
+typeset_gloss(albanian, 1, 1)
+typeset_gloss(albanian, 1, 1, format = "html")
+
+}

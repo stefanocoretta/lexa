@@ -18,3 +18,11 @@ A \code{lexalx} object.
 \description{
 It shows the entry with the given id.
 }
+\examples{
+db_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
+eleryon <- load_lexadb(db_path)
+
+show_entry(eleryon, 6)
+# Same as:
+show_entry(eleryon, "lx_000006")
+}

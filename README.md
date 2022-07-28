@@ -43,7 +43,7 @@ library(lexa)
 
 create_lexadb(
   parent = "./",
-  name = "new_"
+  name = "new"
 )
 ```
 

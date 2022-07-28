@@ -10,5 +10,5 @@ include_gloss(...)
 \item{...}{Arguments passed to \code{print_gloss()}.}
 }
 \description{
-Include gloss in Rmd
+See \code{vignette("interlinear-gloss")} for usage.
 }

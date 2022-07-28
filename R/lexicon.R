@@ -66,6 +66,19 @@ add_entry <- function(lexadb,
 #'
 #' @return A list of `lexalx` objects.
 #' @export
+#'
+#' @examples
+#' db_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
+#' eleryon <- load_lexadb(db_path)
+#'
+#' # Search for "chǭs"
+#' search_lexicon(eleryon, "chǭs")
+#'
+#' # Search for all verbs
+#' search_lexicon(eleryon, ".*", pos = "verb")
+#'
+#' # Search for entry with meaning "love"
+#' search_lexicon(eleryon, definition = "love")
 search_lexicon <- function(lexadb,
                             entry = NULL,
                             whole = TRUE,
@@ -139,6 +152,14 @@ check_definitions <- function(entry, pattern) {
 #'
 #' @return A `lexalx` object.
 #' @export
+#'
+#' @examples
+#' db_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
+#' eleryon <- load_lexadb(db_path)
+#'
+#' show_entry(eleryon, 6)
+#' # Same as:
+#' show_entry(eleryon, "lx_000006")
 show_entry <- function(lexadb, entry_id) {
   db_path <- attr(lexadb, "meta")$path
 

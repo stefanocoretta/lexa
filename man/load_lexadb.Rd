@@ -16,3 +16,9 @@ A \code{lexadb} object.
 It loadds a Lexa database from the specified path. The path is the directory
 containing the database.
 }
+\examples{
+db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
+albanian <- load_lexadb(db_path)
+albanian
+
+}

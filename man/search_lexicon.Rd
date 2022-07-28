@@ -30,3 +30,16 @@ A list of \code{lexalx} objects.
 \description{
 Search entries in the lexicon, by entry form or sense definitions.
 }
+\examples{
+db_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
+eleryon <- load_lexadb(db_path)
+
+# Search for "chǭs"
+search_lexicon(eleryon, "chǭs")
+
+# Search for all verbs
+search_lexicon(eleryon, ".*", pos = "verb")
+
+# Search for entry with meaning "love"
+search_lexicon(eleryon, definition = "love")
+}
