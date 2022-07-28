@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(lexa)
 ```
 
 # lexa: Manage documentary and descriptive linguistic data # lexa <a href="https://stefanocoretta.github.io/lexa/"><img src="man/figures/logo.png" align="right" height="120" /></a>
@@ -81,11 +82,19 @@ The new `id` is automatically created for you based on the existing files.
 
 To search your lexicon:
 
-``` r
+```{r}
 db_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
 eleryon <- load_lexadb(db_path)
 eleryon
 
 search_lexicon(eleryon, entry = "unullose")
 search_lexicon(eleryon, definition = "tomorrow")
+```
+
+You can also display texts, sentences and lexical entries!
+
+```{r}
+show_text(eleryon, 1)
+
+show_entry(eleryon, 6)
 ```

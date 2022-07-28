@@ -76,8 +76,109 @@ To search your lexicon:
 ``` r
 db_path <- system.file("extdata/eleryon_lexadb", package = "lexa")
 eleryon <- load_lexadb(db_path)
+#> ℹ Loading lexa database...
 eleryon
+#> 
+#> ── Database info ───────────────────────────────────────────────────────────────
+#> ◉ Name: eleryon
+#> ℹ Entries: 6 | Texts: 1
+#> 
+#> ── Lexicon breakdown ──
+#> 
+#> ◉ Categories → Lexical: 6
+#> ◉ Morpheme types → Roots: 6
+#> ◉ POS → Adverbs: 1 | Nouns: 1 | Verbs: 4
 
 search_lexicon(eleryon, entry = "unullose")
+#> ✔ Found 1 entry.
+#> 
+#> ── Entry lx_000002 ─────────────────────────────────────────────────────────────
+#> unullose [unullose] verb (IV)
+#> 
+#> ── Senses ──
+#> 
+#> 1. to love
+#> 
+#> ── Grammatical info ──
+#> 
+#> Category: lexical
+#> Type: root
+#> 
+#> ── Allomorphs ──
+#> 
+#> • nul [nul]
+#> • unul [unul]
 search_lexicon(eleryon, definition = "tomorrow")
+#> ✔ Found 1 entry.
+#> 
+#> ── Entry lx_000005 ─────────────────────────────────────────────────────────────
+#> chǭs [tʃɵːs] adverb
+#> 
+#> ── Senses ──
+#> 
+#> 1. tomorrow
+#> 
+#> ── Grammatical info ──
+#> 
+#> Category: lexical
+#> Type: root
+#> 
+#> ── Allomorphs ──
+#> 
+#> • chǭs [tʃɵːs]
+#> 
+#> ── Notes ──
+#> 
+#> • Note that in Eleryon this word means 'tomorrow' if used by noon, otherwise it
+#> means 'the day after tomorrow'.
+```
+
+You can also display texts, sentences and lexical entries!
+
+``` r
+show_text(eleryon, 1)
+#> 
+#> ── Example sentences ───────────────────────────────────────────────────────────
+#> 
+#> ── st_000001 ──
+#> 
+#> Ęs ętsu urųrtō enēim kę̄syoh bhųl enēim āireᵃph likhpyūaq.
+#> And then I sat on a rock, while it was raining over me.
+#> 
+#> ── st_000002 ──
+#> 
+#> Ksǫnteziṇ gartosesī ōroi Vāisi su Meukha su vēsyēl selo ellāimōma enēim
+#> āireᵃph.
+#> With pleasure I tell you about the Sun, the Moon and the stars that are above
+#> us.
+
+show_entry(eleryon, 6)
+#> 
+#> ── Entry lx_000006 ─────────────────────────────────────────────────────────────
+#> urųrtose [uryrtose] verb (I)
+#> 
+#> ── Senses ──
+#> 
+#> 1. to sit
+#> 
+#>           ── Examples
+#>           Ęs ętsu urųrtō enēim kę̄syoh bhųl enēim āireᵃph likhpyūaq.
+#>           [tx_000001:st_000001]
+#>           And then I sat on a rock, while it was raining over me.
+#> 
+#>           Ksǫnteziṇ gartosesī ōroi Vāisi su Meukha su vēsyēl selo ellāimōma
+#>           enēim āireᵃph. [tx_000001:st_000002]
+#>           With pleasure I tell you about the Sun, the Moon and the stars that
+#>           are above us.
+#> 
+#> 
+#> ── Grammatical info ──
+#> 
+#> Category: lexical
+#> Type: root
+#> 
+#> ── Allomorphs ──
+#> 
+#> • ųrt [yrt]
+#> • urųrt [uryrt]
 ```
