@@ -21,3 +21,10 @@ A \code{lexast} object.
 \description{
 It shows the text or sentence with the given id.
 }
+\examples{
+db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
+albanian <- load_lexadb(db_path)
+
+show_text(albanian, 1)
+show_text(albanian, 1, 3)
+}

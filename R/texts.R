@@ -11,6 +11,14 @@
 #'
 #' @return A list of `lexalx` objects.
 #' @export
+#'
+#' @examples
+#' db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
+#' albanian <- load_lexadb(db_path)
+#'
+#' search_texts(albanian, "rrezet")
+#' search_texts(albanian, gloss = "sun")
+#' search_texts(albanian, gloss = "traveller")
 search_texts <- function(lexadb, word = NULL, whole = TRUE, gloss = NULL) {
   db_path <- attr(lexadb, "meta")$path
   texts <- read_texts(db_path)
@@ -63,6 +71,13 @@ search_texts <- function(lexadb, word = NULL, whole = TRUE, gloss = NULL) {
 #'
 #' @return A `lexast` object.
 #' @export
+#'
+#' @examples
+#' db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
+#' albanian <- load_lexadb(db_path)
+#'
+#' show_text(albanian, 1)
+#' show_text(albanian, 1, 3)
 show_text <- function(lexadb, text_id, sent_id = NULL) {
   db_path <- attr(lexadb, "meta")$path
 

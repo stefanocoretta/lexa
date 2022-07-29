@@ -21,3 +21,11 @@ A list of \code{lexalx} objects.
 \description{
 Search words in the texts collection.
 }
+\examples{
+db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
+albanian <- load_lexadb(db_path)
+
+search_texts(albanian, "rrezet")
+search_texts(albanian, gloss = "sun")
+search_texts(albanian, gloss = "traveller")
+}
