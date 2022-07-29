@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# lexa: Manage documentary and descriptive linguistic data \# lexa <a href="https://stefanocoretta.github.io/lexa/"><img src="man/figures/logo.png" align="right" height="120" /></a>
+# lexa: Manage documentary and descriptive linguistic data <a href="https://stefanocoretta.github.io/lexa/"><img src="man/figures/logo.png" align="right" height="120" /></a>
 
 <!-- badges: start -->
 
@@ -182,3 +182,6 @@ show_entry(eleryon, 6)
 #> • ųrt [yrt]
 #> • urųrt [uryrt]
 ```
+
+To include interlinear glosses in HTML and LaTeX documents, check out
+the `vignette("interlinear-gloss")`.
