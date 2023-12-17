@@ -1,5 +1,6 @@
 *.DS_Store
 
+pkgdown/
 .Rproj.user
 .Rhistory
 .RData
