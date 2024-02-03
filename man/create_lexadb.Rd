@@ -19,6 +19,7 @@ Nothing. Used for its side effects.
 Create a new Lexa database
 }
 \examples{
+\dontrun{
 create_lexadb(parent = "./", name = "my_new")
-
+}
 }

@@ -8,8 +8,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' create_lexadb(parent = "./", name = "my_new")
-#'
+#' }
 create_lexadb <- function(parent = ".", name) {
   name_db <- paste0(name, "_lexadb")
   path <- file.path(parent, name_db)
