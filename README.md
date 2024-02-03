@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![](https://img.shields.io/badge/devel%20version-0.0.2.9000-orange.svg)](https://github.com/stefanocoretta/lexa)
+[![](https://img.shields.io/badge/devel%20version-0.0.3-orange.svg)](https://github.com/stefanocoretta/lexa)
 <!-- badges: end -->
 
 The goal of lexa is to provide a framework and tools to manage
@@ -18,10 +18,10 @@ I will try to keep these at a minimum).
 
 The current available features are:
 
--   Create a Lexa database.
--   Add lexical entries to the database.
--   Search lexical entries by word or definition.
--   Import lexical entries from a `.csv` file.
+- Create a Lexa database.
+- Add lexical entries to the database.
+- Search lexical entries by word or definition.
+- Import lexical entries from a `.csv` file.
 
 ## Installation
 
@@ -29,7 +29,7 @@ You can install the latest version of lexa like so:
 
 ``` r
 remotes::install_github(
-  "stefanocoretta/lexa@v0.0.2",
+  "stefanocoretta/lexa@v0.0.3",
   build_vignettes = TRUE
 )
 ```
