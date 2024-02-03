@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   database-schema: database-schema.html
   interlinear-gloss: interlinear-gloss.html
-last_built: 2023-12-17T12:34Z
+last_built: 2024-02-03T09:50Z
 urls:
   reference: https://stefanocoretta.github.io/lexa/reference
   article: https://stefanocoretta.github.io/lexa/articles
