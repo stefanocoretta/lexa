@@ -98,14 +98,33 @@ create_entry <-  function(lexadb = NULL,
 
 }
 
+# Check last text ID and increase hex by 1.
+
+create_tx_id <- function(lexadb) {
+  db_path <- attr(lexadb, "meta")$path
+  tx_files <- list.files(file.path(db_path, "texts"), pattern = "*.yaml")
+  if (length(tx_files) > 0) {
+    last_id <- as.integer(
+      as.hexmode(stringr::str_sub(tx_files[[length(tx_files)]], 4, 9))
+    )
+    new_id_n <- last_id + 1
+    new_id_hex <- format(as.hexmode(new_id_n), width = 6)
+    new_id <- paste0("tx_", new_id_hex)
+  } else {
+    new_id <- "tx_000001"
+  }
+  return(new_id)
+}
 
 # Prepare empty text skeleton.
 # Outputs a list with text id (`id`) and output string (`out`).
 
-create_text <- function() {
+create_text <- function(lexadb = NULL, title = NULL) {
+  tx_id <- ifelse(is.null(lexadb), "tx_000001", create_tx_id(lexadb))
+
   out <- glue::glue(
-    'id: tx_000001
-    title: ""
+    'id: {tx_id}
+    title: "{title}"
     sentences:
       st_000001:
         id: st_000001
@@ -120,6 +139,6 @@ create_text <- function() {
     .null = ""
   )
 
-  text <- list(id = "tx_000001", out = out)
+  text <- list(id = tx_id, out = out)
   return(text)
 }

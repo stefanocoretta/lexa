@@ -1,3 +1,31 @@
+# Add text ----
+
+#' Add text to database
+#'
+#' This function creates a new text in the database, i.e. a new empty text
+#' skeleton is written to disk, in the `texts/` directory, for the user
+#' to edit at will.
+#'
+#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}})
+#' @param title The text title as a string.
+#'
+#' @return Nothing. Used for its side effects
+#' @export
+add_text <- function(lexadb,
+                      title = NULL) {
+
+  tx_entry <- create_text(
+    lexadb,
+    title = title
+  )
+
+  write_text(lexadb, tx_entry)
+  cli::cli_alert_success("Text {cli::col_blue(tx_entry$id)} added to the texts!")
+}
+
+
+
+
 # Search words ----
 
 #' Search words in texts
@@ -115,4 +143,13 @@ show_text <- function(lexadb, text_id, sent_id = NULL) {
     return(st)
   }
 
+}
+
+# Actually writes text on disk in texts/.
+
+write_text <- function(lexadb, tx_entry) {
+  db_path <- attr(lexadb, "meta")$path
+  tx_path <- file.path("texts", paste0(tx_entry$id, ".yaml"))
+  tx_full_path <- file.path(db_path, tx_path)
+  readr::write_file(tx_entry$out, tx_full_path)
 }

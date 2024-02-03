@@ -1,5 +1,9 @@
 # lexa 0.0.2.9000
 
+## Added
+
+- `add_text()` which outputs an empty text skeleton.
+
 ## Changed
 
 - Fixed errors in the Eleryon database.
