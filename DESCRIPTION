@@ -27,5 +27,5 @@ Imports:
     stringr,
     yaml
 VignetteBuilder: knitr
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
