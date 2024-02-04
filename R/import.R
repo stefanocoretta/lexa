@@ -37,7 +37,7 @@ import_lexicon_csv <- function(lexadb, path) {
 
   lexicon_list <- purrr::transpose(lexicon_tab)
 
-  today <- as.character(Sys.time())
+  today <- as.character(Sys.Date())
 
   purrr::walk(
     lexicon_list,
@@ -75,6 +75,76 @@ import_lexicon_csv <- function(lexadb, path) {
 
       lx_entry$out <- out
       write_entry(lexadb, lx_entry)
+    }
+  )
+}
+
+
+lift_to_lexa <- function(lexadb, path) {
+  lift <- xml2::read_xml(path)
+  lift_list <- xml2::as_list(lift)
+
+  lift_header <- lift_list$lift$header
+  lift_entries <- lift_list$lift[-1]
+
+  today <- as.character(Sys.Date())
+
+  purrr::walk(
+    lift_entries,
+    function(entry) {
+      lx_entry <- list()
+      lx_entry$id <- create_lx_id(lexadb)
+
+      lx_senses <- entry[-1]
+      lx_senses_n <- length(lx_senses)
+
+      if (lx_senses_n > 1) {
+        lx_gram_info <- lapply(
+          lx_senses,
+          function(sense) {
+            attr(sense[["grammatical-info"]], "value")
+          }
+        )
+
+        lx_gram_uniq <- unique(unlist(lx_gram_info))
+
+        if (length(lx_gram_uniq) > 1) {
+
+        }
+      }
+
+      # entry schema
+      out <- list(
+        id = lx_entry$id,
+        entry = entry[["lexical-unit"]][["form"]][["text"]][[1]],
+        morph_category = morph_category,
+        morph_type = morph_type,
+        part_of_speech = part_of_speech,
+        inflectional_features = list(class = NULL),
+        etymology = etymology,
+        notes = notes,
+        homophone = homophone,
+        allomorphs = list(
+          al_01 = list(
+            id = "al_01",
+            morph = entry,
+            phon = phon
+          )
+        ),
+        senses = list(
+          se_01 = list(
+            id = "se_01",
+            gloss = gloss,
+            definition = definition
+          )
+        ),
+        date_created = today,
+        date_modified = today
+      )
+
+      lx_entry$out <- out
+      write_entry(lexadb, lx_entry)
+
     }
   )
 }
