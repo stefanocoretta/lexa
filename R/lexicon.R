@@ -198,6 +198,37 @@ write_entry <- function(lexadb, lx_entry) {
   readr::write_file(lx_entry$out, lx_full_path)
 }
 
+# Edit entries ----
+
+#' Edit a lexical entry
+#'
+#' It opens the file of the specified lexical entry for editing.
+#'
+#' @param lexadb   A `lexadb` object (created with \code{\link{load_lexadb}}).
+#' @param entry_id A string with the entry id (the `lx_` prefix and leading
+#'        zeros can be omitted.)
+#'
+#' @return Nothing. Used for its side effects
+#' @export
+edit_entry <- function(lexadb, entry_id) {
+  db_path <- attr(lexadb, "meta")$path
+
+  if (!stringr::str_detect(entry_id, "lx")) {
+    entry_id <- stringr::str_pad(entry_id, 6, "left", "0")
+    entry_id <- paste0("lx_", entry_id)
+  }
+
+  lx_path <- file.path(
+    normalizePath(db_path), "lexicon",
+    paste0(entry_id, ".yaml")
+  )
+
+  if (file.exists(lx_path)) {
+    usethis::edit_file(lx_path)
+  } else {
+    cli::cli_abort("Sorry, there is no entry with the given id!")
+  }
+}
 
 # Merge and split lexicon ----
 

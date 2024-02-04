@@ -4,6 +4,7 @@
 
 - `write_merged_lexicon()` to write a single yaml file with the lexicon entries.
 
+- `edit_entry()` to open the entry YAML file.
 
 
 # lexa 0.0.3
