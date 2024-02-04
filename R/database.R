@@ -50,9 +50,9 @@ load_lexadb <- function(path) {
     cli::cli_abort("The provided path is not a Lexa database.")
   }
 
-  cli::cli_alert_info("Loading lexa database...")
-
   config <- read_config(path)
+
+  cli::cli_alert_info("Loading: {.strong {config$name}}")
 
   lexadb <- list(
     config = config
