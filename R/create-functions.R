@@ -12,7 +12,7 @@ create_lexicon <- function(path) {
   dir.create(file.path(path, "lexicon"), FALSE, TRUE)
 
   lx_entry <- create_entry(NULL)
-  readr::write_file(lx_entry$out, file.path(path, "lexicon", "lx_000001.yaml"))
+  yaml::write_yaml(lx_entry$out, file.path(path, "lexicon", "lx_000001.yaml"))
 }
 
 create_grammar <- function(path) {
@@ -23,7 +23,7 @@ create_grammar <- function(path) {
 create_texts <- function(path) {
   dir.create(file.path(path, "texts"), FALSE, TRUE)
   text_example <- create_text()
-  readr::write_file(text_example$out, file.path(path, "texts", "tx_000001.yaml"))
+  yaml::write_yaml(text_example$out, file.path(path, "texts", "tx_000001.yaml"))
 }
 
 # Write entry helpers ----
@@ -60,37 +60,39 @@ create_entry <-  function(lexadb = NULL,
                           morph_type = NULL,
                           definition = gloss,
                           etymology = NULL,
-                          notes = NULL) {
+                          notes = NULL,
+                          homophone = NULL) {
 
   lx_id <- ifelse(is.null(lexadb), "lx_000001", create_lx_id(lexadb))
-  today <- as.character(Sys.time())
+  today <- as.character(Sys.Date())
 
-  out <- glue::glue(
-    'id: {lx_id}
-    entry: {entry}
-    phon: {phon}
-    morph_category: {morph_category}
-    morph_type: {morph_type}
-    part_of_speech: {part_of_speech}
-    inflectional_features:
-      class:
-    etymology: {etymology}
-    notes: {notes}
-    allomorphs:
-      al_01:
-        id: al_01
-        morph: {entry}
-        phon: {phon}
-    senses:
-      se_01:
-        id: se_01
-        gloss: {gloss}
-        definition: "{definition}"
-    date_created: {today}
-    date_modified: {today}
-
-    ',
-    .null = ""
+  # entry schema
+  out <- list(
+    id = lx_id,
+    entry = entry,
+    morph_category = morph_category,
+    morph_type = morph_type,
+    part_of_speech = part_of_speech,
+    inflectional_features = list(class = NULL),
+    etymology = etymology,
+    notes = notes,
+    homophone = homophone,
+    allomorphs = list(
+      al_01 = list(
+        id = "al_01",
+        morph = entry,
+        phon = phon
+      )
+    ),
+    senses = list(
+      se_01 = list(
+        id = "se_01",
+        gloss = gloss,
+        definition = definition
+      )
+    ),
+    date_created = today,
+    date_modified = today
   )
 
   entry <- list(id = lx_id, out = out)
@@ -122,21 +124,20 @@ create_tx_id <- function(lexadb) {
 create_text <- function(lexadb = NULL, title = NULL) {
   tx_id <- ifelse(is.null(lexadb), "tx_000001", create_tx_id(lexadb))
 
-  out <- glue::glue(
-    'id: {tx_id}
-    title: "{title}"
-    sentences:
-      st_000001:
-        id: st_000001
-        sentence:
-        transcription:
-        morpho:
-        gloss:
-        phon:
-        translation:
-
-    ',
-    .null = ""
+  out <- list(
+    id = tx_id,
+    title = title,
+    sentences = list(
+      st_000001 = list(
+        id = "st_000001",
+        sentence = NULL,
+        transcription = NULL,
+        morpho = NULL,
+        gloss = NULL,
+        phon = NULL,
+        translation = NULL
+      )
+    )
   )
 
   text <- list(id = tx_id, out = out)
