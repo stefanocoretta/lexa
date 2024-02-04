@@ -18,6 +18,7 @@
 #' @param etymology The etymology of the entry as a string.
 #' @param notes Further notes as a string.
 #' @param homophone The homophone numeric index.
+#' @param edit Open file for editing after creation (default is `TRUE`)
 #'
 #' @return Nothing. Used for its side effects
 #' @export
@@ -31,7 +32,8 @@ add_entry <- function(lexadb,
                       definition = gloss,
                       etymology = NULL,
                       notes = NULL,
-                      homophone = NULL) {
+                      homophone = NULL,
+                      edit = TRUE) {
 
   db_path <- attr(lexadb, "meta")$path
   entries <- lapply(
@@ -76,6 +78,10 @@ add_entry <- function(lexadb,
 
   write_entry(lexadb, lx_entry)
   cli::cli_alert_success("Entry {cli::col_blue(lx_entry$id)} added to the lexicon!")
+
+  if (edit) {
+    edit_entry(lexadb, lx_entry$id)
+  }
 }
 
 
