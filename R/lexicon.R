@@ -39,23 +39,25 @@ add_entry <- function(lexadb,
     function(entry) entry$entry
   )
 
-  if (entry %in% entries) {
-    homophones_n <- sum(entries == entry)
-    cli::cli_alert_warning(
-      cli::pluralize("{homophones_n} homophone{?s} found!")
-    )
-    cont <- usethis::ui_yeah(
-      "Continue?",
-      yes = "Yes",
-      no = "No",
-      shuffle = FALSE
-    )
+  if (!is.null(entry)) {
+    if (entry %in% entries) {
+      homophones_n <- sum(entries == entry)
+      cli::cli_alert_warning(
+        cli::pluralize("{homophones_n} homophone{?s} found!")
+      )
+      cont <- usethis::ui_yeah(
+        "Continue?",
+        yes = "Yes",
+        no = "No",
+        shuffle = FALSE
+      )
 
-    if (!cont) {
-      return(cli::cli_alert_warning("Entry not created!"))
-    } else (
-      homophone <- homophones_n + 1L
-    )
+      if (!cont) {
+        return(cli::cli_alert_warning("Entry not created!"))
+      } else (
+        homophone <- homophones_n + 1L
+      )
+    }
   }
 
   lx_entry <- create_entry(
