@@ -17,6 +17,7 @@
 #' @param definition The definition of the entry as a string.
 #' @param etymology The etymology of the entry as a string.
 #' @param notes Further notes as a string.
+#' @param homophone The homophone numeric index.
 #'
 #' @return Nothing. Used for its side effects
 #' @export
@@ -29,7 +30,33 @@ add_entry <- function(lexadb,
                       morph_type = NULL,
                       definition = gloss,
                       etymology = NULL,
-                      notes = NULL) {
+                      notes = NULL,
+                      homophone = NULL) {
+
+  db_path <- attr(lexadb, "meta")$path
+  entries <- lapply(
+    read_lexicon(db_path),
+    function(entry) entry$entry
+  )
+
+  if (entry %in% entries) {
+    homophones_n <- sum(entries == entry)
+    cli::cli_alert_warning(
+      cli::pluralize("{homophones_n} homophone{?s} found!")
+    )
+    cont <- usethis::ui_yeah(
+      "Continue?",
+      yes = "Yes",
+      no = "No",
+      shuffle = FALSE
+    )
+
+    if (!cont) {
+      return(cli::cli_alert_warning("Entry not created!"))
+    } else (
+      homophone <- homophones_n + 1L
+    )
+  }
 
   lx_entry <- create_entry(
     lexadb,
@@ -41,7 +68,8 @@ add_entry <- function(lexadb,
     morph_type = morph_type,
     definition = definition,
     etymology = etymology,
-    notes = notes
+    notes = notes,
+    homophone = homophone
   )
 
   write_entry(lexadb, lx_entry)
@@ -195,7 +223,7 @@ write_entry <- function(lexadb, lx_entry) {
   db_path <- attr(lexadb, "meta")$path
   lx_path <- file.path("lexicon", paste0(lx_entry$id, ".yaml"))
   lx_full_path <- file.path(db_path, lx_path)
-  readr::write_file(lx_entry$out, lx_full_path)
+  yaml::write_yaml(lx_entry$out, lx_full_path)
 }
 
 # Edit entries ----

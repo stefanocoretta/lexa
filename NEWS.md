@@ -6,6 +6,12 @@
 
 - `edit_entry()` to open the entry YAML file.
 
+## Changed
+
+- `add_entry()` now checks if homophones exist.
+
+- The specification for a lexical entry has now a `homophone` field (numeric).
+
 
 # lexa 0.0.3
 

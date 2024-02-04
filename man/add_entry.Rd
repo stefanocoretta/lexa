@@ -14,7 +14,8 @@ add_entry(
   morph_type = NULL,
   definition = gloss,
   etymology = NULL,
-  notes = NULL
+  notes = NULL,
+  homophone = NULL
 )
 }
 \arguments{
@@ -38,6 +39,8 @@ add_entry(
 \item{etymology}{The etymology of the entry as a string.}
 
 \item{notes}{Further notes as a string.}
+
+\item{homophone}{The homophone numeric index.}
 }
 \value{
 Nothing. Used for its side effects
