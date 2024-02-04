@@ -101,15 +101,9 @@ print.lexalx <- function(x, ...) {
   n_senses <- length(x$senses)
   entry <- x$entry
   if (!is.null(x$phon)) {
-    entry_line <- "{crayon::blue(entry)}
-    [{x$phon}] {.emph {crayon::green(x$part_of_speech)}}"
+    entry_line <- "{crayon::blue(entry)} [{x$phon}]"
   } else {
-    entry_line <- "{crayon::blue(entry)}
-    {.emph {crayon::green(x$part_of_speech)}}"
-  }
-
-  if (!is.null(x$inflectional_features)) {
-    entry_line <- paste(entry_line, "({x$inflectional_features})")
+    entry_line <- "{crayon::blue(entry)}"
   }
 
   cli::cli_h1("Entry {x$id}")
@@ -118,11 +112,9 @@ print.lexalx <- function(x, ...) {
   cli::cli_h2("Senses")
   for (sense in 1:length(x$senses)) {
     if (!is.null(x$senses[[sense]]$inflectional_features)) {
-      cli::cli_text("{cli::col_red(sense, '.')}
-        {crayon::blue('(', x$senses[[sense]]$inflectional_features, ')', sep = '')}
-        {x$senses[[sense]]$definition}")
+      cli::cli_text("{cli::col_red(sense, '.')} {.emph {crayon::green(x$senses[[sense]]$part_of_speech)}} {crayon::blue('(', x$senses[[sense]]$inflectional_features, ')', sep = '')} {x$senses[[sense]]$definition}")
     } else {
-      cli::cli_text("{cli::col_red(sense, '.')} {x$senses[[sense]]$definition}")
+      cli::cli_text("{cli::col_red(sense, '.')} {.emph {crayon::green(x$senses[[sense]]$part_of_speech)}} {x$senses[[sense]]$definition}")
     }
     examples_id <- x$senses[[sense]]$examples
     if (!is.null(examples_id)) {

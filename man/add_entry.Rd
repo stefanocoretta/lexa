@@ -15,7 +15,8 @@ add_entry(
   definition = gloss,
   etymology = NULL,
   notes = NULL,
-  homophone = NULL
+  homophone = NULL,
+  edit = TRUE
 )
 }
 \arguments{
@@ -41,6 +42,8 @@ add_entry(
 \item{notes}{Further notes as a string.}
 
 \item{homophone}{The homophone numeric index.}
+
+\item{edit}{Open file for editing after creation (default is \code{TRUE})}
 }
 \value{
 Nothing. Used for its side effects

@@ -3,7 +3,6 @@ entry: 'chǭs'
 phon: 'tʃɵːs'
 morph_category: 'lexical'
 morph_type: 'root'
-part_of_speech: 'adverb'
 allomorphs:
   al_01:
     id: al_01
@@ -12,6 +11,7 @@ allomorphs:
 senses:
   se_01:
     id: se_01
+    part_of_speech: 'adverb'
     gloss: 'tomorrow'
     definition: 'tomorrow'
 date_created: 2022-01-14 21:13:41

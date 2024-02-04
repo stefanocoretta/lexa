@@ -3,9 +3,6 @@ entry: vēselse
 phon: veɪselse
 morph_category: lexical
 morph_type: root
-part_of_speech: verb
-inflectional_features:
-  class: II
 allomorphs:
   al_01:
     id: al_01
@@ -14,10 +11,16 @@ allomorphs:
 senses:
   se_01:
     id: se_01
+    part_of_speech: verb
+    inflectional_features:
+      class: II
     gloss: understand
     definition: "to understand"
   se_02:
     id: se_02
+    part_of_speech: verb
+    inflectional_features:
+      class: II
     gloss: learn
     definition: "to learn"
 

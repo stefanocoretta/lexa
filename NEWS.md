@@ -1,5 +1,9 @@
 # lexa 0.0.3.9000
 
+## BREAKING
+
+- Now `part_of_speech` is under each sense and now `inflection_features` can only be specified under each sense.
+
 ## Added
 
 - `write_merged_lexicon()` to write a single yaml file with the lexicon entries.

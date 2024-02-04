@@ -3,9 +3,6 @@ entry: urųrtose
 phon: uryrtose
 morph_category: lexical
 morph_type: root
-part_of_speech: verb
-inflectional_features:
-  class: I
 allomorphs:
   al_01:
     id: al_01
@@ -18,6 +15,9 @@ allomorphs:
 senses:
   se_01:
     id: se_01
+    part_of_speech: verb
+    inflectional_features:
+      class: I
     gloss: sit
     definition: "to sit"
     examples:

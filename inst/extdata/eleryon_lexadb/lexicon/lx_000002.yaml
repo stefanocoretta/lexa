@@ -3,9 +3,6 @@ entry: unullose
 phon: unullose
 morph_category: lexical
 morph_type: root
-part_of_speech: verb
-inflectional_features:
-  class: IV
 allomorphs:
   al_01:
     id: al_01
@@ -18,5 +15,8 @@ allomorphs:
 senses:
   se_01:
     id: se_01
+    part_of_speech: verb
+    inflectional_features:
+      class: IV
     gloss: love
     definition: "to love"
