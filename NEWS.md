@@ -1,3 +1,11 @@
+# lexa 0.0.3.9000
+
+## Added
+
+- `write_merged_lexicon()` to write a single yaml file with the lexicon entries.
+
+
+
 # lexa 0.0.3
 
 ## Added

@@ -197,3 +197,64 @@ write_entry <- function(lexadb, lx_entry) {
   lx_full_path <- file.path(db_path, lx_path)
   readr::write_file(lx_entry$out, lx_full_path)
 }
+
+
+# Merge and split lexicon ----
+
+# Merge individual yaml entries to single list
+merge_lexicon <- function(lexadb, sort) {
+  db_path <- attr(lexadb, "meta")$path
+  lx_path <- glue::glue("{db_path}/lexicon")
+  lx_files <- list.files(lx_path, "*.yaml", full.names = TRUE)
+
+  lexicon <- list()
+
+  for (file in lx_files) {
+    file_yaml <- yaml::read_yaml(file)
+    lexicon[[file_yaml$id]] <- file_yaml
+  }
+
+  # Sorting entries alphabetically
+  if (sort) {
+    entry_ids <- sapply(lexicon, function(entry) entry$entry)
+    ordered_ids <- names(lexicon)[order(entry_ids)]
+
+    # Reorder the list based on the ordered names
+    lexicon_reordered <- lexicon[ordered_ids]
+
+    return(lexicon_reordered)
+  } else {
+    return(lexicon)
+  }
+}
+
+#' Write merged lexicon to disk
+#'
+#' It writes a yaml file which contains all the entries in the lexicon. The file
+#' is output in the `src` directory.
+#'
+#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
+#' @param sort Whether to sort the entries alphabetically (default is `TRUE`).
+#' @param overwrite Whether to overwrite an existing `lexicon.yaml` file.
+#'
+#' @export
+write_merged_lexicon <- function(lexadb, sort = TRUE, overwrite = FALSE) {
+  merged <- merge_lexicon(lexadb, sort = sort)
+
+  db_path <- attr(lexadb, "meta")$path
+  merged_file <- glue::glue("{db_path}/src/lexicon.yaml")
+
+  if (file.exists(merged_file)) {
+    if (overwrite) {
+      yaml::write_yaml(merged, merged_file)
+    } else {
+      cli::cli_abort(c(
+        "x" = "A lexicon.yaml file already exists! Set {.arg overwrite = TRUE} to overwrite."
+      ))
+    }
+  } else {
+    dir.create(glue::glue("{db_path}/src"), showWarnings = FALSE)
+    yaml::write_yaml(merged, merged_file)
+  }
+
+}

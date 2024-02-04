@@ -1,0 +1,138 @@
+lx_000005:
+  id: lx_000005
+  entry: chǭs
+  phon: tʃɵːs
+  morph_category: lexical
+  morph_type: root
+  part_of_speech: adverb
+  allomorphs:
+    al_01:
+      id: al_01
+      morph: chǭs
+      phon: tʃɵːs
+  senses:
+    se_01:
+      id: se_01
+      gloss: tomorrow
+      definition: tomorrow
+  date_created: 2022-01-14 21:13:41
+  date_modified: 2022-01-14 21:13:41
+  notes: Note that in Eleryon this word means 'tomorrow' if used by noon, otherwise
+    it means 'the day after tomorrow'.
+lx_000004:
+  id: lx_000004
+  entry: evēsellose
+  phon: eveɪsellose
+  morph_category: lexical
+  morph_type: root
+  part_of_speech: verb
+  inflectional_features:
+    class: IV
+  etymology: From {.etym vēselse} 'to learn'.
+  allomorphs:
+    al_01:
+      id: al_01
+      morph: vēsel
+      phon: veɪsel
+    al_02:
+      id: al_02
+      morph: evēsel
+      phon: eveɪsel
+  senses:
+    se_01:
+      id: se_01
+      gloss: teach
+      definition: to teach
+lx_000001:
+  id: lx_000001
+  entry: gąryon
+  phon: ˈgɔrjon
+  morph_category: lexical
+  morph_type: root
+  part_of_speech: noun
+  inflectional_features:
+    class: -jon(t)
+  allomorphs:
+    al_01:
+      id: al_01
+      morph: gąr
+      phon: gɔr
+  senses:
+    se_01:
+      id: se_01
+      gloss: soil
+      definition: soil, dirt
+lx_000002:
+  id: lx_000002
+  entry: unullose
+  phon: unullose
+  morph_category: lexical
+  morph_type: root
+  part_of_speech: verb
+  inflectional_features:
+    class: IV
+  allomorphs:
+    al_01:
+      id: al_01
+      morph: nul
+      phon: nul
+    al_02:
+      id: al_02
+      morph: unul
+      phon: unul
+  senses:
+    se_01:
+      id: se_01
+      gloss: love
+      definition: to love
+lx_000006:
+  id: lx_000006
+  entry: urųrtose
+  phon: uryrtose
+  morph_category: lexical
+  morph_type: root
+  part_of_speech: verb
+  inflectional_features:
+    class: I
+  allomorphs:
+    al_01:
+      id: al_01
+      morph: ųrt
+      phon: yrt
+    al_02:
+      id: al_02
+      morph: urųrt
+      phon: uryrt
+  senses:
+    se_01:
+      id: se_01
+      gloss: sit
+      definition: to sit
+      examples:
+      - tx_000001:st_000001
+      - tx_000001:st_000002
+  date_created: 2022-01-23 09:51:16
+  date_modified: 2022-01-23 09:51:16
+lx_000003:
+  id: lx_000003
+  entry: vēselse
+  phon: veɪselse
+  morph_category: lexical
+  morph_type: root
+  part_of_speech: verb
+  inflectional_features:
+    class: II
+  allomorphs:
+    al_01:
+      id: al_01
+      morph: vēsel
+      phon: veɪsel
+  senses:
+    se_01:
+      id: se_01
+      gloss: understand
+      definition: to understand
+    se_02:
+      id: se_02
+      gloss: learn
+      definition: to learn
