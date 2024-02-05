@@ -4,7 +4,9 @@
 
 - `write_merged_lexicon()` to write a single yaml file with the lexicon entries.
 
-- `edit_entry()` to open the entry YAML file.
+- `open_entry()` to open the entry YAML file. Use `edit_entry()` if you wish to edit the entry and you want the `date_modified` field to be automatically updated with the current date.
+
+- `edit_entry()` to open the entry YAML file and update `date_modified` with current date.
 
 ## Changed
 

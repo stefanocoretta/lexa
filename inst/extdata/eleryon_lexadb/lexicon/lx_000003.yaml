@@ -15,9 +15,9 @@ senses:
   se_01:
     id: se_01
     gloss: understand
-    definition: "to understand"
+    definition: to understand
   se_02:
     id: se_02
     gloss: learn
-    definition: "to learn"
-
+    definition: to learn
+date_modified: '2024-02-05'
