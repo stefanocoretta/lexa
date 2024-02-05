@@ -1,6 +1,6 @@
 lx_000005:
   id: lx_000005
-  entry: chǭs
+  lexeme: chǭs
   phon: tʃɵːs
   morph_category: lexical
   morph_type: root
@@ -21,7 +21,7 @@ lx_000005:
     it means 'the day after tomorrow'.
 lx_000004:
   id: lx_000004
-  entry: evēsellose
+  lexeme: evēsellose
   phon: eveɪsellose
   morph_category: lexical
   morph_type: root
@@ -45,7 +45,7 @@ lx_000004:
       definition: to teach
 lx_000001:
   id: lx_000001
-  entry: gąryon
+  lexeme: gąryon
   phon: ˈgɔrjon
   morph_category: lexical
   morph_type: root
@@ -64,7 +64,7 @@ lx_000001:
       definition: soil, dirt
 lx_000002:
   id: lx_000002
-  entry: unullose
+  lexeme: unullose
   phon: unullose
   morph_category: lexical
   morph_type: root
@@ -87,7 +87,7 @@ lx_000002:
       definition: to love
 lx_000006:
   id: lx_000006
-  entry: urųrtose
+  lexeme: urųrtose
   phon: uryrtose
   morph_category: lexical
   morph_type: root
@@ -115,7 +115,7 @@ lx_000006:
   date_modified: 2022-01-23 09:51:16
 lx_000003:
   id: lx_000003
-  entry: vēselse
+  lexeme: vēselse
   phon: veɪselse
   morph_category: lexical
   morph_type: root
@@ -136,3 +136,4 @@ lx_000003:
       id: se_02
       gloss: learn
       definition: to learn
+  date_modified: '2024-02-05'

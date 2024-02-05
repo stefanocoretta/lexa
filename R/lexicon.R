@@ -316,7 +316,7 @@ merge_lexicon <- function(lexadb, sort) {
 
   # Sorting entries alphabetically
   if (sort) {
-    entry_ids <- sapply(lexicon, function(entry) entry$entry)
+    entry_ids <- sapply(lexicon, function(entry) entry$lexeme)
     ordered_ids <- names(lexicon)[order(entry_ids)]
 
     # Reorder the list based on the ordered names
