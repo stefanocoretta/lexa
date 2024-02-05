@@ -92,9 +92,6 @@ lift_to_lexa <- function(lexadb, path) {
   purrr::walk(
     lift_entries,
     function(entry) {
-      lx_entry <- list()
-      lx_entry$id <- create_lx_id(lexadb)
-
       lx_senses <- entry[-1]
       lx_senses_n <- length(lx_senses)
 
@@ -109,42 +106,56 @@ lift_to_lexa <- function(lexadb, path) {
         lx_gram_uniq <- unique(unlist(lx_gram_info))
 
         if (length(lx_gram_uniq) > 1) {
+          for (lx_gram in lx_gram_uniq) {
+            pos_senses <- list()
+            for (sense_i in 1:lx_senses_n) {
+              sense <- lx_senses[[sense_i]]
+              sense_gram_info <- attr(sense[["grammatical-info"]], "value")
+              if (sense_gram_info == lx_gram) {
+                pos_senses <- c(pos_senses, list(sense))
+              }
+
+              lx_entry <- list()
+              lx_entry$id <- create_lx_id(lexadb)
+
+              # entry schema
+              out <- list(
+                id = lx_entry$id,
+                entry = entry[["lexical-unit"]][["form"]][["text"]][[1]],
+                phon = NULL,
+                morph_category = NULL,
+                morph_type = NULL,
+                part_of_speech = sense_gram_info,
+                inflectional_features = list(class = NULL),
+                etymology = NULL,
+                notes = notes,
+                homophone = NULL,
+                allomorphs = list(
+                  al_01 = list(
+                    id = "al_01",
+                    morph = entry,
+                    phon = NULL
+                  )
+                ),
+                senses = list(
+                  se_01 = list(
+                    id = "se_01",
+                    gloss = ,
+                    definition = sense
+                  )
+                ),
+                date_created = today,
+                date_modified = today
+              )
+
+              lx_entry$out <- out
+              write_entry(lexadb, lx_entry)
+            }
+          }
+
 
         }
       }
-
-      # entry schema
-      out <- list(
-        id = lx_entry$id,
-        entry = entry[["lexical-unit"]][["form"]][["text"]][[1]],
-        morph_category = morph_category,
-        morph_type = morph_type,
-        part_of_speech = part_of_speech,
-        inflectional_features = list(class = NULL),
-        etymology = etymology,
-        notes = notes,
-        homophone = homophone,
-        allomorphs = list(
-          al_01 = list(
-            id = "al_01",
-            morph = entry,
-            phon = phon
-          )
-        ),
-        senses = list(
-          se_01 = list(
-            id = "se_01",
-            gloss = gloss,
-            definition = definition
-          )
-        ),
-        date_created = today,
-        date_modified = today
-      )
-
-      lx_entry$out <- out
-      write_entry(lexadb, lx_entry)
-
     }
   )
 }
