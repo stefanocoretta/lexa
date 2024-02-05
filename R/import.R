@@ -80,7 +80,8 @@ import_lexicon_csv <- function(lexadb, path) {
 }
 
 
-lift_to_lexa <- function(lexadb, path) {
+# Lift to Lexa lexicon ----
+lift_to_lexa <- function(path) {
   lift <- xml2::read_xml(path)
   lift_list <- xml2::as_list(lift)
 
@@ -89,12 +90,14 @@ lift_to_lexa <- function(lexadb, path) {
 
   today <- as.character(Sys.Date())
 
-  purrr::walk(
+  out <- lapply(
     lift_entries,
     function(entry) {
-      lx_senses <- entry[-1]
+      entry_names <- names(entry)
+      lx_senses <- entry[entry_names == "sense"]
       lx_senses_n <- length(lx_senses)
 
+      # If there is more than one sense
       if (lx_senses_n > 1) {
         lx_gram_info <- lapply(
           lx_senses,
@@ -106,56 +109,196 @@ lift_to_lexa <- function(lexadb, path) {
         lx_gram_uniq <- unique(unlist(lx_gram_info))
 
         if (length(lx_gram_uniq) > 1) {
+          # If there is more than one POS
           for (lx_gram in lx_gram_uniq) {
-            pos_senses <- list()
-            for (sense_i in 1:lx_senses_n) {
-              sense <- lx_senses[[sense_i]]
-              sense_gram_info <- attr(sense[["grammatical-info"]], "value")
-              if (sense_gram_info == lx_gram) {
-                pos_senses <- c(pos_senses, list(sense))
+            lx_senses_pos <- lx_senses[unlist(lapply(lx_senses, function (x) attr(x[["grammatical-info"]], "value") == lx_gram))]
+
+            lx_senses_list <- lapply(
+              lx_senses_pos,
+              function(this_sense) {
+                list(
+                  id = "",
+                  gloss = this_sense[["gloss"]][["text"]][[1]],
+                  definition = this_sense[["definition"]][["form"]][["text"]][[1]]
+                )
               }
+            )
 
-              lx_entry <- list()
-              lx_entry$id <- create_lx_id(lexadb)
+            these_senses_n <- length(lx_senses_list)
+            these_senses_ids <- paste0("se_", format(as.hexmode(paste0(1:these_senses_n)), width = 2))
 
-              # entry schema
-              out <- list(
-                id = lx_entry$id,
-                entry = entry[["lexical-unit"]][["form"]][["text"]][[1]],
-                phon = NULL,
-                morph_category = NULL,
-                morph_type = NULL,
-                part_of_speech = sense_gram_info,
-                inflectional_features = list(class = NULL),
-                etymology = NULL,
-                notes = notes,
-                homophone = NULL,
-                allomorphs = list(
-                  al_01 = list(
-                    id = "al_01",
-                    morph = entry,
-                    phon = NULL
-                  )
-                ),
-                senses = list(
-                  se_01 = list(
-                    id = "se_01",
-                    gloss = ,
-                    definition = sense
-                  )
-                ),
-                date_created = today,
-                date_modified = today
-              )
-
-              lx_entry$out <- out
-              write_entry(lexadb, lx_entry)
+            names(lx_senses_list) <- these_senses_ids
+            for (i in 1:length(lx_senses_list)) {
+              this_name <- names(lx_senses_list[i])
+              lx_senses_list[[i]][["id"]] <- this_name
             }
+
+            lexeme <- lift_entries[[1]][["lexical-unit"]][["form"]][["text"]][[1]]
+
+            out <- list(
+              id = NULL,
+              lexeme = lexeme,
+              phon = lexeme,
+              morph_category = NULL,
+              morph_type = NULL,
+              part_of_speech = lx_gram,
+              inflectional_features = list(class = NULL),
+              etymology = NULL,
+              notes = NULL,
+              homophone = NULL,
+              allomorphs = list(
+                al_01 = list(
+                  id = "al_01",
+                  morph = lexeme,
+                  phon = lexeme
+                )
+              ),
+              senses = lx_senses_list,
+              date_created = today,
+              date_modified = today
+            )
+
+            return(list(out = out))
+          }
+        } else {
+          # If there is only one POS
+          lx_senses_list <- lapply(
+            lx_senses,
+            function(this_sense) {
+              list(
+                id = "",
+                gloss = this_sense[["gloss"]][["text"]][[1]],
+                definition = this_sense[["definition"]][["form"]][["text"]][[1]]
+              )
+            }
+          )
+
+          these_senses_n <- length(lx_senses_list)
+          these_senses_ids <- paste0("se_", format(as.hexmode(paste0(1:these_senses_n)), width = 2))
+
+          names(lx_senses_list) <- these_senses_ids
+          for (i in 1:length(lx_senses_list)) {
+            this_name <- names(lx_senses_list[i])
+            lx_senses_list[[i]][["id"]] <- this_name
           }
 
+          lexeme <- lift_entries[[1]][["lexical-unit"]][["form"]][["text"]][[1]]
 
+          out <- list(
+            id = NULL,
+            lexeme = lexeme,
+            phon = lexeme,
+            morph_category = NULL,
+            morph_type = NULL,
+            part_of_speech = lx_gram_uniq,
+            inflectional_features = list(class = NULL),
+            etymology = NULL,
+            notes = NULL,
+            homophone = NULL,
+            allomorphs = list(
+              al_01 = list(
+                id = "al_01",
+                morph = lexeme,
+                phon = lexeme
+              )
+            ),
+            senses = lx_senses_list,
+            date_created = today,
+            date_modified = today
+          )
+
+          return(list(out = out))
         }
+
+      } else {
+        # If there is only one sense
+        lx_gram_info <- lapply(
+          lx_senses,
+          function(sense) {
+            attr(sense[["grammatical-info"]], "value")
+          }
+        )
+
+        lx_gram_uniq <- unique(unlist(lx_gram_info))
+
+        lx_senses_list <- lapply(
+          lx_senses,
+          function(this_sense) {
+            list(
+              id = "",
+              gloss = this_sense[["gloss"]][["text"]][[1]],
+              definition = this_sense[["definition"]][["form"]][["text"]][[1]]
+            )
+          }
+        )
+
+        these_senses_n <- length(lx_senses_list)
+        these_senses_ids <- paste0("se_", format(as.hexmode(paste0(1:these_senses_n)), width = 2))
+
+        names(lx_senses_list) <- these_senses_ids
+        for (i in 1:length(lx_senses_list)) {
+          this_name <- names(lx_senses_list[i])
+          lx_senses_list[[i]][["id"]] <- this_name
+        }
+
+        lexeme <- lift_entries[[1]][["lexical-unit"]][["form"]][["text"]][[1]]
+
+        out <- list(
+          id = NULL,
+          lexeme = lexeme,
+          phon = lexeme,
+          morph_category = NULL,
+          morph_type = NULL,
+          part_of_speech = lx_gram_uniq,
+          inflectional_features = list(class = NULL),
+          etymology = NULL,
+          notes = NULL,
+          homophone = NULL,
+          allomorphs = list(
+            al_01 = list(
+              id = "al_01",
+              morph = lexeme,
+              phon = lexeme
+            )
+          ),
+          senses = lx_senses_list,
+          date_created = today,
+          date_modified = today
+        )
+
+        return(list(out = out))
       }
     }
   )
+
+  out_length <- length(out)
+  ids <- c()
+  for (i in 1:out_length) {
+    new_id_hex <- format(as.hexmode(i), width = 6)
+    new_id <- paste0("lx_", new_id_hex)
+    out[[i]][["id"]] <- new_id
+    out[[i]][["out"]][["id"]] <- new_id
+    ids <- c(ids, new_id)
+  }
+
+  return(out)
+}
+
+# Import lexicon from LIFT file ----
+
+#' Import lexicon from LIFT file
+#'
+#' It imports the lexicon from a LIFT file (exported from LexiquePro).
+#'
+#' `r lifecycle::badge("experimental")`
+#'
+#' @param lexadb A `lexadb` object as returned by `load_lexadb()`.
+#' @param path The path to the lexicon LIFT file as a string.
+#'
+#' @return Nothing. Used for its side effects.
+#'
+#' @export
+import_lexicon_lift <- function(lexadb, path) {
+  lexalx <- lift_to_lexa(normalizePath(path))
+  write_lexicon(lexadb, lexalx)
 }

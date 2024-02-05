@@ -70,6 +70,7 @@ create_entry <-  function(lexadb = NULL,
   out <- list(
     id = lx_id,
     lexeme = lexeme,
+    phon = phon,
     morph_category = morph_category,
     morph_type = morph_type,
     part_of_speech = part_of_speech,

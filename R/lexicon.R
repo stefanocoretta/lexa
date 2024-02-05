@@ -234,6 +234,15 @@ write_entry <- function(lexadb, lx_entry) {
   yaml::write_yaml(lx_entry$out, lx_full_path)
 }
 
+write_lexicon <- function(lexadb, lexalx) {
+  purrr::walk(
+    lexalx,
+    function(entry) {
+      write_entry(lexadb, entry)
+    }
+  )
+}
+
 # Show and edit entries ----
 
 #' Open a lexical entry

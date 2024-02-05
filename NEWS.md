@@ -8,6 +8,8 @@
 
 - `edit_entry()` to open the entry YAML file and update `date_modified` with current date.
 
+- `import_lexicon_lift()` to import a LIFT lexicon to Lexa (experimental).
+
 ## Changed
 
 - `add_entry()` now checks if homophones exist.
