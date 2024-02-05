@@ -6,7 +6,7 @@
 \usage{
 add_entry(
   lexadb,
-  entry = NULL,
+  lexeme = NULL,
   gloss = NULL,
   part_of_speech = NULL,
   phon = NULL,
@@ -15,13 +15,14 @@ add_entry(
   definition = gloss,
   etymology = NULL,
   notes = NULL,
-  homophone = NULL
+  homophone = NULL,
+  edit = TRUE
 )
 }
 \arguments{
 \item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
-\item{entry}{The entry as a string.}
+\item{lexeme}{The entry as a string.}
 
 \item{gloss}{The gloss as a string.}
 
@@ -41,6 +42,8 @@ add_entry(
 \item{notes}{Further notes as a string.}
 
 \item{homophone}{The homophone numeric index.}
+
+\item{edit}{Open file for editing after creation (default is \code{TRUE})}
 }
 \value{
 Nothing. Used for its side effects

@@ -7,7 +7,7 @@
 #' to edit at will.
 #'
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
-#' @param entry The entry as a string.
+#' @param lexeme The entry as a string.
 #' @param gloss The gloss as a string.
 #' @param part_of_speech The part of speech as a string.
 #' @param phon The phonetic transcription as a string.
@@ -23,7 +23,7 @@
 #' @return Nothing. Used for its side effects
 #' @export
 add_entry <- function(lexadb,
-                      entry = NULL,
+                      lexeme = NULL,
                       gloss = NULL,
                       part_of_speech = NULL,
                       phon = NULL,
@@ -38,12 +38,12 @@ add_entry <- function(lexadb,
   db_path <- attr(lexadb, "meta")$path
   entries <- lapply(
     read_lexicon(db_path),
-    function(entry) entry$entry
+    function(entry) entry$lexeme
   )
 
-  if (!is.null(entry)) {
-    if (entry %in% entries) {
-      homophones_n <- sum(entries == entry)
+  if (!is.null(lexeme)) {
+    if (lexeme %in% entries) {
+      homophones_n <- sum(entries == lexeme)
       cli::cli_alert_warning(
         cli::pluralize("{homophones_n} homophone{?s} found!")
       )
@@ -64,7 +64,7 @@ add_entry <- function(lexadb,
 
   lx_entry <- create_entry(
     lexadb,
-    entry = entry,
+    lexeme = lexeme,
     gloss = gloss,
     part_of_speech = part_of_speech,
     phon = phon,
@@ -94,7 +94,7 @@ add_entry <- function(lexadb,
 #' Search entries in the lexicon, by entry form or sense definitions.
 #'
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
-#' @param entry A regular expression to search among entries.
+#' @param lexeme A regular expression to search among entries.
 #' @param whole Whether to search for whole words (only applies to `entry`,
 #'    `TRUE` by default).
 #' @param definition A regular expression to search among sense definitions.
@@ -116,11 +116,11 @@ add_entry <- function(lexadb,
 #' # Search for entry with meaning "love"
 #' search_lexicon(eleryon, definition = "love")
 search_lexicon <- function(lexadb,
-                            entry = NULL,
+                            lexeme = NULL,
                             whole = TRUE,
                             definition = NULL,
                             pos = NULL) {
-  if (is.null(entry) & is.null(definition)) {
+  if (is.null(lexeme) & is.null(definition)) {
     cli::cli_abort("Please, provide either an entry or a definition to search
       in the lexicon.")
   }
@@ -128,12 +128,12 @@ search_lexicon <- function(lexadb,
   db_path <- attr(lexadb, "meta")$path
   lexicon <- read_lexicon(db_path)
 
-  if (!is.null(entry)) {
+  if (!is.null(lexeme)) {
     hits <- lapply(lexicon, function(x) {
       if (whole) {
-        stringr::str_detect(x$entry, paste0("\\b", entry, "\\b"))
+        stringr::str_detect(x$lexeme, paste0("\\b", lexeme, "\\b"))
       } else {
-        stringr::str_detect(x$entry, entry)
+        stringr::str_detect(x$lexeme, lexeme)
       }
 
     })

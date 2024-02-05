@@ -49,10 +49,10 @@ create_lx_id <- function(lexadb) {
 }
 
 # Prepare empty entry skeleton.
-# Outputs a list with entry id (`id`) and output string (`out`).
+# Outputs a list with entry id (`id`) and output list (`out`).
 
 create_entry <-  function(lexadb = NULL,
-                          entry = NULL,
+                          lexeme = NULL,
                           gloss = NULL,
                           part_of_speech = NULL,
                           phon = NULL,
@@ -69,7 +69,7 @@ create_entry <-  function(lexadb = NULL,
   # entry schema
   out <- list(
     id = lx_id,
-    entry = entry,
+    lexeme = lexeme,
     morph_category = morph_category,
     morph_type = morph_type,
     part_of_speech = part_of_speech,
@@ -80,7 +80,7 @@ create_entry <-  function(lexadb = NULL,
     allomorphs = list(
       al_01 = list(
         id = "al_01",
-        morph = entry,
+        morph = lexeme,
         phon = phon
       )
     ),

@@ -99,21 +99,21 @@ print.lexadb <- function(x, ...) {
 #' @export
 print.lexalx <- function(x, ...) {
   n_senses <- length(x$senses)
-  entry <- x$entry
+  lexeme <- x$lexeme
   if (!is.null(x$phon)) {
-    entry_line <- "{crayon::blue(entry)}
+    lexeme_line <- "{crayon::blue(lexeme)}
     [{x$phon}] {.emph {crayon::green(x$part_of_speech)}}"
   } else {
-    entry_line <- "{crayon::blue(entry)}
+    lexeme_line <- "{crayon::blue(lexeme)}
     {.emph {crayon::green(x$part_of_speech)}}"
   }
 
   if (!is.null(x$inflectional_features)) {
-    entry_line <- paste(entry_line, "({x$inflectional_features})")
+    lexeme_line <- paste(lexeme_line, "({x$inflectional_features})")
   }
 
   cli::cli_h1("Entry {x$id}")
-  cli::cli_text(entry_line)
+  cli::cli_text(lexeme_line)
 
   cli::cli_h2("Senses")
   for (sense in 1:length(x$senses)) {

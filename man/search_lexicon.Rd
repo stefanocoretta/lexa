@@ -6,7 +6,7 @@
 \usage{
 search_lexicon(
   lexadb,
-  entry = NULL,
+  lexeme = NULL,
   whole = TRUE,
   definition = NULL,
   pos = NULL
@@ -15,7 +15,7 @@ search_lexicon(
 \arguments{
 \item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
-\item{entry}{A regular expression to search among entries.}
+\item{lexeme}{A regular expression to search among entries.}
 
 \item{whole}{Whether to search for whole words (only applies to \code{entry},
 \code{TRUE} by default).}

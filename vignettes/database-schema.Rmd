@@ -29,11 +29,11 @@ A Lexa database (`lexadb`) is a directory containing the following files/dirs:
 
 You can find examples of Lexa databases as part of the lexa package (<https://github.com/stefanocoretta/lexa/tree/main/inst/extdata>).
 
-To quickstart a new database, just run:
+To quick-start a new database, just run:
 
 ``` r
 library(lexa)
-create_lexadb(name = "my_")
+create_lexadb(name = "my")
 ```
 
 A database called `my_lexadb` will be created in your working directory.
