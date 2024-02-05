@@ -46,6 +46,9 @@ lexeme: <string>
 phon: <string>
 morph_category: <lexical, grammatical>
 morph_type: <root, stem, affix, clitic, particle, compound, phrase>
+part_of_speech: <string>
+inflectional_features:
+  <feature_n>: <string>
 etymology: <string>
 loan_word: <string>
 homophone: <numeric>
@@ -61,14 +64,13 @@ allomorphs:
 senses:
   se_0n:
     id: se_0n
-    part_of_speech: <string>
-    inflectional_features:
-      <feature_n>: <string>
     gloss: <string>
     definition: <string>
     literal: <string>
     scientific: <string>
     usage: <string>
+    inflectional_features:
+      <feature_n>: <string>
     examples: ["tx_00000n:st_00000n"]
     etymology: <string>
 crossref: ["lx_00000n"]

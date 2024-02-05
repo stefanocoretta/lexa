@@ -3,6 +3,9 @@ entry: gąryon
 phon: ˈgɔrjon
 morph_category: lexical
 morph_type: root
+part_of_speech: noun
+inflectional_features:
+  class: -jon(t)
 allomorphs:
   al_01:
     id: al_01
@@ -11,8 +14,5 @@ allomorphs:
 senses:
   se_01:
     id: se_01
-    part_of_speech: noun
-    inflectional_features:
-      class: -jon(t)
     gloss: soil
     definition: "soil, dirt"

@@ -3,6 +3,9 @@ entry: evēsellose
 phon: eveɪsellose
 morph_category: lexical
 morph_type: root
+part_of_speech: verb
+inflectional_features:
+  class: IV
 etymology: "From {.etym vēselse} 'to learn'."
 allomorphs:
   al_01:
@@ -16,8 +19,5 @@ allomorphs:
 senses:
   se_01:
     id: se_01
-    part_of_speech: verb
-    inflectional_features:
-      class: IV
     gloss: teach
     definition: "to teach"

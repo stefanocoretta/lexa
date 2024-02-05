@@ -72,6 +72,8 @@ create_entry <-  function(lexadb = NULL,
     entry = entry,
     morph_category = morph_category,
     morph_type = morph_type,
+    part_of_speech = part_of_speech,
+    inflectional_features = list(class = NULL),
     etymology = etymology,
     notes = notes,
     homophone = homophone,
@@ -85,8 +87,6 @@ create_entry <-  function(lexadb = NULL,
     senses = list(
       se_01 = list(
         id = "se_01",
-        part_of_speech = part_of_speech,
-        inflectional_features = list(class = NULL),
         gloss = gloss,
         definition = definition
       )
