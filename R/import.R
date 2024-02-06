@@ -116,6 +116,12 @@ lift_to_lexa <- function(path) {
             lx_senses_list <- lapply(
               lx_senses_pos,
               function(this_sense) {
+                this_gloss <- this_sense[["gloss"]][["text"]][[1]]
+                this_definition <- this_sense[["definition"]][["form"]][["text"]][[1]]
+                if (is.null(this_definition)) {
+                  this_definition <- this_gloss
+                }
+
                 list(
                   id = "",
                   gloss = this_sense[["gloss"]][["text"]][[1]],
@@ -177,6 +183,12 @@ lift_to_lexa <- function(path) {
           lx_senses_list <- lapply(
             lx_senses,
             function(this_sense) {
+              this_gloss <- this_sense[["gloss"]][["text"]][[1]]
+              this_definition <- this_sense[["definition"]][["form"]][["text"]][[1]]
+              if (is.null(this_definition)) {
+                this_definition <- this_gloss
+              }
+
               list(
                 id = "",
                 gloss = this_sense[["gloss"]][["text"]][[1]],
@@ -248,10 +260,16 @@ lift_to_lexa <- function(path) {
         lx_senses_list <- lapply(
           lx_senses,
           function(this_sense) {
+            this_gloss <- this_sense[["gloss"]][["text"]][[1]]
+            this_definition <- this_sense[["definition"]][["form"]][["text"]][[1]]
+            if (is.null(this_definition)) {
+              this_definition <- this_gloss
+            }
+
             list(
               id = "",
-              gloss = this_sense[["gloss"]][["text"]][[1]],
-              definition = this_sense[["definition"]][["form"]][["text"]][[1]]
+              gloss = this_gloss,
+              definition = this_definition
             )
           }
         )
