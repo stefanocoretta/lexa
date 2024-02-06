@@ -145,7 +145,7 @@ lift_to_lexa <- function(path) {
               lx_senses_list[[i]][["id"]] <- this_name
             }
 
-            lexeme <- lift_entries[[1]][["lexical-unit"]][["form"]][["text"]][[1]]
+            lexeme <- entry[["lexical-unit"]][["form"]][["text"]][[1]]
 
             out <- list(
               id = NULL,
@@ -206,7 +206,7 @@ lift_to_lexa <- function(path) {
             lx_senses_list[[i]][["id"]] <- this_name
           }
 
-          lexeme <- lift_entries[[1]][["lexical-unit"]][["form"]][["text"]][[1]]
+          lexeme <- entry[["lexical-unit"]][["form"]][["text"]][[1]]
 
           out <- list(
             id = NULL,
@@ -277,7 +277,7 @@ lift_to_lexa <- function(path) {
           lx_senses_list[[i]][["id"]] <- this_name
         }
 
-        lexeme <- lift_entries[[1]][["lexical-unit"]][["form"]][["text"]][[1]]
+        lexeme <- entry[["lexical-unit"]][["form"]][["text"]][[1]]
 
         out <- list(
           id = NULL,
