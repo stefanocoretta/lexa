@@ -125,6 +125,18 @@ lift_to_lexa <- function(path) {
             )
 
             these_senses_n <- length(lx_senses_list)
+
+            if (these_senses_n == 0) {
+              lx_senses_list <- list(
+                sense = list(
+                  id = NULL,
+                  gloss = NULL,
+                  definition = NULL
+                )
+              )
+              these_senses_n = 1
+            }
+
             these_senses_ids <- paste0("se_", format(as.hexmode(paste0(1:these_senses_n)), width = 2))
 
             names(lx_senses_list) <- these_senses_ids
@@ -144,7 +156,7 @@ lift_to_lexa <- function(path) {
               part_of_speech = lx_gram,
               inflectional_features = list(class = NULL),
               etymology = NULL,
-              notes = NULL,
+              notes = list(entry[["note"]][["form"]][["text"]][[1]]),
               homophone = NULL,
               allomorphs = list(
                 al_01 = list(
@@ -174,6 +186,18 @@ lift_to_lexa <- function(path) {
           )
 
           these_senses_n <- length(lx_senses_list)
+
+          if (these_senses_n == 0) {
+            lx_senses_list <- list(
+              sense = list(
+                id = NULL,
+                gloss = NULL,
+                definition = NULL
+              )
+            )
+            these_senses_n = 1
+          }
+
           these_senses_ids <- paste0("se_", format(as.hexmode(paste0(1:these_senses_n)), width = 2))
 
           names(lx_senses_list) <- these_senses_ids
@@ -193,7 +217,7 @@ lift_to_lexa <- function(path) {
             part_of_speech = lx_gram_uniq,
             inflectional_features = list(class = NULL),
             etymology = NULL,
-            notes = NULL,
+            notes = list(entry[["note"]][["form"]][["text"]][[1]]),
             homophone = NULL,
             allomorphs = list(
               al_01 = list(
@@ -233,6 +257,18 @@ lift_to_lexa <- function(path) {
         )
 
         these_senses_n <- length(lx_senses_list)
+
+        if (these_senses_n == 0) {
+          lx_senses_list <- list(
+            sense = list(
+              id = NULL,
+              gloss = NULL,
+              definition = NULL
+            )
+          )
+          these_senses_n = 1
+        }
+
         these_senses_ids <- paste0("se_", format(as.hexmode(paste0(1:these_senses_n)), width = 2))
 
         names(lx_senses_list) <- these_senses_ids
@@ -252,7 +288,7 @@ lift_to_lexa <- function(path) {
           part_of_speech = lx_gram_uniq,
           inflectional_features = list(class = NULL),
           etymology = NULL,
-          notes = NULL,
+          notes = list(entry[["note"]][["form"]][["text"]][[1]]),
           homophone = NULL,
           allomorphs = list(
             al_01 = list(
