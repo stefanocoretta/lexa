@@ -219,6 +219,26 @@ print.lexalxs <- function(x, ...) {
   purrr::walk(x, function(i) print.lexalx(i))
 }
 
+#' Compact print method for list of entries
+#'
+#' Compact print method for the output of `search_lexicon()`, which returns an object
+#'    of class `lexalxscompact` when `show_entry` is `FALSE`..
+#'
+#' @param x An object of class `lexalxscompact`.
+#' @param ... Arguments passed to print.
+#'
+#' @return Nothing. Used for its side effects.
+#' @export
+print.lexalxscompact <- function(x, ...) {
+  purrr::walk(
+    x,
+    function(i) {
+      lexeme_line <- "{crayon::blue(i$lexeme)} {.emph {crayon::green(i$part_of_speech)}} {i$senses$se_01$definition} [{crayon::silver(i$id)}]"
+      cli::cli_bullets(c("*" = lexeme_line))
+    }
+  )
+}
+
 #' Print method for texts
 #'
 #' Print method for objects of class `lexatx`, which prints text info.

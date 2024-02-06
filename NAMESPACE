@@ -3,6 +3,7 @@
 S3method(print,lexadb)
 S3method(print,lexalx)
 S3method(print,lexalxs)
+S3method(print,lexalxscompact)
 S3method(print,lexast)
 S3method(print,lexatx)
 export(add_entry)

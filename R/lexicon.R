@@ -96,9 +96,10 @@ add_entry <- function(lexadb,
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
 #' @param lexeme A regular expression to search among entries.
 #' @param whole Whether to search for whole words (only applies to `entry`,
-#'    `TRUE` by default).
+#'    `FALSE` by default).
 #' @param definition A regular expression to search among sense definitions.
 #' @param pos A regular expression to match the part of speech.
+#' @param show_entry Whether to print all the entry info (uses `print.lexalx`, default is `FALSE``).
 #'
 #' @return A list of `lexalx` objects.
 #' @export
@@ -117,9 +118,10 @@ add_entry <- function(lexadb,
 #' search_lexicon(eleryon, definition = "love")
 search_lexicon <- function(lexadb,
                             lexeme = NULL,
-                            whole = TRUE,
+                            whole = FALSE,
                             definition = NULL,
-                            pos = NULL) {
+                            pos = NULL,
+                            show_entry = FALSE) {
   if (is.null(lexeme) & is.null(definition)) {
     cli::cli_abort("Please, provide either an entry or a definition to search
       in the lexicon.")
@@ -154,8 +156,13 @@ search_lexicon <- function(lexadb,
 
   if (length(searched) > 0) {
     cli::cli_alert_success("Found {length(searched)} entr{?y/ies}.")
-    class(searched) <- c("lexalxs", "list")
-    return(searched)
+    if (show_entry) {
+      class(searched) <- c("lexalxs", "list")
+      return(searched)
+    } else {
+      class(searched) <- c("lexalxscompact", "list")
+      return(searched)
+    }
   } else {
     cli::cli_alert_warning("No entry found!")
   }

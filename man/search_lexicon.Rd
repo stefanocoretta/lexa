@@ -7,9 +7,10 @@
 search_lexicon(
   lexadb,
   lexeme = NULL,
-  whole = TRUE,
+  whole = FALSE,
   definition = NULL,
-  pos = NULL
+  pos = NULL,
+  show_entry = FALSE
 )
 }
 \arguments{
@@ -18,11 +19,13 @@ search_lexicon(
 \item{lexeme}{A regular expression to search among entries.}
 
 \item{whole}{Whether to search for whole words (only applies to \code{entry},
-\code{TRUE} by default).}
+\code{FALSE} by default).}
 
 \item{definition}{A regular expression to search among sense definitions.}
 
 \item{pos}{A regular expression to match the part of speech.}
+
+\item{show_entry}{Whether to print all the entry info (uses \code{print.lexalx}, default is `FALSE``).}
 }
 \value{
 A list of \code{lexalx} objects.

@@ -16,6 +16,10 @@
 
 - The specification for a lexical entry has now a `homophone` field (numeric).
 
+- `search_lexicon()` has a new argument `show_entry` which, when `TRUE`, prints all the entry info (it's `FALSE` by default).
+
+- The `whole` argument in `search_lexicon()` is now `FALSE` by default.
+
 
 # lexa 0.0.3
 
