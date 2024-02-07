@@ -64,7 +64,7 @@ create_entry <-  function(lexadb = NULL,
                           homophone = NULL) {
 
   lx_id <- ifelse(is.null(lexadb), "lx_000001", create_lx_id(lexadb))
-  today <- as.character(Sys.Date())
+  today <- as.character(Sys.time())
 
   # entry schema
   out <- list(
@@ -74,7 +74,7 @@ create_entry <-  function(lexadb = NULL,
     morph_category = morph_category,
     morph_type = morph_type,
     part_of_speech = part_of_speech,
-    inflectional_features = list(class = NULL),
+    inflectional_features = list(class = ""),
     etymology = etymology,
     notes = notes,
     homophone = homophone,

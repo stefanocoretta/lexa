@@ -52,7 +52,6 @@ inflectional_features:
 etymology: <string>
 loan_word: <string>
 homophone: <numeric>
-notes: [<string>]
 allomorphs:
   al_0n:
     id: al_0n
@@ -79,6 +78,7 @@ semantics:
   semantic_domain: ["sd_00000n"]
   synonyms: ["lx_00000n"]
   antonyms: ["lx_00000n"]
+notes: [<string>]
 date_created: <date>
 date_modified: <date>
 ```

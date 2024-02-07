@@ -21,6 +21,8 @@ Imports:
     crayon,
     glue,
     htmltools,
+    jsonlite,
+    jsonvalidate,
     purrr,
     readr,
     rmarkdown,

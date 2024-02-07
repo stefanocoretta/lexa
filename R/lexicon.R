@@ -307,7 +307,7 @@ edit_entry <- function(lexadb, entry_id) {
 
   if (file.exists(lx_path)) {
     lx_yaml <- yaml::read_yaml(normalizePath(lx_path))
-    lx_yaml$date_modified <- as.character(Sys.Date())
+    lx_yaml$date_modified <- as.character(Sys.time())
     yaml::write_yaml(lx_yaml, lx_path)
     usethis::edit_file(lx_path)
   } else {

@@ -29,11 +29,13 @@
   "part_of_speech": { "type": "string" },
   "inflectional_features": {
     "type": "object",
-    "properties": {
-      "class": { "type": "string" }
-    },
-    "required": ["class"]
+    "additionalProperties": {
+      "type": "string"
+    }
   },
+  "etymology": { "type": "string" },
+  "loanword": { "type": "string" },
+  "homophone": { "type": "integer" },
   "allomorphs": {
     "type": "object",
     "patternProperties": {
@@ -58,13 +60,27 @@
           "gloss": { "type": "string" },
           "definition": { "type": "string" },
           "examples": {
-            "type": "array",
-            "items": { "type": "string" }
+          "oneOf": [
+            {"type": "string"},
+            {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          ]
           }
         },
-        "required": ["id", "gloss", "definition", "examples"]
+        "required": ["id", "gloss", "definition"]
       }
     }
+  },
+  "notes": {
+    "oneOf": [
+      {"type": "string"},
+      {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    ]
   },
   "date_created": { "type": "string", "format": "date-time" },
   "date_modified": { "type": "string", "format": "date-time" }
@@ -72,11 +88,8 @@
 "required": [
   "id",
   "lexeme",
-  "phon",
-  "morph_category",
   "morph_type",
   "part_of_speech",
-  "inflectional_features",
   "allomorphs",
   "senses",
   "date_created",

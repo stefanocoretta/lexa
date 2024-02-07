@@ -37,7 +37,7 @@ import_lexicon_csv <- function(lexadb, path) {
 
   lexicon_list <- purrr::transpose(lexicon_tab)
 
-  today <- as.character(Sys.Date())
+  today <- as.character(Sys.time())
 
   purrr::walk(
     lexicon_list,
@@ -88,7 +88,7 @@ lift_to_lexa <- function(path) {
   lift_header <- lift_list$lift$header
   lift_entries <- lift_list$lift[-1]
 
-  today <- as.character(Sys.Date())
+  today <- as.character(Sys.time())
 
   out <- lapply(
     lift_entries,
