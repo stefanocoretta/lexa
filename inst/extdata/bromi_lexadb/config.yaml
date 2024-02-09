@@ -1,2 +1,13 @@
 schema: lexadb
-name: bromi
+name: "ぶろみ, Bromi"
+languages:
+  bro: "Bromi"
+  meta:
+    eng: "English"
+    jpn: "Japanese"
+scripts:
+  bro:
+    hira: "Bromi Hiragana"
+    translit: "Bromi transliteration"
+  eng: "eng"
+  jpn: "jpn"
