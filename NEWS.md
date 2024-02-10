@@ -14,7 +14,7 @@
 
 - `import_lexicon_lift()` to import a LIFT lexicon to Lexa (experimental).
 
-- Added multilingual support to lexicon entries.
+- Added multilingual support to lexicon entries. (closes #4)
 
 ## Changed
 
