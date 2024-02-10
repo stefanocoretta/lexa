@@ -98,6 +98,11 @@ print.lexadb <- function(x, ...) {
 #' @return Nothing. Used for its side effects.
 #' @export
 print.lexalx <- function(x, ...) {
+  dbpath <- attr(x, "dbpath")
+  config <- read_config(dbpath)
+  config[["languages"]][["meta"]] <- NULL
+  the_language <- names(config[["languages"]])
+
   n_senses <- length(x$senses)
   lexeme <- x$lexeme
   if (length(lexeme) > 1) {
@@ -130,12 +135,20 @@ print.lexalx <- function(x, ...) {
 
   cli::cli_h2("Senses")
   for (sense in 1:length(x$senses)) {
+    definitions <- x$senses[[sense]]$definition
+    if (length(definitions) > 1) {
+      definitions_langs <- names(definitions)
+      definitions[[the_language]] <- NULL
+      definition_part <- paste(definitions, collapse = ". ")
+    } else {
+      definition_part <- definitions[[1]]
+    }
     if (!is.null(x$senses[[sense]]$inflectional_features)) {
       cli::cli_text("{cli::col_red(sense, '.')}
         {crayon::blue('(', x$senses[[sense]]$inflectional_features, ')', sep = '')}
-        {x$senses[[sense]]$definition}")
+        {definition_part}")
     } else {
-      cli::cli_text("{cli::col_red(sense, '.')} {x$senses[[sense]]$definition}")
+      cli::cli_text("{cli::col_red(sense, '.')} {definition_part}")
     }
     examples_id <- x$senses[[sense]]$examples
     if (!is.null(examples_id)) {
@@ -200,14 +213,22 @@ print.lexalx <- function(x, ...) {
   cli::cli_h2("Allomorphs")
   for (allo in seq_len(length(x$allomorphs))) {
     conditioning <- x$allomorphs[[allo]]$conditioning
-    cli::cli_text(
-      "{cli::col_red(cli::symbol$bullet)}
-      {cli::col_blue(x$allomorphs[[allo]]$morph)}
-      [{x$allomorphs[[allo]]$phon}]
+    morph <- x$allomorphs[[allo]]$morph
+    if (length(morph) > 1) {
+      morph_tr <- morph[["translit"]]
+      morph_part <- "{crayon::blue(morph[[1]])}, {.emph {morph_tr}}"
+    } else {
+      morph_part <- morph
+    }
+    morph_line <- paste(
+      "{cli::col_red(cli::symbol$bullet)}",
+      morph_part,
+      "[{x$allomorphs[[allo]]$phon}]
       {ifelse(!is.null(conditioning), paste0('(',
       cli::col_green(conditioning$type), ': ',
       conditioning$context, ')'), '')}"
     )
+    cli::cli_text(morph_line)
 
   }
 
