@@ -100,12 +100,25 @@ print.lexadb <- function(x, ...) {
 print.lexalx <- function(x, ...) {
   n_senses <- length(x$senses)
   lexeme <- x$lexeme
-  if (!is.null(x$phon)) {
-    lexeme_line <- "{crayon::blue(lexeme)}
-    [{x$phon}] {.emph {crayon::green(x$part_of_speech)}}"
+  if (length(lexeme) > 1) {
+    lexeme_tr <- lexeme[["translit"]]
+    lexeme_part <- "{crayon::blue(lexeme[[1]])}, {.emph {lexeme_tr}}"
   } else {
-    lexeme_line <- "{crayon::blue(lexeme)}
-    {.emph {crayon::green(x$part_of_speech)}}"
+    lexeme_part <- lexeme
+  }
+  if (!is.null(x$phon)) {
+    if (length(x$phon) == 2 ){
+      phon <- x$phon$pht
+    } else {
+      phon <- x$phon
+    }
+
+    lexeme_line <- paste(lexeme_part,
+    "[{phon}] {.emph {crayon::green(x$part_of_speech)}}")
+
+  } else {
+    lexeme_line <- paste(lexeme_part,
+    "{.emph {crayon::green(x$part_of_speech)}}")
   }
 
   if (!is.null(x$inflectional_features)) {
