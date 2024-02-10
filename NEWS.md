@@ -10,6 +10,8 @@
 
 - `import_lexicon_lift()` to import a LIFT lexicon to Lexa (experimental).
 
+- Added multilingual support to lexicon entries.
+
 ## Changed
 
 - `add_entry()` now checks if homophones exist.
