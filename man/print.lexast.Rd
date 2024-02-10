@@ -15,5 +15,5 @@
 Nothing. Used for its side effects.
 }
 \description{
-Print method for objects of class \code{lexast}, which prints text sentences.
+Print method for objects of class \code{lexast}, which prints collection sentences.
 }

@@ -4,12 +4,12 @@
 \alias{typeset_gloss}
 \title{Typeset interlinear gloss}
 \usage{
-typeset_gloss(lexadb, text, sentence, format = "latex")
+typeset_gloss(lexadb, collection, sentence, format = "latex")
 }
 \arguments{
 \item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
-\item{text}{Text id.}
+\item{collection}{Collection id.}
 
 \item{sentence}{Sentence id to print.}
 

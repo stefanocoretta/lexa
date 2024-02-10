@@ -19,7 +19,7 @@ create_lexadb <- function(parent = ".", name) {
   create_config(path, name)
   create_lexicon(path)
   create_grammar(path)
-  create_texts(path)
+  create_collections(path)
 }
 
 

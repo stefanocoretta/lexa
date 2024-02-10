@@ -20,10 +20,10 @@ create_grammar <- function(path) {
   yaml::write_yaml(grammar, file.path(path, "grammar.yaml"))
 }
 
-create_texts <- function(path) {
-  dir.create(file.path(path, "texts"), FALSE, TRUE)
-  text_example <- create_text()
-  yaml::write_yaml(text_example$out, file.path(path, "texts", "tx_000001.yaml"))
+create_collections <- function(path) {
+  dir.create(file.path(path, "sentences"), FALSE, TRUE)
+  cl_example <- create_collection()
+  yaml::write_yaml(cl_example$out, file.path(path, "sentences", "cl_000001.yaml"))
 }
 
 # Write entry helpers ----
@@ -101,32 +101,32 @@ create_entry <-  function(lexadb = NULL,
 
 }
 
-# Check last text ID and increase hex by 1.
+# Check last collection ID and increase hex by 1.
 
-create_tx_id <- function(lexadb) {
+create_cl_id <- function(lexadb) {
   db_path <- attr(lexadb, "meta")$path
-  tx_files <- list.files(file.path(db_path, "texts"), pattern = "*.yaml")
-  if (length(tx_files) > 0) {
+  cl_files <- list.files(file.path(db_path, "sentences"), pattern = "*.yaml")
+  if (length(cl_files) > 0) {
     last_id <- as.integer(
-      as.hexmode(stringr::str_sub(tx_files[[length(tx_files)]], 4, 9))
+      as.hexmode(stringr::str_sub(cl_files[[length(cl_files)]], 4, 9))
     )
     new_id_n <- last_id + 1
     new_id_hex <- format(as.hexmode(new_id_n), width = 6)
-    new_id <- paste0("tx_", new_id_hex)
+    new_id <- paste0("cl_", new_id_hex)
   } else {
-    new_id <- "tx_000001"
+    new_id <- "cl_000001"
   }
   return(new_id)
 }
 
-# Prepare empty text skeleton.
-# Outputs a list with text id (`id`) and output string (`out`).
+# Prepare empty collection skeleton.
+# Outputs a list with collection id (`id`) and output string (`out`).
 
-create_text <- function(lexadb = NULL, title = NULL) {
-  tx_id <- ifelse(is.null(lexadb), "tx_000001", create_tx_id(lexadb))
+create_collection <- function(lexadb = NULL, title = NULL) {
+  cl_id <- ifelse(is.null(lexadb), "cl_000001", create_cl_id(lexadb))
 
   out <- list(
-    id = tx_id,
+    id = cl_id,
     title = title,
     sentences = list(
       st_000001 = list(
@@ -141,6 +141,6 @@ create_text <- function(lexadb = NULL, title = NULL) {
     )
   )
 
-  text <- list(id = tx_id, out = out)
-  return(text)
+  collection <- list(id = cl_id, out = out)
+  return(collection)
 }

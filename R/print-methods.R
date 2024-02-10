@@ -17,8 +17,8 @@ print.lexadb <- function(x, ...) {
   lexicon <- read_lexicon(db_path)
   lexicon_length <- length(lexicon)
 
-  texts <- read_texts(db_path)
-  texts_length <- length(texts)
+  collections <- read_collections(db_path)
+  collections_length <- length(collections)
 
   mcats <- table(unlist(lapply(lexicon, function(x) x$morph_category)))
   mcats_length <- length(mcats)
@@ -80,7 +80,7 @@ print.lexadb <- function(x, ...) {
     "{crayon::green(cli::symbol$info)} {crayon::blue('Entries:')}
     {lexicon_length}
     {crayon::green('|')}
-    {crayon::blue('Texts:')} {texts_length}"
+    {crayon::blue('Collections:')} {collections_length}"
   )
   cli::cli_h2("Lexicon breakdown")
   cli::cli_text(cats)
@@ -153,11 +153,11 @@ print.lexalx <- function(x, ...) {
     examples_id <- x$senses[[sense]]$examples
     if (!is.null(examples_id)) {
       if (length(examples_id) == 1) {
-        tx_st <- stringr::str_split(examples_id, ":")
-        text <- yaml::read_yaml(
-          file.path(attr(x, "dbpath"), "texts", paste0(tx_st[[1]][1], ".yaml"))
+        cl_st <- stringr::str_split(examples_id, ":")
+        collection <- yaml::read_yaml(
+          file.path(attr(x, "dbpath"), "sentences", paste0(cl_st[[1]][1], ".yaml"))
         )
-        sentence <- text$sentences[[tx_st[[1]][2]]]
+        sentence <- collection$sentences[[cl_st[[1]][2]]]
 
         d <- cli::cli_div(
           class = "example",
@@ -178,11 +178,11 @@ print.lexalx <- function(x, ...) {
         )
         cli::cli_h3("Examples")
         for (ex in seq_len(length(examples_id))) {
-          tx_st <- stringr::str_split(examples_id[[ex]], ":")
-          text <- yaml::read_yaml(
-            file.path(attr(x, "dbpath"), "texts", paste0(tx_st[[1]][1], ".yaml"))
+          cl_st <- stringr::str_split(examples_id[[ex]], ":")
+          collection <- yaml::read_yaml(
+            file.path(attr(x, "dbpath"), "sentences", paste0(cl_st[[1]][1], ".yaml"))
           )
-          sentence <- text$sentences[[tx_st[[1]][2]]]
+          sentence <- collection$sentences[[cl_st[[1]][2]]]
           cli::cli_text(
             "{cli::col_blue(sentence$sentence)}
             [{examples_id[[ex]]}]
@@ -273,16 +273,16 @@ print.lexalxscompact <- function(x, ...) {
   )
 }
 
-#' Print method for texts
+#' Print method for collections
 #'
-#' Print method for objects of class `lexatx`, which prints text info.
+#' Print method for objects of class `lexacl`, which prints collection info.
 #'
-#' @param x An object of class `lexatx`.
+#' @param x An object of class `lexacl`.
 #' @param ... Arguments passed to print.
 #'
 #' @return Nothing. Used for its side effects.
 #' @export
-print.lexatx <- function(x, ...) {
+print.lexacl <- function(x, ...) {
   cli::cli_h1(cli::col_blue(x$title))
   for (sentence in seq_len(length(x$sentences))) {
     cli::cli_h2(x$sentences[[sentence]]$id)
@@ -299,7 +299,7 @@ print.lexatx <- function(x, ...) {
 
 #' Print method for sentences
 #'
-#' Print method for objects of class `lexast`, which prints text sentences.
+#' Print method for objects of class `lexast`, which prints collection sentences.
 #'
 #' @param x An object of class `lexast`.
 #' @param ... Arguments passed to print.

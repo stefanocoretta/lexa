@@ -22,24 +22,24 @@ read_grammar <- function(path) {
   yaml::read_yaml(file.path(path, "grammar.yaml"))
 }
 
-read_texts <- function(path) {
-  texts_path <- file.path(path, "texts")
-  texts_files <- list.files(texts_path, full.names = TRUE)
-  texts <- lapply(texts_files, function(text) {
-      tx <- yaml::read_yaml(text)
-      tx <- structure(tx, class = c("lexatx", "list"))
-      return(tx)
+read_collections <- function(path) {
+  collections_path <- file.path(path, "sentences")
+  collections_files <- list.files(collections_path, full.names = TRUE)
+  collections <- lapply(collections_files, function(collection) {
+      cl <- yaml::read_yaml(collection)
+      cl <- structure(cl, class = c("lexacl", "list"))
+      return(cl)
     }
   )
-  texts <- lapply(texts, function(text) {
-    sent_i <- lapply(text$sentences, function(sent) {
+  collections <- lapply(collections, function(collection) {
+    sent_i <- lapply(collection$sentences, function(sent) {
       st <- structure(sent, class = c("lexast", "list"))
       return(st)
     })
-    text$sentences <- sent_i
-    return(text)
+    collection$sentences <- sent_i
+    return(collection)
   })
-  texts_ids <- lapply(texts, function(x) x[["id"]])
-  names(texts) <- texts_ids
-  return(texts)
+  collections_ids <- lapply(collections, function(x) x[["id"]])
+  names(collections) <- collections_ids
+  return(collections)
 }

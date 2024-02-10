@@ -1,5 +1,9 @@
 # lexa 0.0.3.9000
 
+## Breaking
+
+- Now "texts" are sentences "collections". This means that the folder `texts` is now called `sentences` and each yaml file name should be `cl_00000n.yaml`.
+
 ## Added
 
 - `write_merged_lexicon()` to write a single yaml file with the lexicon entries.

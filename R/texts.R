@@ -1,4 +1,4 @@
-# Add text ----
+# Add collection ----
 
 #' Add text to database
 #'
@@ -11,16 +11,16 @@
 #'
 #' @return Nothing. Used for its side effects
 #' @export
-add_text <- function(lexadb,
+add_collection <- function(lexadb,
                       title = NULL) {
 
-  tx_entry <- create_text(
+  cl_entry <- create_collection(
     lexadb,
     title = title
   )
 
-  write_text(lexadb, tx_entry)
-  cli::cli_alert_success("Text {cli::col_blue(tx_entry$id)} added to the texts!")
+  write_collection(lexadb, cl_entry)
+  cli::cli_alert_success("Text {cli::col_blue(cl_entry$id)} added to the texts!")
 }
 
 
@@ -44,18 +44,18 @@ add_text <- function(lexadb,
 #' db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
 #' albanian <- load_lexadb(db_path)
 #'
-#' search_texts(albanian, "rrezet")
-#' search_texts(albanian, gloss = "sun")
-#' search_texts(albanian, gloss = "traveller")
-search_texts <- function(lexadb, word = NULL, whole = TRUE, gloss = NULL) {
+#' search_collections(albanian, "rrezet")
+#' search_collections(albanian, gloss = "sun")
+#' search_collections(albanian, gloss = "traveller")
+search_collections <- function(lexadb, word = NULL, whole = TRUE, gloss = NULL) {
   db_path <- attr(lexadb, "meta")$path
-  texts <- read_texts(db_path)
+  search_collections <- read_collections(db_path)
 
   matched <- list()
   n_matches <- 0
-  text_ids <- c()
-  for (text in texts) {
-    hits <- lapply(text$sentences, function(x) {
+  collection_ids <- c()
+  for (collection in search_collections) {
+    hits <- lapply(collection$sentences, function(x) {
       if (!is.null(word)) {
         if (whole) {
           stringr::str_detect(x$sentence, paste0("\\b", word, "\\b"))
@@ -68,31 +68,31 @@ search_texts <- function(lexadb, word = NULL, whole = TRUE, gloss = NULL) {
         stringr::str_detect(x$gloss, paste0("\\b", gloss, "\\b"))
       } else {
         cli::cli_abort("Please provide either a word or a gloss to
-          search in the texts.")
+          search in the collections.")
       }
     })
-    text$sentences <- text$sentences[unlist(hits)]
-    n_matches <- n_matches + length(text$sentences)
-    text_ids <- c(text_ids, text$id)
+    collection$sentences <- collection$sentences[unlist(hits)]
+    n_matches <- n_matches + length(collection$sentences)
+    collection_ids <- c(collection_ids, collection$id)
 
-    matched <- c(matched, list(text))
+    matched <- c(matched, list(collection))
   }
   cli::cli_alert_info("Found {n_matches} matches.")
 
-  names(matched) <- text_ids
+  names(matched) <- collection_ids
   return(matched)
 }
 
 
 
-# Show text ----
+# Show collection ----
 
-#' Show text or sentence with given id
+#' Show collection or sentence with given id
 #'
-#' It shows the text or sentence with the given id.
+#' It shows the collection or sentence with the given id.
 #'
 #' @param lexadb   A `lexadb` object (created with \code{\link{load_lexadb}}).
-#' @param text_id  A string with the text id (the `tx_` prefix and leading
+#' @param coll_id  A string with the collection id (the `cl_` prefix and leading
 #'        zeros can be omitted.)
 #' @param sent_id A string with the sentence id (the `st_` prefix and leading
 #'        zeros can be omitted.)
@@ -104,39 +104,39 @@ search_texts <- function(lexadb, word = NULL, whole = TRUE, gloss = NULL) {
 #' db_path <- system.file("extdata/albanian_lexadb", package = "lexa")
 #' albanian <- load_lexadb(db_path)
 #'
-#' show_text(albanian, 1)
-#' show_text(albanian, 1, 3)
-show_text <- function(lexadb, text_id, sent_id = NULL) {
+#' show_collection(albanian, 1)
+#' show_collection(albanian, 1, 3)
+show_collection <- function(lexadb, coll_id, sent_id = NULL) {
   db_path <- attr(lexadb, "meta")$path
 
-  if (!stringr::str_detect(text_id, "tx")) {
-    text_id <- stringr::str_pad(text_id, 6, "left", "0")
-    text_id <- paste0("tx_", text_id)
+  if (!stringr::str_detect(coll_id, "cl")) {
+    coll_id <- stringr::str_pad(coll_id, 6, "left", "0")
+    coll_id <- paste0("cl_", coll_id)
   }
 
-  tx_path <- file.path(
-    normalizePath(db_path), "texts",
-    paste0(text_id, ".yaml")
+  cl_path <- file.path(
+    normalizePath(db_path), "sentences",
+    paste0(coll_id, ".yaml")
   )
 
-  if (file.exists(tx_path)) {
-    tx <- yaml::read_yaml(tx_path)
+  if (file.exists(cl_path)) {
+    cl <- yaml::read_yaml(cl_path)
   } else {
     cli::cli_abort("Sorry, there is no text with the given id!")
   }
 
   if (is.null(sent_id)) {
-    attr(tx, "dbpath") <- db_path
-    class(tx) <- c("lexatx", "list")
+    attr(cl, "dbpath") <- db_path
+    class(cl) <- c("lexacl", "list")
 
-    return(tx)
+    return(cl)
   } else {
     if (!stringr::str_detect(sent_id, "st")) {
       sent_id <- stringr::str_pad(sent_id, 6, "left", "0")
       sent_id <- paste0("st_", sent_id)
     }
 
-    st <- tx$sentences[[sent_id]]
+    st <- cl$sentences[[sent_id]]
     attr(st, "dbpath") <- db_path
     class(st) <- c("lexast", "list")
 
@@ -147,9 +147,9 @@ show_text <- function(lexadb, text_id, sent_id = NULL) {
 
 # Actually writes text on disk in texts/.
 
-write_text <- function(lexadb, tx_entry) {
+write_collection <- function(lexadb, cl_entry) {
   db_path <- attr(lexadb, "meta")$path
-  tx_path <- file.path("texts", paste0(tx_entry$id, ".yaml"))
-  tx_full_path <- file.path(db_path, tx_path)
-  readr::write_file(tx_entry$out, tx_full_path)
+  cl_path <- file.path("sentences", paste0(cl_entry$id, ".yaml"))
+  cl_full_path <- file.path(db_path, cl_path)
+  readr::write_file(cl_entry$out, cl_full_path)
 }

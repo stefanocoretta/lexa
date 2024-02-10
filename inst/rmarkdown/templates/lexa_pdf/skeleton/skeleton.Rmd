@@ -33,10 +33,10 @@ Now you can include glosses, either as inline R code or with code chunk setting 
 
 ## Inline code
 
-`r include_gloss(eleryon, "tx_000001", "st_000001")`
+`r include_gloss(eleryon, "cl_000001", "st_000001")`
 
 ## Code chunk
 
 ```{r results="asis"}
-include_gloss(eleryon, "tx_000001", "st_000002")
+include_gloss(eleryon, "cl_000001", "st_000002")
 ```

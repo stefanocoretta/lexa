@@ -3,7 +3,7 @@
 #' The function returns the selected sentence as properly formatted html/latex code.
 #'
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
-#' @param text Text id.
+#' @param collection Collection id.
 #' @param sentence Sentence id to print.
 #' @param format Format to print out with (either \code{html} or \code{latex}).
 #'
@@ -15,10 +15,10 @@
 #' typeset_gloss(albanian, 1, 1)
 #' typeset_gloss(albanian, 1, 1, format = "html")
 #'
-typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
-  if (!stringr::str_detect(text, "tx")) {
-    text <- stringr::str_pad(text, 6, "left", "0")
-    text <- paste0("tx_", text)
+typeset_gloss <- function(lexadb, collection, sentence, format = "latex") {
+  if (!stringr::str_detect(collection, "cl")) {
+    collection <- stringr::str_pad(collection, 6, "left", "0")
+    collection <- paste0("cl_", collection)
   }
 
   if (!stringr::str_detect(sentence, "st")) {
@@ -27,15 +27,15 @@ typeset_gloss <- function(lexadb, text, sentence, format = "latex") {
   }
 
   db_path <- attr(lexadb, "meta")$path
-  text <- yaml::read_yaml(file.path(db_path, "texts", paste0(text, ".yaml")))
+  collection <- yaml::read_yaml(file.path(db_path, "sentences", paste0(collection, ".yaml")))
 
-  sentence_i <- text$sentences[[sentence]]$sentence
-  transcr <- text$sentences[[sentence]]$transcription
-  translit <- text$sentences[[sentence]]$transliteration
-  phon <- text$sentences[[sentence]]$phon
-  morpho <- text$sentences[[sentence]]$morpho
-  gloss <- text$sentences[[sentence]]$gloss
-  translation <- text$sentences[[sentence]]$translation
+  sentence_i <- collection$sentences[[sentence]]$sentence
+  transcr <- collection$sentences[[sentence]]$transcription
+  translit <- collection$sentences[[sentence]]$transliteration
+  phon <- collection$sentences[[sentence]]$phon
+  morpho <- collection$sentences[[sentence]]$morpho
+  gloss <- collection$sentences[[sentence]]$gloss
+  translation <- collection$sentences[[sentence]]$translation
 
   if (format == "latex") {
     gloss <- texify_gloss(gloss)

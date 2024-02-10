@@ -55,14 +55,14 @@ There are two ways of including an interlinear gloss in an Rmarkdown file.
 
 One is by using inline R code (see the source of this vignette for the code).
 
-`r include_gloss(eleryon, "tx_000001", "st_000001")`
+`r include_gloss(eleryon, "cl_000001", "st_000001")`
 
 ## R code chunk
 
 Alternatively, one can use an R code chunk and set `results='asis'`.
 
 ```{r asis, echo=TRUE, results='asis'}
-include_gloss(eleryon, "tx_000001", "st_000002")
+include_gloss(eleryon, "cl_000001", "st_000002")
 ```
 
 # Original writing system and transcription/transliteration
@@ -73,4 +73,4 @@ bromi_path <- system.file("extdata/bromi_lexadb", package = "lexa")
 bromi <- load_lexadb(bromi_path)
 ```
 
-`r include_gloss(bromi, "tx_000001", "st_000001")`
+`r include_gloss(bromi, "cl_000001", "st_000001")`

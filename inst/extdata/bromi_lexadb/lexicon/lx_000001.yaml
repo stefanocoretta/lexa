@@ -32,7 +32,7 @@ senses:
       eng: "lunch, midday meal"
       jpn: "昼食、昼間に食べる食事"
     examples:
-    - tx_000001:st_000001
-    - tx_000001:st_000002
+    - cl_000001:st_000001
+    - cl_000001:st_000002
 date_created: 2022-07-24 14:31:47
 date_modified: 2022-07-24 14:31:47
