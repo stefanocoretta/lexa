@@ -133,9 +133,9 @@ search_lexicon <- function(lexadb,
   if (!is.null(lexeme)) {
     hits <- lapply(lexicon, function(x) {
       if (whole) {
-        stringr::str_detect(x$lexeme, paste0("\\b", lexeme, "\\b"))
+        any(stringr::str_detect(x$lexeme, paste0("\\b", lexeme, "\\b")))
       } else {
-        stringr::str_detect(x$lexeme, lexeme)
+        any(stringr::str_detect(x$lexeme, lexeme))
       }
 
     })
@@ -172,12 +172,8 @@ search_lexicon <- function(lexadb,
 
 check_definitions <- function(entry, pattern) {
   defs <- lapply(entry$senses, function(y) y$definition)
-  sums <- sum(stringr::str_detect(defs, pattern))
-  if (sums != 0) {
-    TRUE
-  } else {
-    FALSE
-  }
+  hits <- any(stringr::str_detect(unlist(defs), pattern))
+  return(hits)
 }
 
 
