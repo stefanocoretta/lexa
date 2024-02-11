@@ -47,7 +47,39 @@ construct_entry <-  function(lexadb = NULL,
                           notes = NULL,
                           homophone = NULL) {
 
-  lx_id <- ifelse(is.null(lexadb), "lx_000001", generate_lx_id(lexadb))
+  if (!is.null(lexadb)) {
+    db_path <- attr(lexadb, "meta")$path
+    entries <- lapply(
+      read_lexicon(db_path),
+      function(entry) entry$lexeme
+    )
+
+    if (!is.null(lexeme)) {
+      if (lexeme %in% entries) {
+        homophones_n <- sum(entries == lexeme)
+        cli::cli_alert_warning(
+          cli::pluralize("{homophones_n} homophone{?s} found!")
+        )
+        cont <- usethis::ui_yeah(
+          "Continue?",
+          yes = "Yes",
+          no = "No",
+          shuffle = FALSE
+        )
+
+        if (!cont) {
+          return(cli::cli_alert_warning("Entry not created!"))
+        } else (
+          homophone <- homophones_n + 1L
+        )
+      }
+    }
+
+    lx_id <- generate_lx_id(lexadb)
+  } else {
+    lx_id <- generate_lx_id()
+  }
+
   today <- as.character(Sys.time())
 
   # entry schema
