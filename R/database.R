@@ -22,11 +22,6 @@ create_lexadb <- function(parent = ".", name) {
   init_collections(path)
 }
 
-
-
-
-# Load lexadb ----
-
 #' Load Lexa database
 #'
 #' It loadds a Lexa database from the specified path. The path is the directory
