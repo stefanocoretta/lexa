@@ -14,7 +14,7 @@
 add_collection <- function(lexadb,
                       title = NULL) {
 
-  cl_entry <- create_collection(
+  cl_entry <- construct_collection(
     lexadb,
     title = title
   )

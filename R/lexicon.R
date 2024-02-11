@@ -62,7 +62,7 @@ add_entry <- function(lexadb,
     }
   }
 
-  lx_entry <- create_entry(
+  lx_entry <- construct_entry(
     lexadb,
     lexeme = lexeme,
     gloss = gloss,

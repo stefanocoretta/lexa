@@ -13,7 +13,7 @@ init_config <- function(path, name) {
 init_lexicon <- function(path) {
   dir.create(file.path(path, "lexicon"), FALSE, TRUE)
 
-  lx_entry <- create_entry(NULL)
+  lx_entry <- construct_entry(NULL)
   yaml::write_yaml(lx_entry$out, file.path(path, "lexicon", "lx_000001.yaml"))
 }
 
@@ -24,7 +24,7 @@ init_grammar <- function(path) {
 
 init_collections <- function(path) {
   dir.create(file.path(path, "sentences"), FALSE, TRUE)
-  cl_example <- create_collection()
+  cl_example <- construct_collection()
   yaml::write_yaml(cl_example$out, file.path(path, "sentences", "cl_000001.yaml"))
 }
 
@@ -35,7 +35,7 @@ init_collections <- function(path) {
 # Prepare empty entry skeleton.
 # Outputs a list with entry id (`id`) and output list (`out`).
 
-create_entry <-  function(lexadb = NULL,
+construct_entry <-  function(lexadb = NULL,
                           lexeme = NULL,
                           gloss = NULL,
                           part_of_speech = NULL,
@@ -88,7 +88,7 @@ create_entry <-  function(lexadb = NULL,
 # Prepare empty collection skeleton.
 # Outputs a list with collection id (`id`) and output string (`out`).
 
-create_collection <- function(lexadb = NULL, title = NULL) {
+construct_collection <- function(lexadb = NULL, title = NULL) {
   cl_id <- ifelse(is.null(lexadb), "cl_000001", generate_cl_id(lexadb))
 
   out <- list(
