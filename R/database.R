@@ -16,10 +16,10 @@ create_lexadb <- function(parent = ".", name) {
   path <- file.path(parent, name_db)
   dir.create(path, FALSE, TRUE)
 
-  create_config(path, name)
-  create_lexicon(path)
-  create_grammar(path)
-  create_collections(path)
+  init_config(path, name)
+  init_lexicon(path)
+  init_grammar(path)
+  init_collections(path)
 }
 
 

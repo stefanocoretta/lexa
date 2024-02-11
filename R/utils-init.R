@@ -1,6 +1,6 @@
 # Lexa create functions ----
 
-create_config <- function(path, name) {
+init_config <- function(path, name) {
   config <- list(
     schema = "lexadb",
     name = name
@@ -8,19 +8,19 @@ create_config <- function(path, name) {
   yaml::write_yaml(config, file.path(path, "config.yaml"))
 }
 
-create_lexicon <- function(path) {
+init_lexicon <- function(path) {
   dir.create(file.path(path, "lexicon"), FALSE, TRUE)
 
   lx_entry <- create_entry(NULL)
   yaml::write_yaml(lx_entry$out, file.path(path, "lexicon", "lx_000001.yaml"))
 }
 
-create_grammar <- function(path) {
+init_grammar <- function(path) {
   grammar <- list()
   yaml::write_yaml(grammar, file.path(path, "grammar.yaml"))
 }
 
-create_collections <- function(path) {
+init_collections <- function(path) {
   dir.create(file.path(path, "sentences"), FALSE, TRUE)
   cl_example <- create_collection()
   yaml::write_yaml(cl_example$out, file.path(path, "sentences", "cl_000001.yaml"))
