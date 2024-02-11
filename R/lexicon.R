@@ -225,27 +225,6 @@ show_entry <- function(lexadb, entry_id) {
   return(lx)
 }
 
-
-
-
-# Actually writes entry on disk in lexicon/.
-
-write_entry <- function(lexadb, lx_entry) {
-  db_path <- attr(lexadb, "meta")$path
-  lx_path <- file.path("lexicon", paste0(lx_entry$id, ".yaml"))
-  lx_full_path <- file.path(db_path, lx_path)
-  yaml::write_yaml(lx_entry$out, lx_full_path)
-}
-
-write_lexicon <- function(lexadb, lexalx) {
-  purrr::walk(
-    lexalx,
-    function(entry) {
-      write_entry(lexadb, entry)
-    }
-  )
-}
-
 # Show and edit entries ----
 
 #' Open a lexical entry
