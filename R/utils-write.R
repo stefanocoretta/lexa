@@ -16,7 +16,7 @@ write_lexicon <- function(lexadb, lexalx) {
   )
 }
 
-# Actually writes text on disk in texts/.
+# Actually writes collection on disk in sentences/.
 
 write_collection <- function(lexadb, cl_entry) {
   db_path <- attr(lexadb, "meta")$path
