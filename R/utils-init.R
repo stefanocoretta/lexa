@@ -1,4 +1,6 @@
-# Lexa create functions ----
+# Lexa init functions ----
+# These functions initialise different parts of a Lexa database. They are used
+# when creating a new Lexa database with `create_lexadb()`.
 
 init_config <- function(path, name) {
   config <- list(
