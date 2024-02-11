@@ -26,11 +26,11 @@ add_collection <- function(lexadb,
 
 
 
-# Search words ----
+# Search collections ----
 
-#' Search words in texts
+#' Search words in sentence collections
 #'
-#' Search words in the texts collection.
+#' Search words in the sentence collections.
 #'
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
 #' @param word A regular expression to search among the sentences.

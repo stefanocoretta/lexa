@@ -168,17 +168,6 @@ search_lexicon <- function(lexadb,
   }
 }
 
-# Helper function to search through definitions
-
-check_definitions <- function(entry, pattern) {
-  defs <- lapply(entry$senses, function(y) y$definition)
-  hits <- any(stringr::str_detect(unlist(defs), pattern))
-  return(hits)
-}
-
-
-
-
 # Show entry ----
 
 #' Show lexicon entry with given id
@@ -225,7 +214,7 @@ show_entry <- function(lexadb, entry_id) {
   return(lx)
 }
 
-# Show and edit entries ----
+# Open and edit entries ----
 
 #' Open a lexical entry
 #'
@@ -348,4 +337,14 @@ write_merged_lexicon <- function(lexadb, sort = TRUE, overwrite = FALSE) {
     yaml::write_yaml(merged, merged_file)
   }
 
+}
+
+# Entry helpers ----
+
+# Helper function to search through definitions
+
+check_definitions <- function(entry, pattern) {
+  defs <- lapply(entry$senses, function(y) y$definition)
+  hits <- any(stringr::str_detect(unlist(defs), pattern))
+  return(hits)
 }
