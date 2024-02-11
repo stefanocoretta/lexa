@@ -43,7 +43,7 @@ import_lexicon_csv <- function(lexadb, path) {
     lexicon_list,
     function(x) {
       lx_entry <- list()
-      lx_entry$id <- create_lx_id(lexadb)
+      lx_entry$id <- generate_lx_id(lexadb)
 
       out <- glue::glue(
         'id: {lx_entry$id}

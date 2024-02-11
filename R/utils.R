@@ -1,6 +1,6 @@
 # Check last entry ID and increase hex by 1.
 
-create_lx_id <- function(lexadb) {
+generate_lx_id <- function(lexadb) {
   db_path <- attr(lexadb, "meta")$path
   lx_files <- list.files(file.path(db_path, "lexicon"), pattern = "*.yaml")
   if (length(lx_files) > 0) {
@@ -18,7 +18,7 @@ create_lx_id <- function(lexadb) {
 
 # Check last collection ID and increase hex by 1.
 
-create_cl_id <- function(lexadb) {
+generate_cl_id <- function(lexadb) {
   db_path <- attr(lexadb, "meta")$path
   cl_files <- list.files(file.path(db_path, "sentences"), pattern = "*.yaml")
   if (length(cl_files) > 0) {

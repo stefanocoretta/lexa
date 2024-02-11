@@ -47,7 +47,7 @@ create_entry <-  function(lexadb = NULL,
                           notes = NULL,
                           homophone = NULL) {
 
-  lx_id <- ifelse(is.null(lexadb), "lx_000001", create_lx_id(lexadb))
+  lx_id <- ifelse(is.null(lexadb), "lx_000001", generate_lx_id(lexadb))
   today <- as.character(Sys.time())
 
   # entry schema
@@ -89,7 +89,7 @@ create_entry <-  function(lexadb = NULL,
 # Outputs a list with collection id (`id`) and output string (`out`).
 
 create_collection <- function(lexadb = NULL, title = NULL) {
-  cl_id <- ifelse(is.null(lexadb), "cl_000001", create_cl_id(lexadb))
+  cl_id <- ifelse(is.null(lexadb), "cl_000001", generate_cl_id(lexadb))
 
   out <- list(
     id = cl_id,
