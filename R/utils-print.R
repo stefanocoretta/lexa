@@ -212,7 +212,7 @@ print.lexalx <- function(x, ...) {
   cli::cli_text("{crayon::red('Type:')} {x$morph_type}")
   cli::cli_h2("Allomorphs")
   for (allo in seq_len(length(x$allomorphs))) {
-    conditioning <- x$allomorphs[[allo]]$conditioning
+    conditioning <- x$allomorphs[[allo]]$condition
     morph <- x$allomorphs[[allo]]$morph
     if (length(morph) > 1) {
       morph_tr <- morph[["translit"]]

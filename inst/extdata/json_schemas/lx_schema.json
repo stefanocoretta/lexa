@@ -3,12 +3,15 @@
 "type": "object",
 "properties": {
   "id": { "type": "string" },
-  "lexeme": { "type": "string" },
+  "lexeme": {
+    "oneOf": [
+      { "type": "string" },
+      { "type": "object" }
+      ]
+  },
   "phon": {
       "oneOf": [
-        {
-          "type": "string"
-        },
+        { "type": "string" },
         {
           "type": "object",
           "properties": {
@@ -43,8 +46,35 @@
         "type": "object",
         "properties": {
           "id": { "type": "string" },
-          "morph": { "type": "string" },
-          "phon": { "type": "string" }
+          "morph": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "object" }
+              ]
+          },
+          "phon": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "phm": {
+                    "type": "string"
+                  },
+                  "pht": {
+                    "type": "string"
+                  }
+                },
+                "required": ["phm", "pht"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "condition": {
+            "type": "object"
+          }
         },
         "required": ["id", "morph", "phon"]
       }
@@ -57,8 +87,27 @@
         "type": "object",
         "properties": {
           "id": { "type": "string" },
-          "gloss": { "type": "string" },
-          "definition": { "type": "string" },
+          "gloss": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "object" }
+              ]
+          },
+          "definition": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "object" }
+              ]
+          },
+          "literal": { "type": "string" },
+          "scientific": { "type": "string" },
+          "usage": { "type": "string" },
+          "inflectional_features": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
           "examples": {
           "oneOf": [
             {"type": "string"},
@@ -67,11 +116,39 @@
               "items": { "type": "string" }
             }
           ]
-          }
+          },
+          "etymology": { "type": "string" }
         },
         "required": ["id", "gloss", "definition"]
       }
     }
+  },
+  "crossref": {
+    "oneOf": [
+      {"type": "string"},
+      {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    ]
+  },
+  "variants": {
+    "oneOf": [
+      {"type": "string"},
+      {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    ]
+  },
+  "lists": {
+    "oneOf": [
+      {"type": "string"},
+      {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    ]
   },
   "notes": {
     "oneOf": [
@@ -89,6 +166,7 @@
   "id",
   "lexeme",
   "morph_type",
+  "morph_category",
   "part_of_speech",
   "allomorphs",
   "senses",

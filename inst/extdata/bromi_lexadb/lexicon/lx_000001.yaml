@@ -8,10 +8,6 @@ phon:
 morph_category: lexical
 morph_type: root
 part_of_speech: noun
-inflectional_features:
-  class: ~
-etymology: ~
-notes: ~
 allomorphs:
   al_01:
     id: al_01
