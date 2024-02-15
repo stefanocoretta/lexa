@@ -26,6 +26,8 @@
 
 - The `whole` argument in `search_lexicon()` is now `FALSE` by default.
 
+- `load_lexadb()` now checks for validity of lexical entries based on the expected schema.
+
 
 # lexa 0.0.3
 

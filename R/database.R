@@ -58,5 +58,12 @@ load_lexadb <- function(path) {
     path = normalizePath(path)
   )
 
+  lx_val <- validate_lexicon(lexadb)
+  if (any(!unlist(lx_val))) {
+    invalid_ids <- names(lx_val[lx_val == FALSE])
+    cli::cli_alert_danger("The lexicon has entries that do not match the expected schema:")
+    cli::cli_li(invalid_ids)
+  }
+
   return(lexadb)
 }
