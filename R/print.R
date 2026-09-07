@@ -105,7 +105,7 @@ print.lexalx <- function(x, ...) {
   )
 
   if (!is.null(x$grammatical_features)) {
-    lexeme_line <- paste(lexeme_line, "({x$grammatical_features})")
+    lexeme_line <- paste(lexeme_line, "({glue::glue_collapse(x$grammatical_features, sep = ', ')})")
   }
 
   cli::cli_h1("Entry {x$id}")
@@ -174,10 +174,6 @@ print.lexalx <- function(x, ...) {
     cli::cli_h2("Etymology")
     cli::cli_text(x$etymology)
   }
-
-  cli::cli_h2("Grammatical info")
-  cli::cli_text("{crayon::red('Type:')} {x$word_type}")
-  cli::cli_text("{crayon::red('Class:')} {x$word_class}")
 
   if (!is.null(x$notes)) {
     cli::cli_h2("Notes")
