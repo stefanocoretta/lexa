@@ -6,8 +6,6 @@
 \alias{lexaR-package}
 \title{lexaR: Lexicon and texts database management}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
-
 It provides a database schema and functions to manage a language database made of a lexicon and a collection of texts.
 }
 \seealso{

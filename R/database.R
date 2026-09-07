@@ -77,6 +77,7 @@ create_lexadb <- function(name, parent = ".", author = NULL) {
 #' @param homophone The homophone numeric index.
 #'
 #' @return Nothing. Used for its side effects
+#' @export
 add_entry <- function(lexacon,
                       lexeme,
                       gloss,
@@ -229,9 +230,9 @@ validate_lexadb <- function(lexacon) {
 
 generate_lx_id <- function(lexadb) {
   lexicon <- lexadb$lexicon
-  lexicon_length <- length(lexicon)
+  idn <- as.numeric(stringr::str_sub(names(lexicon), 4, 9))
 
-  new_id_n <- lexicon_length + 1
+  new_id_n <- max(idn) + 1
   new_id_str <- sprintf("%06d", new_id_n)
   new_id <- paste0("lx_", new_id_str)
 
