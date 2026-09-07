@@ -73,6 +73,8 @@ create_lexadb <- function(name, parent = ".", author = NULL) {
 #' @param gloss The gloss as a string.
 #' @param word_type The type of lexical entry (root, stem, affix, clitic, particle, compound, phrase).
 #' @param word_class The word class of the lexical entry.
+#' @param phonemic The phonemic transcription.
+#' @param phonetic The phonetic transcription.
 #' @param definition The definition of the entry as a string.
 #' @param homophone The homophone numeric index.
 #'
@@ -83,6 +85,8 @@ add_entry <- function(lexacon,
                       gloss,
                       word_type = NULL,
                       word_class = NULL,
+                      phonemic = NULL,
+                      phonetic = NULL,
                       definition = gloss,
                       homophone = NULL) {
 
@@ -132,6 +136,8 @@ add_entry <- function(lexacon,
   new_lx[[lx_id]] <- list(
     id = lx_id,
     lexeme = lexeme,
+    phonemic = phonemic,
+    phonetic = phonetic,
     word_type = word_type,
     word_class = word_class,
     homophone = homophone,

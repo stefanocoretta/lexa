@@ -10,6 +10,8 @@ add_entry(
   gloss,
   word_type = NULL,
   word_class = NULL,
+  phonemic = NULL,
+  phonetic = NULL,
   definition = gloss,
   homophone = NULL
 )
@@ -24,6 +26,10 @@ add_entry(
 \item{word_type}{The type of lexical entry (root, stem, affix, clitic, particle, compound, phrase).}
 
 \item{word_class}{The word class of the lexical entry.}
+
+\item{phonemic}{The phonemic transcription.}
+
+\item{phonetic}{The phonetic transcription.}
 
 \item{definition}{The definition of the entry as a string.}
 
