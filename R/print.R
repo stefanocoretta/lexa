@@ -2,19 +2,18 @@
 
 #' Print method for Lexa databases
 #'
-#' Print method for objects of class `lexacon`, which prints database info and
+#' Print method for objects of class `lexdb`, which prints database info and
 #' statistics.
 #'
-#' @param x An object of class `lexacon`.
+#' @param x An object of class `lexadb`.
 #' @param ... Arguments passed to print.
 #'
 #' @return Nothing. Used for its side effects.
 #' @export
 #'
-print.lexacon <- function(x, ...) {
-  lexadb <- read_lexadb(x)
-
-  lexicon <- lexadb$lexicon
+print.lexadb <- function(x, ...) {
+  metadata <- x$config$metadata
+  lexicon <- x$lexicon
   lexicon_length <- length(lexicon)
 
   wtypes <- table(unlist(lapply(lexicon, function(x) x$word_type)))
@@ -52,11 +51,11 @@ print.lexacon <- function(x, ...) {
   cli::cli_h1("Database info")
   cli::cli_text(
     "{crayon::green(cli::symbol$circle_filled)} {crayon::blue('Name:')}
-    {x$metadata$name}"
+    {metadata$name}"
   )
   cli::cli_text(
     "{crayon::green(cli::symbol$circle_filled)} {crayon::blue('Author:')}
-    {x$metadata$author}"
+    {metadata$author}"
   )
   cli::cli_text(
     "{crayon::green(cli::symbol$info)} {crayon::blue('Entries:')}

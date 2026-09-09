@@ -55,13 +55,14 @@ load_lexadb <- function(path) {
     return(validation_tbl)
   }
 
-  lexacon <- list(
+  lexadb <- list(
+    dbpath = norm_path,
     config = config,
-    dbpath = norm_path
+    lexicon = read_lexicon(file.path(norm_path, "lexicon.yaml"))
   )
-  class(lexacon) <- c("lexacon", "list")
+  class(lexadb) <- c("lexadb", "list")
 
-  return(lexacon)
+  return(lexadb)
 }
 
 #' Create a new Lexa database
@@ -235,24 +236,18 @@ new_lexadb <- function(name, author, schema_version) {
   return(lexadb)
 }
 
-read_lexadb <- function(lexadb_con) {
-  dbpath <- lexadb_con$dbpath
+read_lexicon <- function(path) {
 
-  lexadb_yaml <- yaml::read_yaml(dbpath)
-  lx_names <- grep("^lx_[0-9]+$", names(lexadb_yaml), value = TRUE)
-  lexadb <- list(
-    metadata = lexadb_yaml$metadata,
-    lexicon = lexadb_yaml[lx_names]
-  )
-  lexadb$lexicon <- lapply(
-    lexadb$lexicon,
+  lexicon_yaml <- yaml::read_yaml(path)
+  lexicon <- lapply(
+    lexicon_yaml,
     function(x) {
       class(x) <- "lexalx"
       x
     }
   )
 
-  return(lexadb)
+  return(lexicon)
 }
 
 validate_config <- function(config, version) {
