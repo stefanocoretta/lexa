@@ -1,10 +1,10 @@
 # Main function ----
 
-#' Open connection to Lexa database
+#' Load a Lexa database
 #'
-#' @param path Path to Lexa database file.
+#' @param path Path to Lexa database.
 #'
-#' @return A lexadb connection (`lexacon` object).
+#' @return A `lexadb` object.
 #' @export
 load_lexadb <- function(path) {
   norm_path <- normalizePath(file.path(path), mustWork = FALSE)
@@ -46,6 +46,7 @@ load_lexadb <- function(path) {
 
   lexicon_validation <- validate_lexicon(lexicon, schema_version)
 
+  # Stop if lexicon is not valid
   if (!lexicon_validation) {
     cli::cli_alert_danger("The lexadb does not match the expected schema.")
 
@@ -55,6 +56,7 @@ load_lexadb <- function(path) {
     return(validation_tbl)
   }
 
+  # Build lexadb object
   lexadb <- list(
     dbpath = norm_path,
     config = config,
@@ -246,6 +248,8 @@ read_lexicon <- function(path) {
   return(lexicon)
 }
 
+## Validation ----
+
 validate_config <- function(config, version) {
   config_json <- jsonlite::toJSON(config, auto_unbox = TRUE)
   validated <- jsonvalidate::json_validate(
@@ -273,6 +277,8 @@ validate_lexicon <- function(lexicon, version) {
   )
   return(validated)
 }
+
+## Utilities ----
 
 generate_lx_id <- function(lexadb) {
   lexicon <- lexadb$lexicon

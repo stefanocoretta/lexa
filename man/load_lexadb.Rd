@@ -2,16 +2,16 @@
 % Please edit documentation in R/database.R
 \name{load_lexadb}
 \alias{load_lexadb}
-\title{Open connection to Lexa database}
+\title{Load a Lexa database}
 \usage{
 load_lexadb(path)
 }
 \arguments{
-\item{path}{Path to Lexa database file.}
+\item{path}{Path to Lexa database.}
 }
 \value{
-A lexadb connection (\code{lexacon} object).
+A \code{lexadb} object.
 }
 \description{
-Open connection to Lexa database
+Load a Lexa database
 }
