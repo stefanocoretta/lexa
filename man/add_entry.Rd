@@ -5,7 +5,7 @@
 \title{Add entry to lexicon}
 \usage{
 add_entry(
-  lexacon,
+  lexadb,
   lexeme,
   gloss,
   word_type = NULL,
@@ -17,7 +17,7 @@ add_entry(
 )
 }
 \arguments{
-\item{lexacon}{A \code{lexacon} object (created with \code{\link{load_lexadb}}).}
+\item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
 \item{lexeme}{The entry as a string.}
 

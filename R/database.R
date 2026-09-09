@@ -112,7 +112,7 @@ create_lexadb <- function(name, author, parent = ".") {
 #' skeleton is written to disk, in the `lexicon/` directory, for the user
 #' to edit at will.
 #'
-#' @param lexacon A `lexacon` object (created with \code{\link{load_lexadb}}).
+#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
 #' @param lexeme The entry as a string.
 #' @param gloss The gloss as a string.
 #' @param word_type The type of lexical entry (root, stem, affix, clitic, particle, compound, phrase).
@@ -124,7 +124,7 @@ create_lexadb <- function(name, author, parent = ".") {
 #'
 #' @return Nothing. Used for its side effects
 #' @export
-add_entry <- function(lexacon,
+add_entry <- function(lexadb,
                       lexeme,
                       gloss,
                       word_type = NULL,
@@ -134,9 +134,13 @@ add_entry <- function(lexacon,
                       definition = gloss,
                       homophone = NULL) {
 
-  if (!("lexacon" %in% class(lexacon))) {
-    cli::cli_abort(c("x" = "'{lexacon}' is not a lexadb connection!"))
+  if (!("lexadb" %in% class(lexadb))) {
+    cli::cli_abort(c("x" = "'{lexadb}' is not a lexadb object!"))
   }
+
+  db_path <- lexadb$dbpath
+  # Need to re-read lexicon in case user doesn't reload the db
+  lexicon <- yaml::read_yaml(file.path(db_path, "lexicon.yaml"))
 
   if (is.null(word_type)) {
     word_type = "stem"
@@ -145,10 +149,8 @@ add_entry <- function(lexacon,
     word_class = ""
   }
 
-  db_path <- lexacon$dbpath
-  lexadb <- read_lexadb(lexacon)
   entries <- lapply(
-    lexadb$lexicon,
+    lexicon,
     function(entry) entry$lexeme
   )
 
@@ -171,7 +173,7 @@ add_entry <- function(lexacon,
     )
   }
 
-  lx_id <- generate_lx_id(lexadb)
+  lx_id <- generate_lx_id(db_path)
 
   today <- format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
 
@@ -201,7 +203,7 @@ add_entry <- function(lexacon,
 
   out <- yaml::as.yaml(new_lx)
 
-  cat(out, file = db_path, append = TRUE, sep = "")
+  cat(out, file = file.path(db_path, "lexicon.yaml"), append = TRUE, sep = "")
   cli::cli_alert_success("Entry '{lx_id}' added!")
 
 }
@@ -280,8 +282,9 @@ validate_lexicon <- function(lexicon, version) {
 
 ## Utilities ----
 
-generate_lx_id <- function(lexadb) {
-  lexicon <- lexadb$lexicon
+generate_lx_id <- function(path) {
+  # Need to re-read lexicon in case user doesn't reload the db
+  lexicon <- yaml::read_yaml(file.path(path, "lexicon.yaml"))
   idn <- as.numeric(stringr::str_sub(names(lexicon), 4, 9))
 
   new_id_n <- max(idn) + 1
