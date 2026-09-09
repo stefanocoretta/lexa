@@ -85,7 +85,7 @@ search_lexicon <- function(lexacon,
 #'
 #' It shows the entry with the given id.
 #'
-#' @param lexacon   A `lexacon` object (created with \code{\link{load_lexadb}}).
+#' @param lexadb   A `lexadb` object (created with \code{\link{load_lexadb}}).
 #' @param entry_id A string with the entry id (the `lx_` prefix and leading
 #'        zeros can be omitted.)
 #'
@@ -99,8 +99,7 @@ search_lexicon <- function(lexacon,
 #' show_entry(eleryon, 6)
 #' # Same as:
 #' show_entry(eleryon, "lx_000006")
-show_entry <- function(lexacon, entry_id) {
-  lexadb <- read_lexadb(lexacon)
+show_entry <- function(lexadb, entry_id) {
   lexicon <- lexadb$lexicon
 
   if (!stringr::str_detect(entry_id, "lx")) {
