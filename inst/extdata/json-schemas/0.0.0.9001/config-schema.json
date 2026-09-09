@@ -25,6 +25,12 @@
         },
         "author": {
           "type": "string"
+        },
+        "languages": {
+          "type": "object",
+          "additionalProperties": {
+              "type": "string"
+          }
         }
       },
       "additionalProperties": false
