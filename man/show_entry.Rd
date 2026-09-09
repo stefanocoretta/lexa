@@ -4,10 +4,10 @@
 \alias{show_entry}
 \title{Show lexicon entry with given id}
 \usage{
-show_entry(lexacon, entry_id)
+show_entry(lexadb, entry_id)
 }
 \arguments{
-\item{lexacon}{A \code{lexacon} object (created with \code{\link{load_lexadb}}).}
+\item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
 \item{entry_id}{A string with the entry id (the \code{lx_} prefix and leading
 zeros can be omitted.)}

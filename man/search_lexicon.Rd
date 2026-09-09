@@ -5,7 +5,7 @@
 \title{Search lexicon entries}
 \usage{
 search_lexicon(
-  lexacon,
+  lexadb,
   lexeme = NULL,
   whole = FALSE,
   definition = NULL,
@@ -14,7 +14,7 @@ search_lexicon(
 )
 }
 \arguments{
-\item{lexacon}{A \code{lexacon} object (created with \code{\link{load_lexadb}}).}
+\item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
 \item{lexeme}{A regular expression to search among entries.}
 
@@ -23,9 +23,9 @@ search_lexicon(
 
 \item{definition}{A regular expression to search among sense definitions.}
 
-\item{show_entry}{Whether to print all the entry info (uses \code{print.lexalx}, default is `FALSE``).}
+\item{word_class}{A regular expression to match the word class/part of speech.}
 
-\item{pos}{A regular expression to match the part of speech.}
+\item{show_entry}{Whether to print all the entry info (uses \code{print.lexalx}, default is `FALSE``).}
 }
 \value{
 A list of \code{lexalx} objects.
@@ -41,7 +41,7 @@ eleryon <- load_lexadb(db_path)
 search_lexicon(eleryon, "chǭs")
 
 # Search for all verbs
-search_lexicon(eleryon, ".*", pos = "verb")
+search_lexicon(eleryon, ".*", word_class = "verb")
 
 # Search for entry with meaning "love"
 search_lexicon(eleryon, definition = "love")

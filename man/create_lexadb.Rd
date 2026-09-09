@@ -4,21 +4,23 @@
 \alias{create_lexadb}
 \title{Create a new Lexa database}
 \usage{
-create_lexadb(name, parent = ".", author = NULL)
+create_lexadb(name, author, parent = ".")
 }
 \arguments{
-\item{name}{Name of the Lexa database (the \code{.yaml} extension will be appended to the name automatically).}
+\item{name}{Name of the Lexa database (\verb{_lexadb} will be appended to the name automatically).}
+
+\item{author}{Author of the Lexa database,}
 
 \item{parent}{Parent directory (default is current working directory).}
 }
 \value{
-A lexadb connection.
+Creates a new LexaDB and returns a \code{lexadb} object.
 }
 \description{
 Create a new Lexa database
 }
 \examples{
 \dontrun{
-create_lexadb(name = "my_db")
+create_lexadb(name = "new", author = "Me")
 }
 }

@@ -67,36 +67,41 @@ load_lexadb <- function(path) {
 
 #' Create a new Lexa database
 #'
-#' @param name Name of the Lexa database (the `.yaml` extension will be appended to the name automatically).
+#' @param name Name of the Lexa database (`_lexadb` will be appended to the name automatically).
+#' @param author Author of the Lexa database,
 #' @param parent Parent directory (default is current working directory).
 #'
-#' @return A lexadb connection.
+#' @return Creates a new LexaDB and returns a `lexadb` object.
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' create_lexadb(name = "my_db")
+#' create_lexadb(name = "new", author = "Me")
 #' }
-create_lexadb <- function(name, parent = ".", author = NULL) {
-  file <- paste0(name, ".yaml")
-  path <- file.path(parent, file)
+create_lexadb <- function(name, author, parent = ".") {
+  lexadb_dir <- paste0(name, "_lexadb")
+  norm_dir <- normalizePath(lexadb_dir, mustWork = FALSE)
 
-  if (file.exists(normalizePath(path, mustWork = FALSE))) {
-    cli::cli_abort(c("x" = "LexaDB '{file}' already exists!"))
+  if (dir.exists(norm_dir)) {
+    cli::cli_abort(c("x" = "LexaDB '{lexadb_dir}' already exists!"))
   }
 
-  lexadb <- new_lexadb(name, author, schema_version = "0.0.0.9001")
-
-  dir.create(parent, FALSE, TRUE)
-  write_lexadb(lexadb, path)
-
-  lexadb_con <- list(
-    metadata = lexadb$metadata,
-    dbpath = normalizePath(path)
+  config <- list(
+    metadata = list(
+      name = name,
+      schema = "lexadb",
+      schema_version = "0.0.0.9001",
+      author = author
+    )
   )
-  class(lexadb_con) <- c("lexacon", "list")
+  lexicon <- new_lexicon()
 
-  return(lexadb_con)
+  dir.create(norm_dir, FALSE, TRUE)
+  yaml::write_yaml(config, file.path(norm_dir, "config.yaml"))
+  yaml::write_yaml(lexicon, file.path(norm_dir, "lexicon.yaml"))
+
+  lexadb <- load_lexadb(norm_dir)
+  return(lexadb)
 }
 
 #' Add entry to lexicon
@@ -201,14 +206,7 @@ add_entry <- function(lexacon,
 
 # Internals ----
 
-new_lexadb <- function(name, author, schema_version) {
-  metadata <- list(
-    schema = "lexadb",
-    schema_version = schema_version,
-    name = name,
-    author = ifelse(is.null(author), Sys.info()[["user"]], author)
-  )
-
+new_lexicon <- function() {
   now <- format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
 
   lx_000001 <- list(
@@ -227,13 +225,11 @@ new_lexadb <- function(name, author, schema_version) {
     date_modified = now
   )
 
-  lexadb <- list(
-    metadata = metadata,
+  lexicon <- list(
     lx_000001 = lx_000001
   )
-  class(lexadb) <- c("lexadb", "list")
 
-  return(lexadb)
+  return(lexicon)
 }
 
 read_lexicon <- function(path) {
