@@ -4,12 +4,12 @@
 #'
 #' Search entries in the lexicon, by entry form or sense definitions.
 #'
-#' @param lexacon A `lexacon` object (created with \code{\link{load_lexadb}}).
+#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
 #' @param lexeme A regular expression to search among entries.
 #' @param whole Whether to search for whole words (only applies to `entry`,
 #'    `FALSE` by default).
 #' @param definition A regular expression to search among sense definitions.
-#' @param pos A regular expression to match the part of speech.
+#' @param word_class A regular expression to match the word class/part of speech.
 #' @param show_entry Whether to print all the entry info (uses `print.lexalx`, default is `FALSE``).
 #'
 #' @return A list of `lexalx` objects.
@@ -23,11 +23,11 @@
 #' search_lexicon(eleryon, "chǭs")
 #'
 #' # Search for all verbs
-#' search_lexicon(eleryon, ".*", pos = "verb")
+#' search_lexicon(eleryon, ".*", word_class = "verb")
 #'
 #' # Search for entry with meaning "love"
 #' search_lexicon(eleryon, definition = "love")
-search_lexicon <- function(lexacon,
+search_lexicon <- function(lexadb,
                            lexeme = NULL,
                            whole = FALSE,
                            definition = NULL,
@@ -38,7 +38,6 @@ search_lexicon <- function(lexacon,
       in the lexicon.")
   }
 
-  lexadb <- read_lexadb(lexacon)
   lexicon <- lexadb$lexicon
 
   if (!is.null(lexeme)) {
