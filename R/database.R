@@ -7,25 +7,61 @@
 #' @return A lexadb connection (`lexacon` object).
 #' @export
 load_lexadb <- function(path) {
-  lexadb <- yaml::read_yaml(path)
+  norm_path <- normalizePath(file.path(path), mustWork = FALSE)
 
-  validation <- validate_lexadb(lexadb)
+  # Stop if config.yaml is not found
+  if (!file.exists(file.path(norm_path, "config.yaml"))) {
+    cli::cli_abort(
+      c("There is no {.file config.yaml}.", "x" = "LexaDB not loaded.")
+    )
+  }
 
-  if (!validation) {
-    cli::cli_alert_danger("The lexadb does not match the expected schema.")
-    validation_tbl <- tibble::as_tibble(attr(validation, "errors")[,c("instancePath", "message")])
+  config <- yaml::read_yaml(file.path(norm_path, "config.yaml"))
+  schema_version <- config$metadata$schema_version
+
+  # Stop if schema version is not supported
+  if (schema_version != "0.0.0.9001") {
+    cli::cli_abort(c("x" = "LexaDB schema not supported: {schema_version}."))
+  }
+
+  # Stop if config.yaml is not valid
+  config_validation <- validate_config(config, schema_version)
+  if (!config_validation) {
+    cli::cli_alert_danger("{.file config.yaml} does not match the expected schema.")
+
+    validation_tbl <- tibble::as_tibble(attr(config_validation, "errors")[,c("instancePath", "message")])
     validation_tbl <- dplyr::rename(validation_tbl, path = instancePath, problem = message)
-    print(validation_tbl)
+
+    return(validation_tbl)
+  }
+  
+  # Stop if lexicon.yaml is not found
+  if (!file.exists(file.path(norm_path, "lexicon.yaml"))) {
+    cli::cli_abort(
+      c("There is no {.file lexicon.yaml}.", "x" = "LexaDB not loaded.")
+    )
+  }
+
+  lexicon <- yaml::read_yaml(file.path(norm_path, "lexicon.yaml"))
+
+  lexicon_validation <- validate_lexicon(lexicon, schema_version)
+
+  if (!lexicon_validation) {
+    cli::cli_alert_danger("The lexadb does not match the expected schema.")
+
+    validation_tbl <- tibble::as_tibble(attr(lexicon_validation, "errors")[,c("instancePath", "message")])
+    validation_tbl <- dplyr::rename(validation_tbl, path = instancePath, problem = message)
+
     return(validation_tbl)
   }
 
-  lexadb_con <- list(
-    metadata = lexadb$metadata,
-    dbpath = normalizePath(path)
+  lexacon <- list(
+    config = config,
+    dbpath = norm_path
   )
-  class(lexadb_con) <- c("lexacon", "list")
+  class(lexacon) <- c("lexacon", "list")
 
-  return(lexadb_con)
+  return(lexacon)
 }
 
 #' Create a new Lexa database
@@ -219,19 +255,32 @@ read_lexadb <- function(lexadb_con) {
   return(lexadb)
 }
 
-validate_lexadb <- function(lexacon) {
-  if (lexacon$metadata$schema_version == "0.0.0.9001") {
-    lexadb_json <- jsonlite::toJSON(lexacon, auto_unbox = TRUE)
-    validated <- jsonvalidate::json_validate(
-      lexadb_json,
-      system.file("extdata/json-schemas/0.0.0.9001/lexadb-schema.json", package = "lexaR"),
-      verbose = TRUE,
-      engine = "ajv"
-    )
-    return(validated)
-  } else {
-    cli::cli_abort(c("x" = "Validation scheme not supported: {lexacon$metadata$schema_version}."))
-  }
+validate_config <- function(config, version) {
+  config_json <- jsonlite::toJSON(config, auto_unbox = TRUE)
+  validated <- jsonvalidate::json_validate(
+    config_json,
+    system.file(
+      glue::glue("extdata/json-schemas/{version}/config-schema.json"),
+      package = "lexaR"
+    ),
+    verbose = TRUE,
+    engine = "ajv"
+  )
+  return(validated)
+}
+
+validate_lexicon <- function(lexicon, version) {
+  lexicon_json <- jsonlite::toJSON(lexicon, auto_unbox = TRUE)
+  validated <- jsonvalidate::json_validate(
+    lexicon_json,
+    system.file(
+      glue::glue("extdata/json-schemas/{version}/lexicon-schema.json"),
+      package = "lexaR"
+    ),
+    verbose = TRUE,
+    engine = "ajv"
+  )
+  return(validated)
 }
 
 generate_lx_id <- function(lexadb) {

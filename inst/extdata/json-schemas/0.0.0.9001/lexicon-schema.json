@@ -2,41 +2,6 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "additionalProperties": false,
-    "required": ["metadata"],
-    "properties": {
-        "metadata": {
-            "type": "object",
-            "required": [
-                "schema",
-                "schema_version",
-                "name",
-                "author"
-            ],
-            "properties": {
-                "schema": {
-                "type": "string",
-                "const": "lexadb"
-                },
-                "schema_version": {
-                "type": "string",
-                "const": "0.0.0.9001"
-                },
-                "name": {
-                "type": "string"
-                },
-                "author": {
-                "type": "string"
-                },
-                "languages": {
-                  "type": "object",
-                    "additionalProperties": {
-                      "type": "string"
-                    }
-                }
-            },
-            "additionalProperties": false
-        }
-    },
     "patternProperties": {
         "^lx_\\d+$": {
             "type": "object",

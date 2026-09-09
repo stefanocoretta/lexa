@@ -1,4 +1,10 @@
-schema: lexadb
-schema_version: 0.0.0.9000
-name: "ぶろみ, Bromi"
-author: "Stefano Coretta"
+metadata:
+  schema: lexadb
+  schema_version: 0.0.0.9001
+  name: "ぶろみ, Bromi"
+  author: "Stefano Coretta"
+  languages:
+    hira: "Bromi (hiragana)"
+    roma: "Bromi (romaji)"
+    eng: "English"
+    jpn: "Japanese"
