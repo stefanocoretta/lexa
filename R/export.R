@@ -1,20 +1,17 @@
-# Convert lexicon to tibble ----
-
 #' Convert lexicon to a tibble
 #'
 #' It converts the lexicon from a Lexa database to a tibble (data frame). Each
 #' lexical entry is one row in the resulting tibble.
 #'
-#' @param lexacon A `lexacon` object (created with \code{\link{load_lexadb}}).
+#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
 #'
 #' @return A tibble.
 #' @export
-convert_lexicon <- function(lexacon, file = "lexicon.csv") {
-  if (!("lexacon" %in% class(lexacon))) {
-    cli::cli_abort(c("x" = "'{lexacon}' is not a lexadb connection!"))
+lexadb_to_tbl <- function(lexadb) {
+  if (!("lexadb" %in% class(lexadb))) {
+    cli::cli_abort(c("x" = "'{lexadb}' is not a lexadb!"))
   }
 
-  lexadb <- read_lexadb(lexacon)
   lexicon <- lexadb$lexicon
 
   df <- purrr::map_dfr(lexicon, function(entry) {
