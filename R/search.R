@@ -5,7 +5,7 @@
 #' Search entries in the lexicon, by entry form or sense definitions.
 #'
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
-#' @param lexeme A regular expression to search among entries.
+#' @param headword A regular expression to search among headwords.
 #' @param whole Whether to search for whole words (only applies to `entry`,
 #'    `FALSE` by default).
 #' @param definition A regular expression to search among sense definitions.
@@ -28,24 +28,24 @@
 #' # Search for entry with meaning "love"
 #' search_lexicon(eleryon, definition = "love")
 search_lexicon <- function(lexadb,
-                           lexeme = NULL,
+                           headword = NULL,
                            whole = FALSE,
                            definition = NULL,
                            word_class = NULL,
                            show_entry = FALSE) {
-  if (is.null(lexeme) & is.null(definition)) {
+  if (is.null(headword) & is.null(definition)) {
     cli::cli_abort("Please, provide either an entry or a definition to search
       in the lexicon.")
   }
 
   lexicon <- lexadb$lexicon
 
-  if (!is.null(lexeme)) {
+  if (!is.null(headword)) {
     hits <- lapply(lexicon, function(x) {
       if (whole) {
-        any(stringr::str_detect(x$lexeme, paste0("\\b", lexeme, "\\b")))
+        any(stringr::str_detect(x$headword, paste0("\\b", headword, "\\b")))
       } else {
-        any(stringr::str_detect(x$lexeme, lexeme))
+        any(stringr::str_detect(x$headword, headword))
       }
 
     })

@@ -2,7 +2,7 @@
 % Please edit documentation in R/print.R
 \name{print.lexalx}
 \alias{print.lexalx}
-\title{Print method for lexemes}
+\title{Print method for lexical entries}
 \usage{
 \method{print}{lexalx}(x, ...)
 }
@@ -15,5 +15,5 @@
 Nothing. Used for its side effects.
 }
 \description{
-Print method for objects of class \code{lexalx}, which prints lexeme info.
+Print method for objects of class \code{lexalx}, which prints the entry's info.
 }

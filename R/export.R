@@ -16,21 +16,21 @@ lexadb_to_tbl <- function(lexadb) {
 
   df <- purrr::map_dfr(lexicon, function(entry) {
 
-    # Extract lexeme
-    lexeme <- list()
+    # Extract headword
+    headword <- list()
 
-    if (is.list(entry$lexeme)) {
-      for (key in names(entry$lexeme)) {
-        value <- entry$lexeme[[key]]
+    if (is.list(entry$headword)) {
+      for (key in names(entry$headword)) {
+        value <- entry$headword[[key]]
 
         if (is.list(value) && !is.null(value$text)) {
           value <- value$text
         }
 
-        lexeme[[paste0("lexeme_", key)]] <- value
+        headword[[paste0("headword_", key)]] <- value
       }
     } else {
-      lexeme[["lexeme"]] <- entry$lexeme
+      headword[["headword"]] <- entry$headword
     }
 
     # Extract phonemic/phonetic
@@ -106,7 +106,7 @@ lexadb_to_tbl <- function(lexadb) {
     )
 
     # Collate all columns
-    c(result, lexeme, gloss)
+    c(result, headword, gloss)
   })
 
   df <- tibble::as_tibble(df)
@@ -114,7 +114,7 @@ lexadb_to_tbl <- function(lexadb) {
   df <- dplyr::relocate(
     df,
     id,
-    dplyr::starts_with("lexeme"),
+    dplyr::starts_with("headword"),
     dplyr::starts_with("gloss"),
     dplyr::matches("phonemic"),
     dplyr::matches("phonetic"),

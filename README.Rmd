@@ -77,11 +77,11 @@ This will create a new entry. The new `id` is automatically created.
 To search your lexicon:
 
 ```{r}
-db_path <- system.file("extdata/eleryon.yaml", package = "lexaR")
+db_path <- system.file("extdata/eleryon_lexadb/", package = "lexaR")
 eleryon <- load_lexadb(db_path)
 eleryon
 
-search_lexicon(eleryon, lexeme = "unullose")
+search_lexicon(eleryon, headword = "unullose")
 search_lexicon(eleryon, definition = "tomorrow")
 ```
 

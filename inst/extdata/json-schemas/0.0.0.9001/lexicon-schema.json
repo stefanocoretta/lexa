@@ -9,7 +9,7 @@
                 "id": {
                     "type": "string"
                 },
-                "lexeme": {
+                "headword": {
                     "oneOf": [
                         {
                             "type": "string"
@@ -206,7 +206,7 @@
             },
             "required": [
                 "id",
-                "lexeme",
+                "headword",
                 "word_type",
                 "word_class",
                 "senses",

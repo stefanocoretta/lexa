@@ -25,7 +25,7 @@ The following is the currently supported schema for a lexical entry.
 ```yaml
 lx_00000n:
   id: lx_00000n
-  lexeme: <string>
+  headword: <string>
   phonemic: <string>
   phonetic: <string>
   word_type: <root, stem, affix, clitic, particle, compound, phrase>

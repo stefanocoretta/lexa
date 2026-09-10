@@ -4,15 +4,15 @@
 \alias{import_lexicon_csv}
 \title{Import lexicon from a csv file}
 \usage{
-import_lexicon_csv(lexadb, path)
+import_lexicon_csv(path, lexadb_path)
 }
 \arguments{
-\item{lexadb}{A \code{lexadb} object as returned by \code{load_lexadb()}.}
+\item{path}{The path to the lexicon \code{.csv} file as a string.}
 
-\item{path}{The path to the lexicon .csv file as a string.}
+\item{lexadb_path}{The path to the Lexa database folder including the \verb{_lexadb} suffix.}
 }
 \value{
-Nothing. Used for its side effects.
+A new Lexa DB is created and the corresponding \code{lexadb} object is returned.
 }
 \description{
 It imports entries from a \code{.csv} file with lexical data. The file must have
@@ -22,7 +22,7 @@ into an existing Lexa database.
 \details{
 The file must have at least the following columns:
 \itemize{
-\item \code{entry}: the lexical entry, as it should appear in the head entry.
+\item \code{lexeme}: the lexical entry, as it should appear in the head entry.
 \item \code{gloss}: the gloss of the entry.
 }
 
@@ -31,14 +31,11 @@ Optionally, the file can have the following columns:
 \item \code{definition}: the full definition of the entry. This normally provides
 more details about the meaning than the gloss. If this column is not
 present, the definition field is filled with the gloss.
-\item \code{phon}: phonetic transcription of the entry.
-\item \code{morph_category}: category of entry (e.g. lexical vs grammatical).
-\item \code{morph_type}: type of morpheme (e.g. root vs affix).
-\item \code{part_of_speech}: part of speech of entry.
-\item \code{class}: lexical class of entry (e.g. verbal conjugations, noun classes).
+\item \code{phonemic}: phonemic transcription of the entry.
+\item \code{phonetic}: phonetic transcription of the entry.
+\item \code{word_type}: type of word (e.g. root or affix).
+\item \code{word_class}: word class/part of speech of entry.
 \item \code{etymology}: the etymology of the entry.
 \item \code{notes}: free text notes.
 }
-
-Note that this list is temporary and \emph{it will change} in the future.
 }

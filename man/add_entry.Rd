@@ -6,7 +6,7 @@
 \usage{
 add_entry(
   lexadb,
-  lexeme,
+  headword,
   gloss,
   word_type = NULL,
   word_class = NULL,
@@ -19,7 +19,7 @@ add_entry(
 \arguments{
 \item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
-\item{lexeme}{The entry as a string.}
+\item{headword}{The citation form/headword of the lexical entry as a string.}
 
 \item{gloss}{The gloss as a string.}
 

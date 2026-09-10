@@ -66,9 +66,9 @@ print.lexadb <- function(x, ...) {
   cli::cli_text(classes)
 }
 
-#' Print method for lexemes
+#' Print method for lexical entries
 #'
-#' Print method for objects of class `lexalx`, which prints lexeme info.
+#' Print method for objects of class `lexalx`, which prints the entry's info.
 #'
 #' @param x An object of class `lexalx`.
 #' @param ... Arguments passed to print.
@@ -77,15 +77,15 @@ print.lexadb <- function(x, ...) {
 #' @export
 print.lexalx <- function(x, ...) {
   n_senses <- length(x$senses)
-  lexeme <- x$lexeme
+  headword <- x$headword
 
-  lexeme_part <- ""
-  if (is.character(lexeme)) {
-    lexeme_part <- "{crayon::blue(lexeme)}"
+  headword_part <- ""
+  if (is.character(headword)) {
+    headword_part <- "{crayon::blue(headword)}"
   } else {
-    for (script in lexeme) {
+    for (script in headword) {
       text <- if (is.list(script) && !is.null(script$text)) script$text else script
-      lexeme_part <- paste0(lexeme_part, "{crayon::blue('", text, "')} ")
+      headword_part <- paste0(headword_part, "{crayon::blue('", text, "')} ")
     }
   }
 
@@ -97,18 +97,18 @@ print.lexalx <- function(x, ...) {
     if (!is.null(phonetic)) paste0(" [", phonetic, "]") else ""
   )
 
-  lexeme_line <- paste(
-    lexeme_part,
+  headword_line <- paste(
+    headword_part,
     pronunciation,
     "{.emph {crayon::green(x$word_class)}}"
   )
 
   if (!is.null(x$grammatical_features)) {
-    lexeme_line <- paste(lexeme_line, "({glue::glue_collapse(x$grammatical_features, sep = ', ')})")
+    headword_line <- paste(headword_line, "({glue::glue_collapse(x$grammatical_features, sep = ', ')})")
   }
 
   cli::cli_h1("Entry {x$id}")
-  cli::cli_text(lexeme_line)
+  cli::cli_text(headword_line)
 
   cli::cli_h2("Senses")
   for (sense in 1:length(x$senses)) {
@@ -209,8 +209,8 @@ print.lexalxscompact <- function(x, ...) {
   purrr::walk(
     x,
     function(i) {
-      lexeme_line <- "{crayon::blue(i$lexeme)} {.emph {crayon::green(i$word_class)}} {i$senses$se_01$definition} [{crayon::silver(i$id)}]"
-      cli::cli_bullets(c("*" = lexeme_line))
+      headword_line <- "{crayon::blue(i$headword)} {.emph {crayon::green(i$word_class)}} {i$senses$se_01$definition} [{crayon::silver(i$id)}]"
+      cli::cli_bullets(c("*" = headword_line))
     }
   )
 }

@@ -113,7 +113,7 @@ create_lexadb <- function(name, author, parent = ".") {
 #' to edit at will.
 #'
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
-#' @param lexeme The entry as a string.
+#' @param headword The citation form/headword of the lexical entry as a string.
 #' @param gloss The gloss as a string.
 #' @param word_type The type of lexical entry (root, stem, affix, clitic, particle, compound, phrase).
 #' @param word_class The word class of the lexical entry.
@@ -125,7 +125,7 @@ create_lexadb <- function(name, author, parent = ".") {
 #' @return Nothing. Used for its side effects
 #' @export
 add_entry <- function(lexadb,
-                      lexeme,
+                      headword,
                       gloss,
                       word_type = NULL,
                       word_class = NULL,
@@ -151,11 +151,11 @@ add_entry <- function(lexadb,
 
   entries <- lapply(
     lexicon,
-    function(entry) entry$lexeme
+    function(entry) entry$headword
   )
 
-  if (lexeme %in% entries) {
-    homophones_n <- sum(entries == lexeme)
+  if (headword %in% entries) {
+    homophones_n <- sum(entries == headword)
     cli::cli_alert_warning(
       cli::pluralize("{homophones_n} homophone{?s} found!")
     )
@@ -181,7 +181,7 @@ add_entry <- function(lexadb,
   # entry schema
   new_lx[[lx_id]] <- list(
     id = lx_id,
-    lexeme = lexeme,
+    headword = headword,
     phonemic = phonemic,
     phonetic = phonetic,
     word_type = word_type,
@@ -215,7 +215,7 @@ new_lexicon <- function() {
 
   lx_000001 <- list(
     id = "lx_000001",
-    lexeme = "rat",
+    headword = "rat",
     word_type = "stem",
     word_class = "noun",
     senses = list(

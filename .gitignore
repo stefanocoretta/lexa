@@ -8,3 +8,6 @@ pkgdown/
 inst/doc
 /doc/
 /Meta/
+
+/.quarto/
+**/*.quarto_ipynb

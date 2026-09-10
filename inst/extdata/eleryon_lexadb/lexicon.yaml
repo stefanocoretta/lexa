@@ -1,6 +1,6 @@
 lx_000001:
   id: lx_000001
-  lexeme: gąryon
+  headword: gąryon
   phonemic: ˈgɔrjon
   word_type: stem
   word_class: noun
@@ -16,7 +16,7 @@ lx_000001:
   date_modified: 2022-01-23T09:51:16Z
 lx_000002:
   id: lx_000002
-  lexeme: unullose
+  headword: unullose
   phonemic: unullose
   word_type: stem
   word_class: verb
@@ -32,7 +32,7 @@ lx_000002:
   date_modified: 2022-01-23T09:51:16Z
 lx_000003:
   id: lx_000003
-  lexeme: vēselse
+  headword: vēselse
   phonemic: veɪselse
   word_type: stem
   word_class: verb
@@ -52,7 +52,7 @@ lx_000003:
   date_modified: 2022-01-23T09:51:16Z
 lx_000004:
   id: lx_000004
-  lexeme: evēsellose
+  headword: evēsellose
   phonemic: eveɪsellose
   word_type: stem
   word_class: verb
@@ -69,7 +69,7 @@ lx_000004:
   date_modified: 2022-01-23T09:51:16Z
 lx_000005:
   id: lx_000005
-  lexeme: chǭs
+  headword: chǭs
   phonemic: tʃɵːs
   word_type: stem
   word_class: adverb
@@ -85,7 +85,7 @@ lx_000005:
   date_modified: 2022-01-14T21:13:41Z
 lx_000006:
   id: lx_000006
-  lexeme: urųrtose
+  headword: urųrtose
   phonemic: uryrtose
   word_type: stem
   word_class: verb
