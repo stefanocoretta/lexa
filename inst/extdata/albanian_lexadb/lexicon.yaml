@@ -2,7 +2,7 @@ lx_000001:
     id: lx_000001
     headword: erë
     phonemic: eɽɜ
-    word_type: lexical
+    morph_type: lexical
     word_class: noun
     senses:
         se_01:

@@ -33,7 +33,7 @@ more details about the meaning than the gloss. If this column is not
 present, the definition field is filled with the gloss.
 \item \code{phonemic}: phonemic transcription of the entry.
 \item \code{phonetic}: phonetic transcription of the entry.
-\item \code{word_type}: type of word (e.g. root or affix).
+\item \code{morph_type}: type of word (e.g. root or affix).
 \item \code{word_class}: word class/part of speech of entry.
 \item \code{etymology}: the etymology of the entry.
 \item \code{notes}: free text notes.

@@ -2,7 +2,7 @@ lx_000001:
   id: lx_000001
   headword: gąryon
   phonemic: ˈgɔrjon
-  word_type: stem
+  morph_type: stem
   word_class: noun
   grammatical_features:
     declination: first
@@ -18,7 +18,7 @@ lx_000002:
   id: lx_000002
   headword: unullose
   phonemic: unullose
-  word_type: stem
+  morph_type: stem
   word_class: verb
   grammatical_features:
     class: thematic
@@ -34,7 +34,7 @@ lx_000003:
   id: lx_000003
   headword: vēselse
   phonemic: veɪselse
-  word_type: stem
+  morph_type: stem
   word_class: verb
   grammatical_features:
     class: athematic
@@ -54,7 +54,7 @@ lx_000004:
   id: lx_000004
   headword: evēsellose
   phonemic: eveɪsellose
-  word_type: stem
+  morph_type: stem
   word_class: verb
   grammatical_features:
     class: thematic
@@ -71,7 +71,7 @@ lx_000005:
   id: lx_000005
   headword: chǭs
   phonemic: tʃɵːs
-  word_type: stem
+  morph_type: stem
   word_class: adverb
   senses:
     se_01:
@@ -87,7 +87,7 @@ lx_000006:
   id: lx_000006
   headword: urųrtose
   phonemic: uryrtose
-  word_type: stem
+  morph_type: stem
   word_class: verb
   grammatical_features:
     class: thematic

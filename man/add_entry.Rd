@@ -8,7 +8,7 @@ add_entry(
   lexadb,
   headword,
   gloss,
-  word_type = NULL,
+  morph_type = NULL,
   word_class = NULL,
   phonemic = NULL,
   phonetic = NULL,
@@ -23,9 +23,9 @@ add_entry(
 
 \item{gloss}{The gloss as a string.}
 
-\item{word_type}{The type of lexical entry (root, stem, affix, clitic, particle, compound, phrase).}
+\item{morph_type}{The morphological type of the lexical entry (root, stem, affix, clitic, particle, compound, derived, multiword expression, phrase, ...).}
 
-\item{word_class}{The word class of the lexical entry.}
+\item{word_class}{The word class/part of speech of the lexical entry.}
 
 \item{phonemic}{The phonemic transcription.}
 

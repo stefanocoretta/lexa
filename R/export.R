@@ -99,7 +99,7 @@ lexadb_to_tbl <- function(lexadb) {
       id = entry$id,
       phonemic = phonemic,
       phonetic = phonetic,
-      word_type = entry$word_type,
+      morph_type = entry$morph_type,
       word_class = entry$word_class,
       etymology = entry$etymology,
       notes = notes

@@ -18,7 +18,7 @@
 #'    present, the definition field is filled with the gloss.
 #' * `phonemic`: phonemic transcription of the entry.
 #' * `phonetic`: phonetic transcription of the entry.
-#' * `word_type`: type of word (e.g. root or affix).
+#' * `morph_type`: type of word (e.g. root or affix).
 #' * `word_class`: word class/part of speech of entry.
 #' * `etymology`: the etymology of the entry.
 #' * `notes`: free text notes.

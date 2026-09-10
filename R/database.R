@@ -115,8 +115,8 @@ create_lexadb <- function(name, author, parent = ".") {
 #' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
 #' @param headword The citation form/headword of the lexical entry as a string.
 #' @param gloss The gloss as a string.
-#' @param word_type The type of lexical entry (root, stem, affix, clitic, particle, compound, phrase).
-#' @param word_class The word class of the lexical entry.
+#' @param morph_type The morphological type of the lexical entry (root, stem, affix, clitic, particle, compound, derived, multiword expression, phrase, ...).
+#' @param word_class The word class/part of speech of the lexical entry.
 #' @param phonemic The phonemic transcription.
 #' @param phonetic The phonetic transcription.
 #' @param definition The definition of the entry as a string.
@@ -127,7 +127,7 @@ create_lexadb <- function(name, author, parent = ".") {
 add_entry <- function(lexadb,
                       headword,
                       gloss,
-                      word_type = NULL,
+                      morph_type = NULL,
                       word_class = NULL,
                       phonemic = NULL,
                       phonetic = NULL,
@@ -142,8 +142,8 @@ add_entry <- function(lexadb,
   # Need to re-read lexicon in case user doesn't reload the db
   lexicon <- yaml::read_yaml(file.path(db_path, "lexicon.yaml"))
 
-  if (is.null(word_type)) {
-    word_type = "stem"
+  if (is.null(morph_type)) {
+    morph_type = "stem"
   }
   if (is.null(word_class)) {
     word_class = ""
@@ -184,7 +184,7 @@ add_entry <- function(lexadb,
     headword = headword,
     phonemic = phonemic,
     phonetic = phonetic,
-    word_type = word_type,
+    morph_type = morph_type,
     word_class = word_class,
     homophone = homophone,
     senses = list(
@@ -216,7 +216,7 @@ new_lexicon <- function() {
   lx_000001 <- list(
     id = "lx_000001",
     headword = "rat",
-    word_type = "stem",
+    morph_type = "stem",
     word_class = "noun",
     senses = list(
       se_01 = list(

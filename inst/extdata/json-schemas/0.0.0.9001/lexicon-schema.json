@@ -5,6 +5,16 @@
     "patternProperties": {
         "^lx_\\d+$": {
             "type": "object",
+            "required": [
+                "id",
+                "headword",
+                "morph_type",
+                "word_class",
+                "senses",
+                "date_created",
+                "date_modified"
+            ],
+            "additionalProperties": false,
             "properties": {
                 "id": {
                     "type": "string"
@@ -39,7 +49,7 @@
                         }
                     ]
                 },
-                "word_type": {
+                "morph_type": {
                     "type": "string"
                 },
                 "word_class": {
@@ -203,17 +213,7 @@
                     "type": "string",
                     "format": "date-time"
                 }
-            },
-            "required": [
-                "id",
-                "headword",
-                "word_type",
-                "word_class",
-                "senses",
-                "date_created",
-                "date_modified"
-            ],
-            "additionalProperties": false
+            }
         }
     },
     "definitions": {

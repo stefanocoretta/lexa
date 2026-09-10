@@ -16,15 +16,15 @@ print.lexadb <- function(x, ...) {
   lexicon <- x$lexicon
   lexicon_length <- length(lexicon)
 
-  wtypes <- table(unlist(lapply(lexicon, function(x) x$word_type)))
-  wtypes_length <- length(wtypes)
+  mtypes <- table(unlist(lapply(lexicon, function(x) x$morph_type)))
+  mtypes_length <- length(mtypes)
 
-  if (wtypes_length > 0) {
-    names(wtypes) <- paste0("{crayon::red('", stringr::str_to_sentence(names(wtypes)), ":')}")
-    types <- "{crayon::red(cli::symbol$circle_filled)} Word types {crayon::green(cli::symbol$arrow_right)} "
-    for (type_i in 1:wtypes_length) {
-      types <- paste(types, names(wtypes)[type_i], wtypes[[type_i]])
-      if (type_i < wtypes_length) {
+  if (mtypes_length > 0) {
+    names(mtypes) <- paste0("{crayon::red('", stringr::str_to_sentence(names(mtypes)), ":')}")
+    types <- "{crayon::red(cli::symbol$circle_filled)} Morphological types {crayon::green(cli::symbol$arrow_right)} "
+    for (type_i in 1:mtypes_length) {
+      types <- paste(types, names(mtypes)[type_i], mtypes[[type_i]])
+      if (type_i < mtypes_length) {
         types <- paste(types, crayon::green('|'))
       }
     }
