@@ -241,9 +241,14 @@ read_lexicon <- function(path) {
   lexicon_yaml <- yaml::read_yaml(path)
   lexicon <- lapply(
     lexicon_yaml,
-    function(x) {
-      class(x) <- "lexalx"
-      x
+    function(entry) {
+      class(entry) <- "lexalx"
+      for (sense in seq_along(entry$senses)) {
+        for (example in seq_along(entry$senses[[sense]][["examples"]])) {
+          class(entry$senses[[sense]][["examples"]][[example]]) <- "lexast"
+        }
+      }
+      return(entry)
     }
   )
 

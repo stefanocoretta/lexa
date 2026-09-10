@@ -146,24 +146,12 @@ print.lexalx <- function(x, ...) {
         theme = list(.example = list(`margin-left` = 10))
       )
       cli::cli_h3("Examples")
-      for (example in x$senses[[sense]]$examples) {
-        sentence_part <- ""
-        if (is.character(example)) {
-          sentence_part <- "{crayon::blue(example)}"
-        } else {
-          for (i in seq_along(example$sentence)) {
-            script <- example$sentence[[i]]
-            text <- if (is.list(script) && !is.null(script$text)) script$text else script
-            if (i < length(example$sentence)) {
-              sentence_part <- paste0(sentence_part, " {crayon::blue('", text, "')} {cli::symbol$en_dash} ")
-            } else {
-              sentence_part <- paste0(sentence_part, " {crayon::blue('", text, "')} ")
-            }
-          }
-        }
+      for (example in seq_along(x$senses[[sense]]$examples)) {
         cli::cli_text(
-          paste0("{cli::symbol$bullet}", sentence_part, "{example$translation}")
+          cli::col_red(cli::symbol$circle_double, " Ex. ", LETTERS[example])
         )
+        print.lexast(x$senses[[sense]]$examples[[example]])
+        cli::cli_text("")
       }
       cli::cli_end(d)
     }
@@ -225,25 +213,37 @@ print.lexalxscompact <- function(x, ...) {
 #' @return Nothing. Used for its side effects.
 #' @export
 print.lexast <- function(x, ...) {
-  cli::cli_h1(cli::col_blue(x$sentence))
+  cli::cli_text(cli::col_blue(x$sentence))
+
   if (!is.null(x$transcription)) {
     cli::cli_text(cli::col_blue(x$transcription))
   }
   if (!is.null(x$transliteration)) {
     cli::cli_text(cli::col_blue(x$transliteration))
   }
-  cli::cli_text("[", x$phonetic, "]")
+  if (!is.null(x$phonemic)) {
+    cli::cli_text("/", x$phonemic, "/")
+  }
+  if (!is.null(x$phonetic)) {
+    cli::cli_text("[", x$phonetic, "]")
+  }
+
   cli::cli_text("")
 
   morph_split <- unlist(stringr::str_split(stringr::str_squish(x$morph), " "))
   gloss_split <- unlist(stringr::str_split(stringr::str_squish(x$gloss), " "))
+
   morph_n <- cli::utf8_nchar(morph_split)
   gloss_n <- cli::utf8_nchar(gloss_split)
+
   max_n <- pmax(morph_n, gloss_n) + 2
+
   morph_pad <- stringr::str_pad(morph_split, max_n, "right")
   gloss_pad <- stringr::str_pad(gloss_split, max_n, "right")
 
-  if (sum(max_n) > 80) {
+  width <- getOption("width") - 10
+
+  if (sum(max_n) > width) {
     n <- 0
     i <- 1
     y <- 1
@@ -251,32 +251,46 @@ print.lexast <- function(x, ...) {
     gloss <- vector()
 
     while (i <= length(max_n)) {
-      if (sum(max_n[y:i]) < 81) {
+
+      if (sum(max_n[y:i]) < (width + 1)) {
+
         morph <- c(morph, morph_pad[i])
         gloss <- c(gloss, gloss_pad[i])
+
         if (i == length(max_n)) {
-          cat(cli::col_green(morph), "\n")
-          cat(gloss, "\n")
-          cat("\n")
+
+          cli::cli_verbatim(cli::col_green(paste0(morph, collapse = "")))
+          cli::cli_verbatim(paste0(gloss, collapse = ""))
+          cli::cli_verbatim("")
+
         }
+
         i <- i + 1
+
       } else {
-        cat(cli::col_green(morph), "\n")
-        cat(gloss, "\n")
-        cat("\n")
+
+        cli::cli_verbatim(cli::col_green(paste0(morph, collapse = "")))
+        cli::cli_verbatim(paste0(gloss, collapse = ""))
+        cli::cli_verbatim("")
+
         morph <- vector()
         gloss <- vector()
+
         y <- i
+
       }
+
     }
+
   } else {
-    cat(cli::col_green(morph_pad), "\n")
-    cat(gloss_pad, "\n")
+    cli::cli_verbatim(cli::col_green(paste0(morph_pad, collapse = "")))
+    cli::cli_verbatim(paste0(gloss_pad, collapse = ""))
   }
 
-  cli::cli_text("")
   cli::cli_text("\u2018", x$translation, "\u2019")
+
 }
+
 
 orange <- crayon::make_style("orange")
 
