@@ -4,15 +4,15 @@
 \alias{import_lexicon_csv}
 \title{Import lexicon from a csv file}
 \usage{
-import_lexicon_csv(path, lexadb_path)
+import_lexicon_csv(lexadb, path)
 }
 \arguments{
-\item{path}{The path to the lexicon \code{.csv} file as a string.}
+\item{lexadb}{A \code{lexadb} object (created with \code{\link{load_lexadb}}).}
 
-\item{lexadb_path}{The path to the Lexa database folder including the \verb{_lexadb} suffix.}
+\item{path}{The path to the lexicon \code{.csv} file as a string.}
 }
 \value{
-A new Lexa DB is created and the corresponding \code{lexadb} object is returned.
+Nothing. Used for its side effects.
 }
 \description{
 It imports entries from a \code{.csv} file with lexical data. The file must have
@@ -22,7 +22,7 @@ into an existing Lexa database.
 \details{
 The file must have at least the following columns:
 \itemize{
-\item \code{lexeme}: the lexical entry, as it should appear in the head entry.
+\item \code{headword}: the headword of the lexical entry, as it should appear in the head entry.
 \item \code{gloss}: the gloss of the entry.
 }
 
@@ -33,7 +33,7 @@ more details about the meaning than the gloss. If this column is not
 present, the definition field is filled with the gloss.
 \item \code{phonemic}: phonemic transcription of the entry.
 \item \code{phonetic}: phonetic transcription of the entry.
-\item \code{morph_type}: type of word (e.g. root or affix).
+\item \code{morph_type}: morphological type of lexical entry (e.g. root or affix).
 \item \code{word_class}: word class/part of speech of entry.
 \item \code{etymology}: the etymology of the entry.
 \item \code{notes}: free text notes.

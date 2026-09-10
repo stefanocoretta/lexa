@@ -8,7 +8,7 @@
 #'
 #' The file must have at least the following columns:
 #'
-#' * `lexeme`: the lexical entry, as it should appear in the head entry.
+#' * `headword`: the headword of the lexical entry, as it should appear in the head entry.
 #' * `gloss`: the gloss of the entry.
 #'
 #' Optionally, the file can have the following columns:
@@ -18,62 +18,92 @@
 #'    present, the definition field is filled with the gloss.
 #' * `phonemic`: phonemic transcription of the entry.
 #' * `phonetic`: phonetic transcription of the entry.
-#' * `morph_type`: type of word (e.g. root or affix).
+#' * `morph_type`: morphological type of lexical entry (e.g. root or affix).
 #' * `word_class`: word class/part of speech of entry.
 #' * `etymology`: the etymology of the entry.
 #' * `notes`: free text notes.
 #'
+#' @param lexadb A `lexadb` object (created with \code{\link{load_lexadb}}).
 #' @param path The path to the lexicon `.csv` file as a string.
-#' @param lexadb_path The path to the Lexa database folder including the `_lexadb` suffix.
 #'
-#' @return A new Lexa DB is created and the corresponding `lexadb` object is returned.
+#' @return Nothing. Used for its side effects.
 #' @export
 #'
-import_lexicon_csv <- function(path, lexadb_path) {
-  lexicon_tab <- readr::read_csv(path, show_col_types = FALSE, progress = FALSE)
+import_lexicon_csv <- function(lexadb, path) {
+  db_path <- lexadb$dbpath
+
+  lexicon_tab <- readr::read_csv(
+    path,
+    show_col_types = FALSE,
+    progress = FALSE
+  )
 
   lexicon_list <- purrr::transpose(lexicon_tab)
+  lexicon_length <- length(lexicon_list)
+
+  ids_str <- sprintf("%06d", 1:lexicon_length)
+  ids <- paste0("lx_", ids_str)
 
   today <- as.character(Sys.time())
 
-  purrr::walk(
-    lexicon_list,
-    function(x) {
-      lx_entry <- list()
-      lx_entry$id <- generate_lx_id(lexadb)
-
-      out <- glue::glue(
-        'id: {lx_entry$id}
-        entry: {x$entry}
-        phon: {x$phon}
-        morph_category: {x$morph_category}
-        morph_type: {x$morph_type}
-        part_of_speech: {x$part_of_speech}
-        inflectional_features:
-          class:
-        etymology: {x$etymology}
-        notes: {x$notes}
-        allomorphs:
-          al_01:
-            id: al_01
-            morph: {x$entry}
-            phon: {x$phon}
-        senses:
-          se_01:
-            id: se_01
-            gloss: {x$gloss}
-            definition: "{ifelse(!is.null(x$definition), x$definition, x$gloss)}"
-        date_created: {today}
-        date_modified: {today}
-
-        ',
-        .null = ""
-      )
-
-      lx_entry$out <- out
-      write_entry(lexadb, lx_entry)
-    }
+  entry_order <- c(
+    "id",
+    "headword",
+    "phonemic",
+    "phonetic",
+    "morph_type",
+    "word_class",
+    "etymology",
+    "senses",
+    "notes",
+    "date_created",
+    "date_modified"
   )
+
+  sense_order <- c(
+    "id",
+    "gloss",
+    "definition"
+  )
+
+  lexicon <- lapply(seq_along(lexicon_list), function(i) {
+
+    z <- lexicon_list[[i]]
+
+    # Construct the single sense from CSV fields
+    sense <- list(
+      id = "se_01",
+      gloss = z$gloss,
+      definition = z$definition
+    )
+
+    # Remove fields that belong inside the sense
+    z$gloss <- NULL
+    z$definition <- NULL
+
+    # Keep only specified entry fields
+    z <- z[intersect(entry_order, names(z))]
+
+    # Add entry ID at the beginning
+    z <- c(list(id = ids[i]), z)
+
+    # Add the sense
+    z$senses <- list(
+      se_01 = sense[sense_order]
+    )
+
+    # Add dates
+    z$date_created <- today
+    z$date_modified <- today
+
+    return(z)
+  })
+
+  names(lexicon) <- ids
+
+  # WARNING: this ovewrites the existing lexicon.yaml file...
+  yaml::write_yaml(lexicon, file.path(db_path, "lexicon.yaml"))
+
 }
 
 
