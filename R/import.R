@@ -8,7 +8,7 @@
 #'
 #' The file must have at least the following columns:
 #'
-#' * `entry`: the lexical entry, as it should appear in the head entry.
+#' * `lexeme`: the lexical entry, as it should appear in the head entry.
 #' * `gloss`: the gloss of the entry.
 #'
 #' Optionally, the file can have the following columns:
@@ -16,23 +16,20 @@
 #' * `definition`: the full definition of the entry. This normally provides
 #'    more details about the meaning than the gloss. If this column is not
 #'    present, the definition field is filled with the gloss.
-#' * `phon`: phonetic transcription of the entry.
-#' * `morph_category`: category of entry (e.g. lexical vs grammatical).
-#' * `morph_type`: type of morpheme (e.g. root vs affix).
-#' * `part_of_speech`: part of speech of entry.
-#' * `class`: lexical class of entry (e.g. verbal conjugations, noun classes).
+#' * `phonemic`: phonemic transcription of the entry.
+#' * `phonetic`: phonetic transcription of the entry.
+#' * `word_type`: type of word (e.g. root or affix).
+#' * `word_class`: word class/part of speech of entry.
 #' * `etymology`: the etymology of the entry.
 #' * `notes`: free text notes.
 #'
-#' Note that this list is temporary and *it will change* in the future.
+#' @param path The path to the lexicon `.csv` file as a string.
+#' @param lexadb_path The path to the Lexa database folder including the `_lexadb` suffix.
 #'
-#' @param lexadb A `lexadb` object as returned by `load_lexadb()`.
-#' @param path The path to the lexicon .csv file as a string.
-#'
-#' @return Nothing. Used for its side effects.
+#' @return A new Lexa DB is created and the corresponding `lexadb` object is returned.
 #' @export
 #'
-import_lexicon_csv <- function(lexadb, path) {
+import_lexicon_csv <- function(path, lexadb_path) {
   lexicon_tab <- readr::read_csv(path, show_col_types = FALSE, progress = FALSE)
 
   lexicon_list <- purrr::transpose(lexicon_tab)
